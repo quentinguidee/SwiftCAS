@@ -6,17 +6,17 @@
 //
 
 class Division: Operator {
-    var nodes: [Node] = []
-    var minOfNodes: Int = 2
-    var maxOfNodes: Int = 2
+    var children: [Node] = []
+    var minNumberOfChildren: Int = 2
+    var maxNumberOfChildren: Int = 2
     
     required init() {}
     
     func toString() -> String {
-        return nodes[0].toString() + "/" + nodes[1].toString()
+        return children[0].toString() + "/" + children[1].toString()
     }
     
     func toLaTeX() -> String {
-        return "\\frac{" + nodes[0].toLaTeX() + "}{" + nodes[1].toLaTeX() + "}"
+        return "\\frac{" + children[0].toLaTeX() + "}{" + children[1].toLaTeX() + "}"
     }
 }

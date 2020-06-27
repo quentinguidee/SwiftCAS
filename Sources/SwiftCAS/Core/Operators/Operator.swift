@@ -6,20 +6,20 @@
 //
 
 protocol Operator: Node {
-    var nodes: [Node] { get set }
-    var minOfNodes: Int { get set }
-    var maxOfNodes: Int { get set }
+    var children: [Node] { get set }
+    var minNumberOfChildren: Int { get set }
+    var maxNumberOfChildren: Int { get set }
     init()
 }
 
 extension Operator {
-    init(_ nodes: [Node]) {
+    init(_ children: [Node]) {
         self.init()
-        assert(nodes.count >= minOfNodes && nodes.count <= maxOfNodes, "Wrong number of nodes")
-        self.nodes = nodes
+        assert(children.count >= minNumberOfChildren && children.count <= maxNumberOfChildren, "Wrong number of nodes")
+        self.children = children
     }
     
-    init(_ nodes: Node...) {
-        self.init(nodes)
+    init(_ children: Node...) {
+        self.init(children)
     }
 }

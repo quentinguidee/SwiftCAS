@@ -12,13 +12,13 @@ protocol MultiNodesOperator: Operator {
 extension MultiNodesOperator {
     func toString() -> String {
         var s: String = ""
-        nodes.forEach { s += $0.toString() + symbol }
+        children.forEach { s += $0.toString() + symbol }
         return String(s.dropLast())
     }
     
     func toLaTeX() -> String {
         var s: String = ""
-        nodes.forEach { s += $0.toLaTeX() + symbol }
+        children.forEach { s += $0.toLaTeX() + symbol }
         return String(s.dropLast())
     }
 }
