@@ -17,6 +17,8 @@ extension MultiNodesOperator {
     }
     
     func toLaTeX() -> String {
-        return toString()
+        var s: String = ""
+        nodes.forEach { s += $0.toLaTeX() + symbol }
+        return String(s.dropLast())
     }
 }
