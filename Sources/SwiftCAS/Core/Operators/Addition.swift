@@ -6,7 +6,7 @@
 //
 
 class Addition: MultiNodesOperator {
-    var separatorSymbol = "+"
+    var symbol = "+"
     var nodes: [Node] = []
     
     required init() {}

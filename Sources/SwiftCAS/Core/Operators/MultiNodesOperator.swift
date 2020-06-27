@@ -6,13 +6,13 @@
 //
 
 protocol MultiNodesOperator: Operator {
-    var separatorSymbol: String { get set }
+    var symbol: String { get set }
 }
 
 extension MultiNodesOperator {
     func toString() -> String {
         var s: String = ""
-        nodes.forEach { s += $0.toString() + separatorSymbol }
+        nodes.forEach { s += $0.toString() + symbol }
         return String(s.dropLast())
     }
     
