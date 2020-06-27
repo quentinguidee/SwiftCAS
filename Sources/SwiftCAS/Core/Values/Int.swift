@@ -13,4 +13,8 @@ extension Int: NumericalValue {
     func toLaTeX() -> String {
         return toString()
     }
+    
+    func isNatural() -> Bool {
+        return self >= 0
+    }
 }

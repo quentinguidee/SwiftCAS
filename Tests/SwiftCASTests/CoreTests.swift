@@ -5,6 +5,9 @@ final class CoreTests: XCTestCase {
     func testInt() {
         XCTAssertEqual(3.toString(), "3")
         XCTAssertEqual(3.toLaTeX(), "3")
+        XCTAssertEqual(3.isNatural(), true)
+        XCTAssertEqual(0.isNatural(), true)
+        XCTAssertEqual((-3).isNatural(), false)
     }
     
     func testDouble() {
@@ -36,6 +39,10 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(32, 2.0).toString(), "32/2.0")
         XCTAssertEqual(Division(32, 2).toLaTeX(), "\\frac{32}{2}")
         XCTAssertEqual(Division(32, 2.0).toLaTeX(), "\\frac{32}{2.0}")
+        XCTAssertEqual(Division(3, 2).numerator.toString(), "3")
+        XCTAssertEqual(Division(3, 2).deniminator.toString(), "2")
+        XCTAssertEqual(Division(3, 2).dividend.toString(), "3")
+        XCTAssertEqual(Division(3, 2).divisor.toString(), "2")
     }
 
     static var allTests = [
