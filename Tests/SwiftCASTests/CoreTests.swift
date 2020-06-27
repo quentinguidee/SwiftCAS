@@ -12,11 +12,16 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(3.0.toLaTeX(), "3.0")
     }
     
+    func testNode() {
+        XCTAssertEqual(Addition(1, 2).toString(), "1+2")
+        XCTAssertEqual(Addition([1, 2]).toString(), "1+2")
+    }
+    
     func testAddition() {
-        XCTAssertEqual(Addition([32, 2]).toString(), "32+2")
-        XCTAssertEqual(Addition([32, 2.0]).toString(), "32+2.0")
-        XCTAssertEqual(Addition([32, 2]).toLaTeX(), "32+2")
-        XCTAssertEqual(Addition([32, 2.0]).toLaTeX(), "32+2.0")
+        XCTAssertEqual(Addition(32, 2).toString(), "32+2")
+        XCTAssertEqual(Addition(32, 2.0).toString(), "32+2.0")
+        XCTAssertEqual(Addition(32, 2).toLaTeX(), "32+2")
+        XCTAssertEqual(Addition(32, 2.0).toLaTeX(), "32+2.0")
     }
 
     static var allTests = [

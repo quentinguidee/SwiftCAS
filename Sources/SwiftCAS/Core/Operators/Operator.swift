@@ -15,4 +15,9 @@ extension Operator {
         self.init()
         self.nodes = nodes
     }
+    
+    init(_ nodes: Node...) {
+        self.init()
+        self.nodes = nodes
+    }
 }
