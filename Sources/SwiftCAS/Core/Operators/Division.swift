@@ -7,6 +7,8 @@
 
 class Division: Operator {
     var nodes: [Node] = []
+    var minOfNodes: Int = 2
+    var maxOfNodes: Int = 2
     
     required init() {}
     
