@@ -15,6 +15,18 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(3.0.toLaTeX(), "3.0")
     }
     
+    func testInfinity() {
+        XCTAssertEqual(Infinity().toString(), "∞")
+        XCTAssertEqual(Infinity().toLaTeX(), "\\infty")
+    }
+    
+    func testConstant() {
+        XCTAssertEqual(Constant("π").toString(), "π")
+        XCTAssertEqual(Constant("π").toLaTeX(), "\\pi")
+        XCTAssertEqual(Constant("e").toString(), "e")
+        XCTAssertEqual(Constant("e").toLaTeX(), "e")
+    }
+    
     func testNode() {
         XCTAssertEqual(Addition(1, 2).toString(), "1+2")
         XCTAssertEqual(Addition([1, 2]).toString(), "1+2")
@@ -48,6 +60,8 @@ final class CoreTests: XCTestCase {
     static var allTests = [
         ("testInt", testInt),
         ("testDouble", testDouble),
+        ("testInfinity", testInfinity),
+        ("testConstant", testConstant),
         ("testNode", testNode),
         ("testAddition", testAddition),
         ("testMultiplication", testMultiplication),
