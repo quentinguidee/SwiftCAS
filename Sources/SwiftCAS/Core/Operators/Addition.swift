@@ -12,4 +12,12 @@ class Addition: MultiNodesOperator {
     var children: [Node] = []
     
     required init() {}
+    
+    /*
+     Rules:
+     
+     0+x -> x
+     x+0 -> x
+     x-x -> 0
+     */
 }
