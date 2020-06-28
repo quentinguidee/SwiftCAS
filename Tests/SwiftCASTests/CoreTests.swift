@@ -56,6 +56,13 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(3, 2).dividend.toString(), "3")
         XCTAssertEqual(Division(3, 2).divisor.toString(), "2")
     }
+    
+    func testPow() {
+        XCTAssertEqual(Pow(11, 2).toString(), "11^2")
+        XCTAssertEqual(Pow(11, 2).toLaTeX(), "{11}^{2}")
+        XCTAssertEqual(Pow(11, 2).base.toString(), "11")
+        XCTAssertEqual(Pow(11, 2).power.toString(), "2")
+    }
 
     static var allTests = [
         ("testInt", testInt),
@@ -66,5 +73,6 @@ final class CoreTests: XCTestCase {
         ("testAddition", testAddition),
         ("testMultiplication", testMultiplication),
         ("testDivision", testDivision),
+        ("testPow", testPow),
     ]
 }
