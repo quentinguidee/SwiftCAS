@@ -21,4 +21,11 @@ class Pow: Operator {
     func toLaTeX() -> String {
         return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
     }
+    
+    /*
+     Rules :
+     
+     (x^y)^z    -> x^(y*z)
+     (x*y)^z    -> x^z * y^z
+     */
 }
