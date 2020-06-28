@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Pow.swift
 //  
 //
 //  Created by Quentin Guidée on 28/06/2020.
