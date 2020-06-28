@@ -59,7 +59,9 @@ final class CoreTests: XCTestCase {
     
     func testPow() {
         XCTAssertEqual(Pow(11, 2).toString(), "11^2")
+        XCTAssertEqual(Pow(11, 2.0).toString(), "11^2.0")
         XCTAssertEqual(Pow(11, 2).toLaTeX(), "{11}^{2}")
+        XCTAssertEqual(Pow(11, 2.0).toLaTeX(), "{11}^{2.0}")
         XCTAssertEqual(Pow(11, 2).base.toString(), "11")
         XCTAssertEqual(Pow(11, 2).power.toString(), "2")
     }
