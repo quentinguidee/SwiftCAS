@@ -23,7 +23,7 @@ class Pow: Operator {
     }
     
     /*
-     Rules :
+     Rules:
      
      (x^y)^z    -> x^(y*z)
      (x*y)^z    -> x^z * y^z

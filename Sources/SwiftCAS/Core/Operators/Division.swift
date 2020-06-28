@@ -23,4 +23,12 @@ class Division: Operator {
     func toLaTeX() -> String {
         return "\\frac{" + numerator.toLaTeX() + "}{" + deniminator.toLaTeX() + "}"
     }
+    
+    /*
+     Rules:
+     
+     x/1        -> x
+     x/0        -> ERR
+     cst/cst    -> 1
+     */
 }
