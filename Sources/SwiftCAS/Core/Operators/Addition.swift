@@ -20,5 +20,5 @@ class Addition: MultiNodesOperator {
      x+0 -> x
      x-x -> 0
      */
-    func simplify() -> Node { return self}
+    func simplify() -> Node { return self }
 }
