@@ -28,4 +28,15 @@ class Pow: Operator {
      (x^y)^z    -> x^(y*z)
      (x*y)^z    -> x^z * y^z
      */
+    
+    func simplify() -> Node {
+        if let b = base as? Pow {
+            return Pow(b.base, Multiplication(b.power, power))
+        } else if let b = base as? Multiplication {
+            var n: [Pow] = []
+            b.children.forEach { child in n.append(Pow(child, power)) }
+            return Multiplication(n)
+        }
+        return self
+    }
 }

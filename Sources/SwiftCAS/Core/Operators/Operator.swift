@@ -10,6 +10,8 @@ protocol Operator: Node {
     var minNumberOfChildren: Int { get set }
     var maxNumberOfChildren: Int { get set }
     init()
+    
+    func simplify() -> Node
 }
 
 extension Operator {

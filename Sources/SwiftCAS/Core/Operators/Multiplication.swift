@@ -22,4 +22,5 @@ class Multiplication: MultiNodesOperator {
      
      x^y * x^z  -> x^(y+z)
      */
+    func simplify() -> Node { return self}
 }

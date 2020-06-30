@@ -64,6 +64,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Pow(11, 2.0).toLaTeX(), "{11}^{2.0}")
         XCTAssertEqual(Pow(11, 2).base.toString(), "11")
         XCTAssertEqual(Pow(11, 2).power.toString(), "2")
+        XCTAssertEqual(Pow(Pow(1, 2), 3).simplify().toString(), "1^2*3")
+        XCTAssertEqual(Pow(Multiplication(1, 2), 3).simplify().toString(), "1^3*2^3")
     }
 
     static var allTests = [

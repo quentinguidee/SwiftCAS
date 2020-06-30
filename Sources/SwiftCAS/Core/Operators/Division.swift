@@ -31,4 +31,5 @@ class Division: Operator {
      x/0        -> ERR
      cst/cst    -> 1
      */
+    func simplify() -> Node { return self}
 }
