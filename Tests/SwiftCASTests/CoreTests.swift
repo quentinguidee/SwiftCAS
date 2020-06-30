@@ -55,6 +55,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(3, 2).deniminator.toString(), "2")
         XCTAssertEqual(Division(3, 2).dividend.toString(), "3")
         XCTAssertEqual(Division(3, 2).divisor.toString(), "2")
+        XCTAssertEqual(Division(3, 1).simplify().toString(), "3")
+        XCTAssertEqual(Division(3, 1.0).simplify().toString(), "3")
     }
     
     func testPow() {
