@@ -1,3 +1,3 @@
 # SwiftCAS
 
-A description of this package.
+![Swift](https://github.com/quentinguidee/SwiftCAS/workflows/Swift/badge.svg)
