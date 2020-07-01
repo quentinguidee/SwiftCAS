@@ -13,6 +13,7 @@ class Multiplication: MultiNodesOperator {
     
     func simplify() -> Node {
         mergeAllChildren()
+        simplify(children: &children)
         
         if children.contains(where: { ($0 as? NumericalValue)?.toDouble() == 0 }) { return 0 }
         children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == 1 })

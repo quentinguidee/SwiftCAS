@@ -59,4 +59,10 @@ extension MultiNodesOperator {
     func removeAllChildren(where: (Node) -> Bool) {
         children.removeAll(where: `where`)
     }
+    
+    func simplify(children: inout [Node]) {
+        for i in 0..<children.count {
+            simplify(node: &children[i])
+        }
+    }
 }

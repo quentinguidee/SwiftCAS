@@ -23,6 +23,9 @@ class Pow: Operator {
     }
     
     func simplify() -> Node {
+        simplify(node: &base)
+        simplify(node: &power)
+        
         if let base = base as? NumericalValue, base.toDouble() == 1 {
             return 1
         } else if let power = power as? NumericalValue, power.toDouble() == 1 {
@@ -34,6 +37,7 @@ class Pow: Operator {
             base.children.forEach { child in n.append(Pow(child, power)) }
             return Multiplication(n)
         }
+        
         return self
     }
 }

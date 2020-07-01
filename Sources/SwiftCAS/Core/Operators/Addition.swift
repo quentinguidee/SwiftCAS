@@ -13,6 +13,7 @@ class Addition: MultiNodesOperator {
     
     func simplify() -> Node {
         mergeAllChildren()
+        simplify(children: &children)
         
         children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == 0 })
         

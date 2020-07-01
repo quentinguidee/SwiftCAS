@@ -60,6 +60,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(3, 2).dividend.toString(), "3")
         XCTAssertEqual(Division(3, 2).divisor.toString(), "2")
         XCTAssertEqual(Division(3, 1).simplify().toString(), "3")
+        XCTAssertEqual(Division(3, Multiplication(1, 2)).simplify().toString(), "3/2")
         XCTAssertEqual(Division(3, 1.0).simplify().toString(), "3")
     }
     
@@ -71,10 +72,11 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Pow(11, 2).base.toString(), "11")
         XCTAssertEqual(Pow(11, 2).power.toString(), "2")
         XCTAssertEqual(Pow(1, Multiplication(3, 4, 5)).simplify().toString(), "1")
-        XCTAssertEqual(Pow(Multiplication(3, 1, 5), 1).simplify().toString(), "3*1*5")
-        XCTAssertEqual(Pow(Pow(1, 2), 3).simplify().toString(), "1^2*3")
-        XCTAssertEqual(Pow(Multiplication(1, 2), 3).simplify().toString(), "1^3*2^3")
-        XCTAssertEqual(Pow(Multiplication(1, 2, 4), 3).simplify().toString(), "1^3*2^3*4^3")
+        XCTAssertEqual(Pow(Multiplication(3, 1, 5), 1).simplify().toString(), "3*5")
+        XCTAssertEqual(Pow(Pow(1, 2), 3).simplify().toString(), "1")
+        XCTAssertEqual(Pow(Pow(4, 2), 3).simplify().toString(), "4^2*3")
+        XCTAssertEqual(Pow(Multiplication(4, 2), 3).simplify().toString(), "4^3*2^3")
+        XCTAssertEqual(Pow(Multiplication(3, 2, 4), 3).simplify().toString(), "3^3*2^3*4^3")
     }
 
     static var allTests = [

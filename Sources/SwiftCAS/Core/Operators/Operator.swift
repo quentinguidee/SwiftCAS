@@ -8,3 +8,11 @@
 protocol Operator: Node {
     func simplify() -> Node
 }
+
+extension Operator {
+    func simplify(node: inout Node) {
+        if node is Operator {
+            node = (node as! Operator).simplify()
+        }
+    }
+}
