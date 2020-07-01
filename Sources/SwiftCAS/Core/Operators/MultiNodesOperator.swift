@@ -21,4 +21,16 @@ extension MultiNodesOperator {
         children.forEach { s += $0.toLaTeX() + symbol }
         return String(s.dropLast())
     }
+    
+    func mergeAllChildren() -> Self {
+        var c: [Node] = []
+        for child in children {
+            if let child = child as? Self {
+                child.mergeAllChildren().children.forEach { c.append($0) }
+            } else {
+                c.append(child)
+            }
+        }
+        return Self(c)
+    }
 }
