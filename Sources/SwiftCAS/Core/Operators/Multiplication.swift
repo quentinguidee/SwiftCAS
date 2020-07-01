@@ -15,7 +15,6 @@ class Multiplication: MultiNodesOperator {
      Rules:
      
      0*x        -> 0
-     x*0        -> 0
      x*x        -> x^2
      
      x^y * x^z  -> x^(y+z)

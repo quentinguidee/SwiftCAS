@@ -15,8 +15,13 @@ class Addition: MultiNodesOperator {
      Rules:
      
      0+x -> x
-     x+0 -> x
      x-x -> 0
      */
-    func simplify() -> Node { return self }
+    func simplify() -> Node {
+        mergeAllChildren()
+        
+        children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == 0 })
+        
+        return self
+    }
 }
