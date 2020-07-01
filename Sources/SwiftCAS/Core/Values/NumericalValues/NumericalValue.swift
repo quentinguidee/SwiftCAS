@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-protocol NumericalValue: Node {
+protocol NumericalValue: Value {
     func toDouble() -> Double
     func isNull() -> Bool
 }

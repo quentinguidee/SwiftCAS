@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-protocol SymbolicValue: Node {
+protocol SymbolicValue: Value {
     var symbol: String { get set }
 }
 

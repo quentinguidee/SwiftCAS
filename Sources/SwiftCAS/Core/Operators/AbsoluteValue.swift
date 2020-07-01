@@ -28,4 +28,8 @@ class AbsoluteValue: Operator {
     func absoluteValue() -> Node {
         return self
     }
+    
+    func integrate(of unknown: Unknown) -> Node {
+        return Integral(of: unknown, self)
+    }
 }

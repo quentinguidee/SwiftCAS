@@ -12,4 +12,8 @@ class Infinity: SymbolicValue {
     func toLaTeX() -> String { return "\\infty" }
     
     func absoluteValue() -> Node { return self }
+    
+    func integrate(of unknown: Unknown) -> Node {
+        return self
+    }
 }

@@ -24,4 +24,10 @@ class Addition: MultiNodesOperator {
         
         return self
     }
+    
+    func integrate(of unknown: Unknown) -> Node {
+        var nodes: [Node] = []
+        children.forEach({ nodes.append($0.integrate(of: unknown)) })
+        return Addition(nodes)
+    }
 }

@@ -44,4 +44,8 @@ class Division: Operator {
         
         return self
     }
+    
+    func integrate(of unknown: Unknown) -> Node {
+        return Integral(of: unknown, self)
+    }
 }

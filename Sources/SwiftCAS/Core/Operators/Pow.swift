@@ -59,4 +59,19 @@ class Pow: Operator {
         
         return self
     }
+    
+    func integrate(of unknown: Unknown) -> Node {
+        if let base = base as? Unknown, let power = power as? NumericalValue {
+            if base.symbol == unknown.symbol {
+                return Multiplication(
+                    Division(1, Addition(power, 1)),
+                    Pow(base, Addition(power, 1))
+                )
+            } else {
+                return Multiplication(unknown, self)
+            }
+        }
+        
+        return Integral(of: unknown, self)
+    }
 }

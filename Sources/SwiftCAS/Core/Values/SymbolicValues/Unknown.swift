@@ -16,4 +16,12 @@ class Unknown: SymbolicValue {
     init(_ symbol: String) {
         self.symbol = symbol
     }
+    
+    func integrate(of unknown: Unknown) -> Node {
+        if symbol == unknown.symbol {
+            return Division(Pow(self, 2), 2)
+        } else {
+            return Multiplication(self, unknown)
+        }
+    }
 }
