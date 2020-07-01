@@ -47,6 +47,14 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Constant("e").absoluteValue().toString(), "e")
     }
     
+    func testUnknown() {
+        XCTAssertEqual(Unknown().toString(), "x")
+        XCTAssertEqual(Unknown("x").toString(), "x")
+        XCTAssertEqual(Unknown("y").toString(), "y")
+        XCTAssertEqual(Unknown("x").toLaTeX(), "x")
+        XCTAssertEqual(Unknown("x").absoluteValue().toString(), "|x|")
+    }
+    
     func testMultiNodesOperator() {
         XCTAssertEqual(Addition(1, 2).toString(), "1+2")
         XCTAssertEqual(Addition([1, 2]).toString(), "1+2")
