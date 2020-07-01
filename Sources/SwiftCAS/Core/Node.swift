@@ -10,6 +10,7 @@ protocol Node {
     func toString() -> String
     func toLaTeX() -> String
     func integrate(of unknown: Unknown) -> Node
+    func differentiate(of unknown: Unknown) -> Node
     func absoluteValue() -> Node
 }
 
@@ -20,5 +21,9 @@ extension Node {
     
     func integrate() -> Node {
         return integrate(of: Unknown())
+    }
+    
+    func differentiate() -> Node {
+        return differentiate(of: Unknown())
     }
 }

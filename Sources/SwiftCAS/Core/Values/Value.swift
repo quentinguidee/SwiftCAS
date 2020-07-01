@@ -8,6 +8,10 @@
 protocol Value: Node {}
 
 extension Value {
+    func differentiate(of unknown: Unknown) -> Node {
+        return 0
+    }
+    
     func integrate(of unknown: Unknown) -> Node {
         return Multiplication(self, unknown)
     }

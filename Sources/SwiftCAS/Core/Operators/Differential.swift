@@ -1,11 +1,11 @@
 //
-//  Integral.swift
+//  File.swift
 //  
 //
 //  Created by Quentin Guidée on 01/07/2020.
 //
 
-class Integral: Operator {
+class Differential: Operator {
     var argument: Node
     var unknown: Unknown
     var sign: Sign { return .Positive }
@@ -20,19 +20,19 @@ class Integral: Operator {
     }
     
     func simplify() -> Node {
-        return argument.integrate()
+        return argument.differentiate(of: unknown)
     }
     
     func toString() -> String {
-        return "∫" + argument.toString() + " d" + unknown.toString()
+        return "d/d" + unknown.symbol + "(" + argument.toString() + ")"
     }
     
     func toLaTeX() -> String {
-        return "\\int{" + argument.toLaTeX() + "d" + unknown.toLaTeX() + "}"
+        return "\\frac{d}{dx}\\left(" + argument.toString() + "\\right)"
     }
     
     func differentiate(of unknown: Unknown) -> Node {
-        return self.unknown.symbol == unknown.symbol ? argument : Differential(of: unknown, self)
+        return Differential(of: unknown, self)
     }
     
     func integrate(of unknown: Unknown) -> Node {

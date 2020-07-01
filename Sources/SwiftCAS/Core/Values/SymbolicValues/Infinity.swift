@@ -13,6 +13,10 @@ class Infinity: SymbolicValue {
     
     func absoluteValue() -> Node { return self }
     
+    func differentiate(of unknown: Unknown) -> Node {
+        return 0
+    }
+    
     func integrate(of unknown: Unknown) -> Node {
         return self
     }

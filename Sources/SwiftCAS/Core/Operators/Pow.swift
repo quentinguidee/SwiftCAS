@@ -60,6 +60,20 @@ class Pow: Operator {
         return self
     }
     
+    func differentiate(of unknown: Unknown) -> Node {
+        if let base = base as? Unknown {
+            if (base.symbol == unknown.symbol) {
+                return Multiplication(power, Pow(base, Addition(power, -1)))
+            }
+        } else if let base = base as? Constant, let power = power as? Unknown {
+            if (base.symbol == "e" && power.symbol == unknown.symbol) {
+                return self
+            }
+        }
+        
+        return 0
+    }
+    
     func integrate(of unknown: Unknown) -> Node {
         if let base = base as? Unknown, let power = power as? NumericalValue {
             if base.symbol == unknown.symbol {

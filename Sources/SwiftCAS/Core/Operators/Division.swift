@@ -45,6 +45,18 @@ class Division: Operator {
         return self
     }
     
+    func differentiate(of unknown: Unknown) -> Node {
+//        TODO: Substraction node
+//        return Division(
+//            Substraction(
+//                Multiplication(numerator.differentiate(of: unknown), denominator),
+//                Multiplication(numerator, denominator.differentiate(of: unknown))
+//            ),
+//            Pow(denominator, 2)
+//        )
+        return Differential(of: unknown, self)
+    }
+    
     func integrate(of unknown: Unknown) -> Node {
         return Integral(of: unknown, self)
     }

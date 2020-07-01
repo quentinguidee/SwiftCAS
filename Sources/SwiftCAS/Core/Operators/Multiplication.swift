@@ -31,6 +31,10 @@ class Multiplication: MultiNodesOperator {
         return self
     }
     
+    func differentiate(of unknown: Unknown) -> Node {
+        return Differential(of: unknown, self)
+    }
+    
     func integrate(of unknown: Unknown) -> Node {
         return Integral(of: unknown, self)
     }
