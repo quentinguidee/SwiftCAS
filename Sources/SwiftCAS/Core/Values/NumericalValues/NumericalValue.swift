@@ -7,4 +7,5 @@
 
 protocol NumericalValue: Node {
     func toDouble() -> Double
+    func isNull() -> Bool
 }

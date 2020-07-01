@@ -6,22 +6,22 @@
 //
 
 class Division: Operator {
-    var children: [Node] = []
-    var minNumberOfChildren: Int = 2
-    var maxNumberOfChildren: Int = 2
-    var numerator: Node { return children[0] }
-    var deniminator: Node { return children[1] }
+    var numerator: Node
+    var denominator: Node
     var dividend: Node { return numerator }
-    var divisor: Node { return deniminator }
+    var divisor: Node { return denominator }
     
-    required init() {}
+    init(_ numerator: Node, _ denominator: Node) {
+        self.numerator = numerator
+        self.denominator = denominator
+    }
     
     func toString() -> String {
-        return numerator.toString() + "/" + deniminator.toString()
+        return numerator.toString() + "/" + denominator.toString()
     }
     
     func toLaTeX() -> String {
-        return "\\frac{" + numerator.toLaTeX() + "}{" + deniminator.toLaTeX() + "}"
+        return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
     }
     
     /*
@@ -32,7 +32,7 @@ class Division: Operator {
      cst/cst    -> 1
      */
     func simplify() -> Node {
-        if let d = deniminator as? NumericalValue, d.toDouble() == 1 {
+        if let denominator = denominator as? NumericalValue, denominator.toDouble() == 1 {
             return numerator
         }
         return self

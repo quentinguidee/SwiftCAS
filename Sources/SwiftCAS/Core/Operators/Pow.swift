@@ -6,13 +6,8 @@
 //
 
 class Pow: Operator {
-    var children: [Node] = []
-    var minNumberOfChildren: Int = 2
-    var maxNumberOfChildren: Int = 2
-    var base: Node { return children[0] }
-    var power: Node { return children[1] }
-    
-    required init() {}
+    var base: Node
+    var power: Node
     
     func toString() -> String {
         return base.toString() + "^" + power.toString()
@@ -20,6 +15,11 @@ class Pow: Operator {
     
     func toLaTeX() -> String {
         return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
+    }
+    
+    init(_ base: Node, _ power: Node) {
+        self.base = base
+        self.power = power
     }
     
     /*
@@ -30,11 +30,11 @@ class Pow: Operator {
      */
     
     func simplify() -> Node {
-        if let b = base as? Pow {
-            return Pow(b.base, Multiplication(b.power, power))
-        } else if let b = base as? Multiplication {
+        if let base = base as? Pow {
+            return Pow(base.base, Multiplication(base.power, power))
+        } else if let base = base as? Multiplication {
             var n: [Pow] = []
-            b.children.forEach { child in n.append(Pow(child, power)) }
+            base.children.forEach { child in n.append(Pow(child, power)) }
             return Multiplication(n)
         }
         return self

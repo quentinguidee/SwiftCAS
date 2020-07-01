@@ -7,8 +7,6 @@
 
 class Multiplication: MultiNodesOperator {
     var symbol = "*"
-    var minNumberOfChildren: Int = 2
-    var maxNumberOfChildren: Int = Int.max
     var children: [Node] = []
     
     required init() {}
@@ -22,5 +20,11 @@ class Multiplication: MultiNodesOperator {
      
      x^y * x^z  -> x^(y+z)
      */
-    func simplify() -> Node { return self }
+    func simplify() -> Node {
+        mergeAllChildren()
+        
+        if children.contains(where: { ($0 as? NumericalValue)?.toDouble() == 0 }) { return 0 }
+        
+        return self
+    }
 }

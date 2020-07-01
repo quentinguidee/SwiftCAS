@@ -44,6 +44,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Multiplication(32, 2.0).toString(), "32*2.0")
         XCTAssertEqual(Multiplication(32, 2).toLaTeX(), "32*2")
         XCTAssertEqual(Multiplication(32, 2.0).toLaTeX(), "32*2.0")
+        XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).simplify().toString(), "3*1*2")
+        XCTAssertEqual(Multiplication(Multiplication(0, 2), 3).simplify().toString(), "0")
     }
     
     func testDivision() {
@@ -52,7 +54,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(32, 2).toLaTeX(), "\\frac{32}{2}")
         XCTAssertEqual(Division(32, 2.0).toLaTeX(), "\\frac{32}{2.0}")
         XCTAssertEqual(Division(3, 2).numerator.toString(), "3")
-        XCTAssertEqual(Division(3, 2).deniminator.toString(), "2")
+        XCTAssertEqual(Division(3, 2).denominator.toString(), "2")
         XCTAssertEqual(Division(3, 2).dividend.toString(), "3")
         XCTAssertEqual(Division(3, 2).divisor.toString(), "2")
         XCTAssertEqual(Division(3, 1).simplify().toString(), "3")

@@ -6,22 +6,5 @@
 //
 
 protocol Operator: Node {
-    var children: [Node] { get set }
-    var minNumberOfChildren: Int { get set }
-    var maxNumberOfChildren: Int { get set }
-    init()
-    
     func simplify() -> Node
-}
-
-extension Operator {
-    init(_ children: [Node]) {
-        self.init()
-        assert(children.count >= minNumberOfChildren && children.count <= maxNumberOfChildren, "Wrong number of nodes")
-        self.children = children
-    }
-    
-    init(_ children: Node...) {
-        self.init(children)
-    }
 }

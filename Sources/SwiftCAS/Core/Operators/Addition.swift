@@ -7,8 +7,6 @@
 
 class Addition: MultiNodesOperator {
     var symbol = "+"
-    var minNumberOfChildren: Int = 2
-    var maxNumberOfChildren: Int = Int.max
     var children: [Node] = []
     
     required init() {}
