@@ -6,6 +6,8 @@
 //
 
 protocol Node {
+    var sign: Sign { get }
     func toString() -> String
     func toLaTeX() -> String
+    func absoluteValue() -> Self
 }

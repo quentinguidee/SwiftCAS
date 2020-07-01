@@ -11,6 +11,16 @@ class Division: Operator {
     var dividend: Node { return numerator }
     var divisor: Node { return denominator }
     
+    var sign: Sign {
+        if denominator.sign == .Signless {
+            // Result = Infinity, we take the numerator sign.
+            return numerator.sign
+        } else {
+            // sign(numerator) * sign(denominator)
+            return Sign(rawValue: numerator.sign.rawValue * denominator.sign.rawValue)!
+        }
+    }
+    
     init(_ numerator: Node, _ denominator: Node) {
         self.numerator = numerator
         self.denominator = denominator
@@ -32,6 +42,11 @@ class Division: Operator {
             return numerator
         }
         
+        return self
+    }
+    
+    func absoluteValue() -> Self {
+        // Todo: Implement
         return self
     }
 }

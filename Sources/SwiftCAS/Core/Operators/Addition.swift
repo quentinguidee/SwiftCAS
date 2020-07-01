@@ -9,6 +9,11 @@ class Addition: MultiNodesOperator {
     var symbol = "+"
     var children: [Node] = []
     
+    var sign: Sign {
+        // TODO: Implement
+        return .Positive
+    }
+    
     required init() {}
     
     func simplify() -> Node {
@@ -17,6 +22,11 @@ class Addition: MultiNodesOperator {
         
         children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == 0 })
         
+        return self
+    }
+    
+    func absoluteValue() -> Self {
+        // TODO: Implement
         return self
     }
 }

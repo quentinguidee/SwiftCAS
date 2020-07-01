@@ -7,6 +7,9 @@
 
 class Infinity: SymbolicValue {
     var symbol: String = "∞"
+    var sign: Sign { return .Positive }
     
     func toLaTeX() -> String { return "\\infty" }
+    
+    func absoluteValue() -> Self { return self }
 }

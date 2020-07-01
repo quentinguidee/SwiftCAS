@@ -9,6 +9,25 @@ class Pow: Operator {
     var base: Node
     var power: Node
     
+    var sign: Sign {
+        switch base.sign {
+            case .Positive:
+                return .Positive
+            case .Signless:
+                return .Signless
+            default:
+                if let power = power as? Int {
+                    if power.isEven() {
+                        return .Positive
+                    } else {
+                        return .Negative
+                    }
+            }
+        }
+        
+        return .Signless
+    }
+    
     init(_ base: Node, _ power: Node) {
         self.base = base
         self.power = power
@@ -38,6 +57,11 @@ class Pow: Operator {
             return Multiplication(n)
         }
         
+        return self
+    }
+    
+    func absoluteValue() -> Self {
+        // TODO: Implement
         return self
     }
 }

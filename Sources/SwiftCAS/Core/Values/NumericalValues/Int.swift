@@ -25,4 +25,16 @@ extension Int: NumericalValue {
     func isNatural() -> Bool {
         return self >= 0
     }
+    
+    public func isEven() -> Bool {
+        return self.absoluteValue() % 2 == 0
+    }
+    
+    public func isOdd() -> Bool {
+        return self.absoluteValue() % 2 == 1
+    }
+    
+    func absoluteValue() -> Int {
+        return sign == .Negative ? -self : self
+    }
 }

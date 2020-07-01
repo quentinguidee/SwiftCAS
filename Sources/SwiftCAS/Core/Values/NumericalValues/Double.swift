@@ -21,4 +21,8 @@ extension Double: NumericalValue {
     func toLaTeX() -> String {
         return toString()
     }
+    
+    func absoluteValue() -> Self {
+        return sign == .Negative ? -self : self
+    }
 }

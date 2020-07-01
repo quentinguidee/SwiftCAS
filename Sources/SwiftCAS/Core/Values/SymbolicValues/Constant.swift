@@ -9,6 +9,16 @@ import Foundation
 
 class Constant: SymbolicValue {
     var symbol: String
+    var sign: Sign {
+        switch self {
+            case let x where x.toDouble() < 0:
+                return .Negative
+            case let x where x.toDouble() > 0:
+                return .Positive
+            default:
+                return .Signless
+        }
+    }
     
     static let π = Double.pi
     static let e = M_E
@@ -36,5 +46,10 @@ class Constant: SymbolicValue {
     func toLaTeX() -> String {
         if let latexCode = Constant.constantsInLatexCode[symbol] { return latexCode }
         return toString()
+    }
+    
+    func absoluteValue() -> Self {
+        // Todo: Implement
+        return self
     }
 }
