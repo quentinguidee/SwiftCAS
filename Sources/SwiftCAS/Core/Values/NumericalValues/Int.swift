@@ -6,6 +6,10 @@
 //
 
 extension Int: NumericalValue {
+    func toDouble() -> Double {
+        return Double(self)
+    }
+    
     func toString() -> String {
         return String(self)
     }

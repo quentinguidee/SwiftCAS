@@ -32,9 +32,7 @@ class Division: Operator {
      cst/cst    -> 1
      */
     func simplify() -> Node {
-        if let d = deniminator as? Int, d == 1 {
-            return numerator
-        } else if let d = deniminator as? Double, d == 1 {
+        if let d = deniminator as? NumericalValue, d.toDouble() == 1 {
             return numerator
         }
         return self
