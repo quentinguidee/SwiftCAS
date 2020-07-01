@@ -148,5 +148,6 @@ final class CoreTests: XCTestCase {
         ("testMultiplication", testMultiplication),
         ("testDivision", testDivision),
         ("testPow", testPow),
+        ("testIntegral", testIntegral),
     ]
 }
