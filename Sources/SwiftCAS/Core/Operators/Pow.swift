@@ -59,9 +59,4 @@ class Pow: Operator {
         
         return self
     }
-    
-    func absoluteValue() -> Self {
-        // TODO: Implement
-        return self
-    }
 }

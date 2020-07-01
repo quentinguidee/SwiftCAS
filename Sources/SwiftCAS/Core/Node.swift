@@ -9,5 +9,11 @@ protocol Node {
     var sign: Sign { get }
     func toString() -> String
     func toLaTeX() -> String
-    func absoluteValue() -> Self
+    func absoluteValue() -> Node
+}
+
+extension Node {
+    func absoluteValue() -> Node {
+        return (sign == .Positive || sign == .Signless) ? self : AbsoluteValue(self)
+    }
 }

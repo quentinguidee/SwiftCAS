@@ -30,9 +30,4 @@ class Multiplication: MultiNodesOperator {
         
         return self
     }
-    
-    func absoluteValue() -> Self {
-        // Todo: Implement
-        return self
-    }
 }

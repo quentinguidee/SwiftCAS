@@ -47,9 +47,4 @@ class Constant: SymbolicValue {
         if let latexCode = Constant.constantsInLatexCode[symbol] { return latexCode }
         return toString()
     }
-    
-    func absoluteValue() -> Self {
-        // Todo: Implement
-        return self
-    }
 }

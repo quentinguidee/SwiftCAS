@@ -24,9 +24,4 @@ class Addition: MultiNodesOperator {
         
         return self
     }
-    
-    func absoluteValue() -> Self {
-        // TODO: Implement
-        return self
-    }
 }

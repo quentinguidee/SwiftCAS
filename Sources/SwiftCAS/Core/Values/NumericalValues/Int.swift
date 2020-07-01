@@ -27,14 +27,14 @@ extension Int: NumericalValue {
     }
     
     public func isEven() -> Bool {
-        return self.absoluteValue() % 2 == 0
+        return self.absoluteValue() as! Int % 2 == 0
     }
     
     public func isOdd() -> Bool {
-        return self.absoluteValue() % 2 == 1
+        return self.absoluteValue() as! Int % 2 == 1
     }
     
-    func absoluteValue() -> Int {
+    func absoluteValue() -> Node {
         return sign == .Negative ? -self : self
     }
 }

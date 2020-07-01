@@ -44,9 +44,4 @@ class Division: Operator {
         
         return self
     }
-    
-    func absoluteValue() -> Self {
-        // Todo: Implement
-        return self
-    }
 }
