@@ -46,7 +46,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Multiplication(32, 2.0).toString(), "32*2.0")
         XCTAssertEqual(Multiplication(32, 2).toLaTeX(), "32*2")
         XCTAssertEqual(Multiplication(32, 2.0).toLaTeX(), "32*2.0")
-        XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).simplify().toString(), "3*1*2")
+        XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).simplify().toString(), "3*2")
         XCTAssertEqual(Multiplication(Multiplication(0, 2), 3).simplify().toString(), "0")
     }
     
