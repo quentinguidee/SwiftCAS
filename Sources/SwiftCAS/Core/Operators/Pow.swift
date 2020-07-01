@@ -9,6 +9,11 @@ class Pow: Operator {
     var base: Node
     var power: Node
     
+    init(_ base: Node, _ power: Node) {
+        self.base = base
+        self.power = power
+    }
+    
     func toString() -> String {
         return base.toString() + "^" + power.toString()
     }
@@ -17,22 +22,11 @@ class Pow: Operator {
         return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
     }
     
-    init(_ base: Node, _ power: Node) {
-        self.base = base
-        self.power = power
-    }
-    
-    /*
-     Rules:
-     
-     (x^y)^z    -> x^(y*z)
-     (x*y)^z    -> x^z * y^z
-     1^x        -> 1
-     */
-    
     func simplify() -> Node {
         if let base = base as? NumericalValue, base.toDouble() == 1 {
             return 1
+        } else if let power = power as? NumericalValue, power.toDouble() == 1 {
+            return base
         } else if let base = base as? Pow {
             return Pow(base.base, Multiplication(base.power, power))
         } else if let base = base as? Multiplication {

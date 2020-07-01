@@ -24,13 +24,6 @@ class Division: Operator {
         return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
     }
     
-    /*
-     Rules:
-     
-     x/1        -> x
-     x/0        -> ERR
-     cst/cst    -> 1
-     */
     func simplify() -> Node {
         if let denominator = denominator as? NumericalValue, denominator.toDouble() == 1 {
             return numerator

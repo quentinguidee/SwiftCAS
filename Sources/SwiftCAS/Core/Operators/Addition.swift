@@ -11,12 +11,6 @@ class Addition: MultiNodesOperator {
     
     required init() {}
     
-    /*
-     Rules:
-     
-     0+x -> x
-     x-x -> 0
-     */
     func simplify() -> Node {
         mergeAllChildren()
         
