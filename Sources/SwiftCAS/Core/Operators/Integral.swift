@@ -32,6 +32,6 @@ class Integral: Operator {
     }
     
     func integrate(of unknown: Unknown) -> Node {
-        return self
+        return Integral(of: unknown, self)
     }
 }

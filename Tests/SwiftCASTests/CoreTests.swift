@@ -131,6 +131,12 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Pow(-2, 2).absoluteValue().toString(), "-2^2")
         XCTAssertEqual(Pow(3, 2).integrate().toString(), "∫3^2 dx")
     }
+    
+    func testIntegral() {
+        XCTAssertEqual(Integral(of: Unknown("y"), Pow(3, 2)).toString(), "∫3^2 dy")
+        XCTAssertEqual(Integral(Pow(3, 2)).toString(), "∫3^2 dx")
+        XCTAssertEqual(Integral(3).integrate(of: Unknown("y")).toString(), "∫∫3 dx dy")
+    }
 
     static var allTests = [
         ("testInt", testInt),
