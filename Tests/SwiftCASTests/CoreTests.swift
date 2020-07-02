@@ -145,6 +145,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Pow(3, 2).differentiate().toString(), "0")
         XCTAssertEqual(Pow(Unknown(), 2).differentiate().toString(), "2*x^2+-1")
         XCTAssertEqual(Pow(3, 2).integrate().toString(), "∫3^2 dx")
+        XCTAssertEqual(Pow(Unknown(), 2).integrate().toString(), "1/2+1*x^2+1") // = 1/(2+1)*x^(2+1) = x^3/3
     }
     
     func testDifferentiate() {
