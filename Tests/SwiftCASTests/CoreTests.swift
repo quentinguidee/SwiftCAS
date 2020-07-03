@@ -8,6 +8,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(3.isNatural(), true)
         XCTAssertEqual(0.isNatural(), true)
         XCTAssertEqual((-3).isNatural(), false)
+        XCTAssertEqual(3.opposite() as! Int, -3)
         XCTAssertEqual((-3).absoluteValue() as! Int, 3)
         XCTAssertEqual((-3).sign, Sign.Negative)
         XCTAssertEqual(0.sign, Sign.Signless)
@@ -33,6 +34,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(0.0.sign, Sign.Signless)
         XCTAssertEqual(3.2.sign, Sign.Positive)
         XCTAssertEqual((-3.0).absoluteValue() as! Double, 3.0)
+        XCTAssertEqual(3.0.opposite() as! Double, -3.0)
         XCTAssertEqual(3.2.differentiate().toString(), "0")
         XCTAssertEqual(3.2.differentiate(of: Unknown("y")).toString(), "0")
         XCTAssertEqual(3.2.integrate().toString(), "3.2*x")
@@ -158,6 +160,14 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Integral(of: Unknown("y"), Pow(3, 2)).toString(), "∫3^2 dy")
         XCTAssertEqual(Integral(Pow(3, 2)).toString(), "∫3^2 dx")
         XCTAssertEqual(Integral(3).integrate(of: Unknown("y")).toString(), "∫∫3 dx dy")
+    }
+    
+    func testAbsoluteValue() {
+        XCTAssertEqual(AbsoluteValue(-3).simplify() as! Int, 3)
+    }
+    
+    func testOpposite() {
+        XCTAssertEqual(Opposite(-3).simplify() as! Int, 3)
     }
 
     static var allTests = [

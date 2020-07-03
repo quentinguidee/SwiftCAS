@@ -22,7 +22,7 @@ extension Double: NumericalValue {
         return toString()
     }
     
-    func absoluteValue() -> Node {
-        return sign == .Negative ? -self : self
+    func opposite() -> Node {
+        return -self
     }
 }

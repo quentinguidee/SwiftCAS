@@ -12,9 +12,14 @@ protocol Node {
     func integrate(of unknown: Unknown) -> Node
     func differentiate(of unknown: Unknown) -> Node
     func absoluteValue() -> Node
+    func opposite() -> Node
 }
 
 extension Node {
+    func opposite() -> Node {
+        return Opposite(self)
+    }
+    
     func absoluteValue() -> Node {
         return (sign == .Positive || sign == .Signless) ? self : AbsoluteValue(self)
     }

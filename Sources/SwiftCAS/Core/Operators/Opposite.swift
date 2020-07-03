@@ -23,8 +23,11 @@ class Opposite: Operator {
     }
     
     func simplify() -> Node {
-        simplify(node: &argument)
-        return Opposite(argument)
+        return argument.opposite()
+    }
+    
+    func opposite() -> Node {
+        return argument
     }
     
     func toString() -> String {

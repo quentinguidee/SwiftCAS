@@ -21,4 +21,8 @@ extension NumericalValue {
                 return .Signless
         }
     }
+    
+    func absoluteValue() -> Node {
+        return sign == .Negative ? self.opposite() : self
+    }
 }

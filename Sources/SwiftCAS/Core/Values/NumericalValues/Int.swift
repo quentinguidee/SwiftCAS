@@ -34,7 +34,7 @@ extension Int: NumericalValue {
         return self.absoluteValue() as! Int % 2 == 1
     }
     
-    func absoluteValue() -> Node {
-        return sign == .Negative ? -self : self
+    func opposite() -> Node {
+        return -self
     }
 }
