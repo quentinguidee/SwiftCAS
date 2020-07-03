@@ -182,5 +182,7 @@ final class CoreTests: XCTestCase {
         ("testPow", testPow),
         ("testDifferentiate", testDifferentiate),
         ("testIntegral", testIntegral),
+        ("testAbsoluteValue", testAbsoluteValue),
+        ("testOpposite", testOpposite),
     ]
 }
