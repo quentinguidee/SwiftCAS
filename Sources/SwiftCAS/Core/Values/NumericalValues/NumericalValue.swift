@@ -25,4 +25,8 @@ extension NumericalValue {
     func absoluteValue() -> Node {
         return sign == .Negative ? self.opposite() : self
     }
+    
+    func isNull() -> Bool {
+        return toDouble() == 0
+    }
 }

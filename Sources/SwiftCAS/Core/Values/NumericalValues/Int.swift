@@ -6,10 +6,6 @@
 //
 
 extension Int: NumericalValue {
-    func isNull() -> Bool {
-        return self == 0
-    }
-    
     func toDouble() -> Double {
         return Double(self)
     }
