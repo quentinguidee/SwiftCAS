@@ -42,8 +42,8 @@ class Pow: Operator {
     }
     
     func simplify() -> Node {
-        simplify(node: &base)
-        simplify(node: &power)
+        base = base.simplify()
+        power = power.simplify()
         
         if let base = base as? NumericalValue, base.toDouble() == 1 {
             return 1

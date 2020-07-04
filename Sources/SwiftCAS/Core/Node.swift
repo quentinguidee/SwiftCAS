@@ -13,6 +13,7 @@ protocol Node {
     func differentiate(of unknown: Unknown) -> Node
     func absoluteValue() -> Node
     func opposite() -> Node
+    func simplify() -> Node
 }
 
 extension Node {

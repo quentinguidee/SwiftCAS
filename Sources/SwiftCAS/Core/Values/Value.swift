@@ -15,4 +15,8 @@ extension Value {
     func integrate(of unknown: Unknown) -> Node {
         return Multiplication(self, unknown)
     }
+    
+    func simplify() -> Node {
+        return self
+    }
 }

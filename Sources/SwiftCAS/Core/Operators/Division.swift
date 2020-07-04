@@ -35,8 +35,8 @@ class Division: Operator {
     }
     
     func simplify() -> Node {
-        simplify(node: &numerator)
-        simplify(node: &denominator)
+        numerator = numerator.simplify()
+        denominator = denominator.simplify()
         
         if let denominator = denominator as? NumericalValue, denominator.toDouble() == 1 {
             return numerator
