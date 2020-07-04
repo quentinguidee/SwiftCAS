@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
+import Foundation
+
 class Addition: MultiNodesOperator {
     var symbol = "+"
     var children: [Node] = []
@@ -20,7 +22,19 @@ class Addition: MultiNodesOperator {
         mergeAllChildren()
         simplify(children: &children)
         
+        // 3+0 = 3
         children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == 0 })
+        
+        // 3+2 = 5
+        var doubleSum: Double = 0
+        children.forEach { child in
+            if let child = child as? NumericalValue { doubleSum += child.toDouble() }
+        }
+        children.removeAll(where: { $0 is NumericalValue })
+        if doubleSum != 0 {
+            let node: Node = (doubleSum == floor(doubleSum) ? Int(doubleSum) : doubleSum)
+            children.append(node)
+        }
         
         return self
     }
