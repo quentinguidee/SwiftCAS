@@ -20,7 +20,7 @@ class Differential: Operator {
     }
     
     func simplify() -> Node {
-        return argument.differentiate(of: unknown)
+        return argument.differentiated(of: unknown)
     }
     
     func toString() -> String {
@@ -31,11 +31,11 @@ class Differential: Operator {
         return "\\frac{d}{dx}\\left(" + argument.toString() + "\\right)"
     }
     
-    func differentiate(of unknown: Unknown) -> Node {
+    func differentiated(of unknown: Unknown) -> Node {
         return Differential(of: unknown, self)
     }
     
-    func integrate(of unknown: Unknown) -> Node {
+    func integrated(of unknown: Unknown) -> Node {
         return Integral(of: unknown, self)
     }
 }

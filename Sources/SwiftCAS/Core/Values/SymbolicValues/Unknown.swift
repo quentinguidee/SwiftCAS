@@ -17,11 +17,11 @@ class Unknown: SymbolicValue {
         self.symbol = symbol
     }
     
-    func differentiate(of unknown: Unknown) -> Node {
+    func differentiated(of unknown: Unknown) -> Node {
         return symbol == unknown.symbol ? 1 : 0
     }
     
-    func integrate(of unknown: Unknown) -> Node {
+    func integrated(of unknown: Unknown) -> Node {
         if symbol == unknown.symbol {
             return Division(Pow(self, 2), 2)
         } else {

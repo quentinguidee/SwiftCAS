@@ -24,7 +24,7 @@ class Pow: Operator {
                     } else {
                         return .Negative
                     }
-            }
+                }
         }
         
         return .Signless
@@ -64,7 +64,7 @@ class Pow: Operator {
         return self
     }
     
-    func differentiate(of unknown: Unknown) -> Node {
+    func differentiated(of unknown: Unknown) -> Node {
         if let base = base as? Unknown {
             if (base.symbol == unknown.symbol) {
                 return Multiplication(power, Pow(base, Addition(power, -1)))
@@ -78,7 +78,7 @@ class Pow: Operator {
         return 0
     }
     
-    func integrate(of unknown: Unknown) -> Node {
+    func integrated(of unknown: Unknown) -> Node {
         if let base = base as? Unknown, let power = power as? NumericalValue {
             if base.symbol == unknown.symbol {
                 return Multiplication(

@@ -20,7 +20,7 @@ class Integral: Operator {
     }
     
     func simplify() -> Node {
-        return argument.integrate()
+        return argument.integrated()
     }
     
     func toString() -> String {
@@ -31,11 +31,11 @@ class Integral: Operator {
         return "\\int{" + argument.toLaTeX() + "d" + unknown.toLaTeX() + "}"
     }
     
-    func differentiate(of unknown: Unknown) -> Node {
+    func differentiated(of unknown: Unknown) -> Node {
         return self.unknown.symbol == unknown.symbol ? argument : Differential(of: unknown, self)
     }
     
-    func integrate(of unknown: Unknown) -> Node {
+    func integrated(of unknown: Unknown) -> Node {
         return Integral(of: unknown, self)
     }
 }

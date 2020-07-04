@@ -29,14 +29,14 @@ class AbsoluteValue: Operator {
         return self
     }
     
-    func differentiate(of unknown: Unknown) -> Node {
+    func differentiated(of unknown: Unknown) -> Node {
         return Multiplication(
             Division(self, self.argument),
-            argument.differentiate(of: unknown)
+            argument.differentiated(of: unknown)
         )
     }
     
-    func integrate(of unknown: Unknown) -> Node {
+    func integrated(of unknown: Unknown) -> Node {
         return Integral(of: unknown, self)
     }
 }

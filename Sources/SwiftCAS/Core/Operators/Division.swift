@@ -47,18 +47,18 @@ class Division: Operator {
         return self
     }
     
-    func differentiate(of unknown: Unknown) -> Node {
+    func differentiated(of unknown: Unknown) -> Node {
         // (u/v) = (u'v-uv' / v^2)
         return Division(
             Addition(
-                Multiplication(numerator.differentiate(of: unknown), denominator),
-                Multiplication(numerator, denominator.differentiate(of: unknown)).opposite()
+                Multiplication(numerator.differentiated(of: unknown), denominator),
+                Multiplication(numerator, denominator.differentiated(of: unknown)).opposite()
             ),
             Pow(denominator, 2)
         )
     }
     
-    func integrate(of unknown: Unknown) -> Node {
+    func integrated(of unknown: Unknown) -> Node {
         if numerator is NumericalValue && denominator is NumericalValue {
             return Multiplication(self, unknown)
         }
