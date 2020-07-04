@@ -38,7 +38,9 @@ class Division: Operator {
         numerator = numerator.simplify()
         denominator = denominator.simplify()
         
-        if let denominator = denominator as? NumericalValue, denominator.toDouble() == 1 {
+        if let numerator = numerator as? NumericalValue, numerator.isNull() {
+            return 0
+        } else if let denominator = denominator as? NumericalValue, denominator.toDouble() == 1 {
             return numerator
         }
         
@@ -46,18 +48,20 @@ class Division: Operator {
     }
     
     func differentiate(of unknown: Unknown) -> Node {
-//        TODO: Substraction node
-//        return Division(
-//            Substraction(
-//                Multiplication(numerator.differentiate(of: unknown), denominator),
-//                Multiplication(numerator, denominator.differentiate(of: unknown))
-//            ),
-//            Pow(denominator, 2)
-//        )
-        return Differential(of: unknown, self)
+        // (u/v) = (u'v-uv' / v^2)
+        return Division(
+            Addition(
+                Multiplication(numerator.differentiate(of: unknown), denominator),
+                Multiplication(numerator, denominator.differentiate(of: unknown)).opposite()
+            ),
+            Pow(denominator, 2)
+        )
     }
     
     func integrate(of unknown: Unknown) -> Node {
+        if numerator is NumericalValue && denominator is NumericalValue {
+            return Multiplication(self, unknown)
+        }
         return Integral(of: unknown, self)
     }
 }

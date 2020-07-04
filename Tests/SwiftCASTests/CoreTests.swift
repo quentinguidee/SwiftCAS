@@ -129,8 +129,11 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(3, Multiplication(1, 2)).simplify().toString(), "3/2")
         XCTAssertEqual(Division(3, 1.0).simplify().toString(), "3")
         XCTAssertEqual(Division(1, -2).absoluteValue().toString(), "|1/-2|")
-        XCTAssertEqual(Division(1, 2).differentiate().toString(), "d/dx(1/2)")
-        XCTAssertEqual(Division(1, 2).integrate().toString(), "∫1/2 dx")
+        XCTAssertEqual(Division(0, 2).simplify().toString(), "0")
+        XCTAssertEqual(Division(1, 2).differentiate().simplify().toString(), "0")
+        XCTAssertEqual(Division(Unknown(), 2).differentiate().simplify().toString(), "2/4")
+        XCTAssertEqual(Division(Unknown(), 2).integrate().toString(), "∫x/2 dx")
+        XCTAssertEqual(Division(1, 2).integrate().toString(), "1/2*x")
     }
     
     func testPow() {
