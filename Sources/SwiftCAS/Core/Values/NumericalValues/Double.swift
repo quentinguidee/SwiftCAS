@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
+import Foundation
+
 extension Double: NumericalValue {
     func toDouble() -> Double {
         return self
@@ -20,5 +22,9 @@ extension Double: NumericalValue {
     
     func opposite() -> Node {
         return -self
+    }
+    
+    func toIntIfPossible() -> Node {
+        return self == floor(self) ? Int(self) : self
     }
 }

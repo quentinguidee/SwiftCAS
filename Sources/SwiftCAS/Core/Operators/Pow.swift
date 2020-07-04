@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 28/06/2020.
 //
 
+import Foundation
+
 class Pow: Operator {
     var base: Node
     var power: Node
@@ -55,6 +57,8 @@ class Pow: Operator {
             var n: [Pow] = []
             base.children.forEach { child in n.append(Pow(child, power)) }
             return Multiplication(n)
+        } else if let base = base as? NumericalValue, let power = power as? NumericalValue {
+            return pow(base.toDouble(), power.toDouble()).toIntIfPossible()
         }
         
         return self

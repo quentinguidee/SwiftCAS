@@ -142,7 +142,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Pow(1, Multiplication(3, 4, 5)).simplify().toString(), "1")
         XCTAssertEqual(Pow(Multiplication(3, 1, 5), 1).simplify().toString(), "3*5")
         XCTAssertEqual(Pow(Pow(1, 2), 3).simplify().toString(), "1")
-        XCTAssertEqual(Pow(Pow(4, 2), 3).simplify().toString(), "4^2*3")
+        XCTAssertEqual(Pow(Pow(4, 2), 3).simplify().toString(), "4096")
         XCTAssertEqual(Pow(Multiplication(4, 2), 3).simplify().toString(), "4^3*2^3")
         XCTAssertEqual(Pow(Multiplication(3, 2, 4), 3).simplify().toString(), "3^3*2^3*4^3")
         XCTAssertEqual(Pow(1, -2).absoluteValue().toString(), "1^-2")

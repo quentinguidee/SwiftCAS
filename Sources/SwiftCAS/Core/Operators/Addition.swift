@@ -5,8 +5,6 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-import Foundation
-
 class Addition: MultiNodesOperator {
     var symbol = "+"
     var children: [Node] = []
@@ -32,7 +30,7 @@ class Addition: MultiNodesOperator {
         }
         children.removeAll(where: { $0 is NumericalValue })
         if doubleSum != 0 {
-            let node: Node = (doubleSum == floor(doubleSum) ? Int(doubleSum) : doubleSum)
+            let node: Node = doubleSum.toIntIfPossible()
             children.append(node)
         }
         
