@@ -6,6 +6,7 @@
 //
 
 class Infinity: SymbolicValue {
+    static let symbol: String = "∞"
     var symbol: String = "∞"
     var sign: Sign { return .Positive }
     
