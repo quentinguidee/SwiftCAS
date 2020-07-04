@@ -36,6 +36,9 @@ class Addition: MultiNodesOperator {
             children.append(node)
         }
         
+        if children.count == 1 { return children[0] }
+        if children.count == 0 { return 0 }
+        
         return self
     }
     
