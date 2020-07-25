@@ -7,13 +7,13 @@
 
 protocol Node {
     var sign: Sign { get }
+    func simplify() -> Node
     func toString() -> String
     func toLaTeX() -> String
-    func differentiated(of unknown: Unknown) -> Node
-    func integrated(of unknown: Unknown) -> Node
     func absoluteValue() -> Node
     func opposite() -> Node
-    func simplify() -> Node
+    func differentiated(of unknown: Unknown) -> Node
+    func integrated(of unknown: Unknown) -> Node
 }
 
 extension Node {
