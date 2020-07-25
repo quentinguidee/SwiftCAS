@@ -172,6 +172,7 @@ final class CoreTests: XCTestCase {
     
     func testAbsoluteValue() {
         XCTAssertEqual(AbsoluteValue(-3).simplify() as! Int, 3)
+        XCTAssertEqual(AbsoluteValue(-3).absoluteValue().toString(), "|-3|")
     }
     
     func testOpposite() {

@@ -25,10 +25,6 @@ class AbsoluteValue: Operator {
         return "\\left|" + argument.toLaTeX() + "\\right|"
     }
     
-    func absoluteValue() -> Node {
-        return self
-    }
-    
     func differentiated(of unknown: Unknown) -> Node {
         return Multiplication(
             Division(self, self.argument),
