@@ -177,6 +177,24 @@ final class CoreTests: XCTestCase {
     func testOpposite() {
         XCTAssertEqual(Opposite(-3).simplify() as! Int, 3)
     }
+    
+    func testSin() {
+        XCTAssertEqual(Sin(3).toString(), "sin(3)")
+        XCTAssertEqual(Sin(3).toLaTeX(), "\\sin{(3)}")
+        XCTAssertEqual(Sin(3).differentiated().toString(), "0*cos(3)")
+    }
+    
+    func testCos() {
+        XCTAssertEqual(Cos(3).toString(), "cos(3)")
+        XCTAssertEqual(Cos(3).toLaTeX(), "\\cos{(3)}")
+        XCTAssertEqual(Cos(3).differentiated().toString(), "0*-sin(3)")
+    }
+    
+    func testTan() {
+        XCTAssertEqual(Tan(3).toString(), "tan(3)")
+        XCTAssertEqual(Tan(3).toLaTeX(), "\\tan{(3)}")
+        XCTAssertEqual(Tan(3).differentiated().toString(), "0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2")
+    }
 
     static var allTests = [
         ("testInt", testInt),
