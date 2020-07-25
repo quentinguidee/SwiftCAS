@@ -12,7 +12,9 @@ protocol Node {
     func toLaTeX() -> String
     func absoluteValue() -> Node
     func opposite() -> Node
+    func differentiated() -> Node
     func differentiated(of unknown: Unknown) -> Node
+    func integrated() -> Node
     func integrated(of unknown: Unknown) -> Node
 }
 
@@ -23,13 +25,5 @@ extension Node {
     
     func absoluteValue() -> Node {
         return (sign == .Positive || sign == .Signless) ? self : AbsoluteValue(self)
-    }
-    
-    func integrated() -> Node {
-        return integrated(of: Unknown())
-    }
-    
-    func differentiated() -> Node {
-        return differentiated(of: Unknown())
     }
 }

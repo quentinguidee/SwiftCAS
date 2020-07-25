@@ -10,15 +10,11 @@ class Infinity: SymbolicValue {
     var symbol: String = "∞"
     var sign: Sign { return .Positive }
     
-    func toLaTeX() -> String { return "\\infty" }
-    
-    func absoluteValue() -> Node { return self }
-    
-    func differentiated(of unknown: Unknown) -> Node {
-        return 0
+    func toLaTeX() -> String {
+        return "\\infty"
     }
     
-    func integrated(of unknown: Unknown) -> Node {
+    func absoluteValue() -> Node {
         return self
     }
 }

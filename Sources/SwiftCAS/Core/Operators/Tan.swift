@@ -24,13 +24,4 @@ class Tan: Operator {
     func toLaTeX() -> String {
         return "\\tan{(" + argument.toLaTeX() + ")}"
     }
-    
-    func differentiated(of unknown: Unknown) -> Node {
-        return Division(Sin(argument), Cos(argument))
-            .differentiated(of: unknown)
-    }
-    
-    func integrated(of unknown: Unknown) -> Node {
-        return Integral(of: unknown, self)
-    }
 }

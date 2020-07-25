@@ -24,12 +24,4 @@ class Cos: Operator {
     func toLaTeX() -> String {
         return "\\cos{(" + argument.toLaTeX() + ")}"
     }
-    
-    func differentiated(of unknown: Unknown) -> Node {
-        return Multiplication(argument.differentiated(of: unknown), Opposite(Sin(argument)))
-    }
-    
-    func integrated(of unknown: Unknown) -> Node {
-        return Integral(of: unknown, self)
-    }
 }

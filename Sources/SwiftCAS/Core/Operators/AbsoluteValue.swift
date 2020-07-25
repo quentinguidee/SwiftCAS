@@ -24,15 +24,4 @@ class AbsoluteValue: Operator {
     func toLaTeX() -> String {
         return "\\left|" + argument.toLaTeX() + "\\right|"
     }
-    
-    func differentiated(of unknown: Unknown) -> Node {
-        return Multiplication(
-            Division(self, self.argument),
-            argument.differentiated(of: unknown)
-        )
-    }
-    
-    func integrated(of unknown: Unknown) -> Node {
-        return Integral(of: unknown, self)
-    }
 }

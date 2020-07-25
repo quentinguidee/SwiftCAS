@@ -37,12 +37,4 @@ class Opposite: Operator {
     func toLaTeX() -> String {
         return "-" + argument.toLaTeX()
     }
-    
-    func differentiated(of unknown: Unknown) -> Node {
-        return Opposite(argument.differentiated(of: unknown))
-    }
-    
-    func integrated(of unknown: Unknown) -> Node {
-        return Opposite(argument.integrated(of: unknown))
-    }
 }

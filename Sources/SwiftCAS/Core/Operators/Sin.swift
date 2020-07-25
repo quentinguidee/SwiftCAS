@@ -24,12 +24,4 @@ class Sin: Operator {
     func toLaTeX() -> String {
         return "\\sin{(" + argument.toLaTeX() + ")}"
     }
-    
-    func differentiated(of unknown: Unknown) -> Node {
-        return Multiplication(argument.differentiated(of: unknown), Cos(argument))
-    }
-    
-    func integrated(of unknown: Unknown) -> Node {
-        return Integral(of: unknown, self)
-    }
 }
