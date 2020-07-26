@@ -9,42 +9,50 @@ public enum TokenCategory {
     case Number
     case Operator
     case Brackets
-    case Unknown
+    case Symbol
     case None
 }
 
 public enum TokenType {
-    case Int, Double
+    case IntNumber, DoubleNumber
     case AdditionOperator, SubstractionOperator, DivisionOperator, MultiplicationOperator, PowOperator
     case OpeningBrackets, ClosingBrackets
-    case Unknown
+    case UnknownSymbol
     case None
     
     public func getCategory() -> TokenCategory {
         switch self {
-            case .Int, .Double:
+            case .IntNumber, .DoubleNumber:
                 return .Number
             case .AdditionOperator, .SubstractionOperator, .DivisionOperator, .MultiplicationOperator, .PowOperator:
                 return .Operator
             case .OpeningBrackets, .ClosingBrackets:
                 return .Brackets
-            case .Unknown:
-                return .Unknown
+            case .UnknownSymbol:
+                return .Symbol
             case .None:
                 return .None
         }
     }
     
-    func createNode(_ nodes: [Node]) -> Node {
+    func createNode(_ args: [Any]) -> Node {
         switch self {
             case .PowOperator:
-                return Pow(nodes[0], nodes[1])
+                return Pow(args[0] as! Node, args[1] as! Node)
             case .MultiplicationOperator:
-                return Multiplication(nodes[0], nodes[1])
+                return Multiplication(args[0] as! Node, args[1] as! Node)
             case .DivisionOperator:
-                return Division(nodes[0], nodes[1])
+                return Division(args[0] as! Node, args[1] as! Node)
             case .AdditionOperator:
-                return Addition(nodes[0], nodes[1])
+                return Addition(args[0] as! Node, args[1] as! Node)
+            case .SubstractionOperator:
+                return Addition(args[0] as! Node, Opposite(args[1] as! Node))
+            case .IntNumber:
+                return Int(args[0] as! String)!
+            case .DoubleNumber:
+                return Double(args[0] as! String)!
+            case .UnknownSymbol:
+                return Unknown(args[0] as! String)
             default:
                 fatalError()
         }
@@ -52,7 +60,7 @@ public enum TokenType {
 }
 
 public struct Token: CustomStringConvertible {
-    public private(set) var type: TokenType
+    public var type: TokenType
     public var category: TokenCategory { return type.getCategory() }
     
     public private(set) var value: String
@@ -66,7 +74,7 @@ public struct Token: CustomStringConvertible {
         self.value = value
     }
     
-    public func build(_ nodes: Node...) -> Node {
+    public func build(_ nodes: Any...) -> Node {
         return type.createNode(nodes)
     }
 }

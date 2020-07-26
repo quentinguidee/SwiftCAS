@@ -15,23 +15,16 @@ public class Parser {
     public static func parse(_ expression: String) -> Node {
         var array: [Any] = Lexer.tokenized(expression)
         
-        return parse(&array)[0] as! Node
+        parse(&array)
+        
+        return array[0] as! Node
     }
     
-    public static func parse(_ array: inout [Any]) -> [Any] {
-        // Step 1: Match all parentheses and transform them into subarrays
+    public static func parse(_ array: inout [Any]) {
         replaceParenthesesBySubArrays(&array)
-        
-        // Step 2: Parse recursively
         parseRecursively(&array)
-        
         replaceTokensByNodes(&array)
-        
-        // Step 3: Replace operations with objects
         replaceOperatorsByNodes(&array)
-        // -> [Addition((Addition(Unknown("x"), 2.0)), 3)]
-        
-        return array
     }
     
     public static func parseRecursively(_ array: inout [Any]) {
@@ -39,13 +32,8 @@ public class Parser {
         while i < array.count {
             if var x = array[i] as? Array<Any> {
                 let _ = self.parse(&x)
-                if x.count == 1 {
-                    array[i] = x[0]
-                } else {
-                    array[i] = x
-                }
+                array[i] = x.count == 1 ? x[0] : x
             }
-            
             i += 1
         }
     }
@@ -62,20 +50,18 @@ public class Parser {
                 var j = i + 1
                 while j < array.count {
                     if let itemJ = array[j] as? Token {
-                        if itemJ.type == .OpeningBrackets {
-                            matchingParentheseCount += 1
-                        } else if itemJ.type == .ClosingBrackets {
-                            matchingParentheseCount -= 1
+                        switch itemJ.type {
+                            case .OpeningBrackets: matchingParentheseCount += 1
+                            case .ClosingBrackets: matchingParentheseCount -= 1
+                            default: break
                         }
                     }
                     
                     if matchingParentheseCount == 0 { break }
                     j += 1
                 }
-                
                 array[i...j] = [Array(array[i+1...j-1])]
             }
-            
             i += 1
         }
     }
@@ -85,7 +71,7 @@ public class Parser {
             if let _ = array[i] as? Array<Any> {
                 continue
             } else if let item = array[i] as? Token, item.category != .Operator {
-                array[i] = NodeFactory.create(item.value)
+                array[i] = item.build(item.value)
             }
         }
     }
@@ -99,9 +85,7 @@ public class Parser {
             while i < array.count {
                 if let token = array[i] as? Token, operation.contains(token.type) {
                     if (i+1) < array.count {
-                        array[(i-1)...(i+1)] = [token.build(
-                                                    array[i-1] as! Node,
-                                                    array[i+1] as! Node)]
+                        array[(i-1)...(i+1)] = [token.build(array[i-1] as! Node, array[i+1] as! Node)]
                     }
                 } else {
                     i += 1
