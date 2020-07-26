@@ -5,10 +5,10 @@
 //  Created by Quentin Guidée on 04/07/2020.
 //
 
-class Parser {
+public class Parser {
     static let operations = [["^"], ["*", "/"], ["+", "-"]]
     
-    static func parse(_ expression: String) -> Node {
+    public static func parse(_ expression: String) -> Node {
         // -> x^2.0+x+3
         
         // Step 1: Transform the expression into a basic Array
@@ -30,7 +30,7 @@ class Parser {
         return array[0] as! Node
     }
     
-    static func array(of expression: String) -> [Any] {
+    public static func array(of expression: String) -> [Any] {
         var array: [Any] = []
         
         for char in expression {
@@ -43,7 +43,7 @@ class Parser {
     static func replaceDotsByDoubles(_ array: inout [Any]) {
         var i: Int = 0
         while i < array.count {
-            if let char = array[i] as? String, char == "." {
+            if String(describing: array[i]) == "." {
                 if (i+1) < array.count {
                     array[(i-1)...(i+1)] = [Double("\(array[i-1]).\(array[i+1])")!]
                 }
@@ -55,7 +55,7 @@ class Parser {
     
     static func replaceStringsByNodes(_ array: inout [Any]) {
         for i in 0..<array.count {
-            if !(array[i] is Node) && getOperatorType(of: array[i] as! String) == nil {
+            if !(array[i] is Node) && getOperatorType(of: String(describing: array[i])) == nil {
                 let char = String(describing: array[i])
                 array[i] = NodeFactory.create(char)
             }
