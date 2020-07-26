@@ -80,15 +80,28 @@ public class Parser {
         var i = 0
         
         for operation in self.operations {
-            i = 0
-            
-            while i < array.count {
-                if let token = array[i] as? Token, operation.contains(token.type) {
-                    if (i+1) < array.count {
-                        array[(i-1)...(i+1)] = [token.build(array[i-1] as! Node, array[i+1] as! Node)]
+            if operation.contains(.PowOperator) {
+                i = array.count-1
+                while i > 0 {
+                    if let token = array[i] as? Token, operation.contains(token.type) {
+                        if (i-1) >= 0 {
+                            array[(i-1)...(i+1)] = [token.build(array[i-1] as! Node, array[i+1] as! Node)]
+                            i -= 2
+                        }
+                    } else {
+                        i -= 1
                     }
-                } else {
-                    i += 1
+                }
+            } else {
+                i = 0
+                while i < array.count {
+                    if let token = array[i] as? Token, operation.contains(token.type) {
+                        if (i+1) < array.count {
+                            array[(i-1)...(i+1)] = [token.build(array[i-1] as! Node, array[i+1] as! Node)]
+                        }
+                    } else {
+                        i += 1
+                    }
                 }
             }
         }
