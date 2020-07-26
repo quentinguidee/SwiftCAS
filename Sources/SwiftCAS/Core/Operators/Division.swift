@@ -26,14 +26,6 @@ class Division: Operator {
         self.denominator = denominator
     }
     
-    func toString() -> String {
-        return numerator.toString() + "/" + denominator.toString()
-    }
-    
-    func toLaTeX() -> String {
-        return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
-    }
-    
     func simplify() -> Node {
         numerator = numerator.simplify()
         denominator = denominator.simplify()
@@ -45,5 +37,13 @@ class Division: Operator {
         }
         
         return self
+    }
+    
+    func toString() -> String {
+        return numerator.toString() + "/" + denominator.toString()
+    }
+    
+    func toLaTeX() -> String {
+        return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
     }
 }
