@@ -55,10 +55,20 @@ public class Parser {
     
     public static func array(of expression: String) -> [Any] {
         var array: [Any] = []
+        var latestChar = ""
         
         for char in expression {
-            array.append(char)
+            if latestChar == "" {
+                latestChar = String(char)
+            } else if Parser.type(of: latestChar) != CharacterType.Parenthese && Parser.type(of: latestChar) == Parser.type(of: String(char)) {
+                latestChar.append(char)
+            } else {
+                array.append(latestChar)
+                latestChar = String(char)
+            }
         }
+        
+        array.append(latestChar)
         
         return array
     }
@@ -165,6 +175,30 @@ public class Parser {
                 case .AdditionOperator:
                     return Addition(nodeA, nodeB)
             }
+        }
+    }
+    
+    enum CharacterType {
+        case Int, Double, Operator, Constant, Infinity, Comma, Unknown, Parenthese
+    }
+    
+    static func type(of char: String) -> CharacterType {
+        if let _ = Int(char) {
+            return .Int
+        } else if let _ = Double(char) {
+            return .Double
+        } else if let _ = getOperatorType(of: char) {
+            return .Operator
+        } else if let _ = Constant.constants[char] {
+            return .Constant
+        } else if char == Infinity.symbol {
+            return .Infinity
+        } else if self.openingBrackets.contains(char) || self.closingBrackets.contains(char) {
+            return .Parenthese
+        } else if char == "," {
+            return .Comma
+        } else {
+            return .Unknown
         }
     }
 }
