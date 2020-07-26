@@ -200,7 +200,8 @@ final class CoreTests: XCTestCase {
     func testRoot() {
         XCTAssertEqual(Root(4).toString(), "sqrt(4)")
         XCTAssertEqual(Root(4, 2).toString(), "sqrt(4)")
-        XCTAssertEqual(Root(4, 3).toString(), "root(4, 3)")
+        XCTAssertEqual(Root(4, 3).toString(), "cbrt(4)")
+        XCTAssertEqual(Root(4, 4).toString(), "root(4, 4)")
         XCTAssertEqual(Root(4).toLaTeX(), "\\sqrt{4}")
         XCTAssertEqual(Root(4, 2).toLaTeX(), "\\sqrt{4}")
         XCTAssertEqual(Root(4, 3).toLaTeX(), "\\sqrt[3]{4}")
