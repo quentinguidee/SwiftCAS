@@ -13,8 +13,4 @@ class Infinity: SymbolicValue {
     func toLaTeX() -> String {
         return "\\infty"
     }
-    
-    func absoluteValue() -> Node {
-        return self
-    }
 }

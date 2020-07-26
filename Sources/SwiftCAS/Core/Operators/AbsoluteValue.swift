@@ -25,3 +25,19 @@ class AbsoluteValue: Operator {
         return "\\left|" + argument.toLaTeX() + "\\right|"
     }
 }
+
+protocol AbsoluteValuable {
+    func absoluteValue() -> Node
+}
+
+extension Node {
+    func absoluteValue() -> Node {
+        return (sign == .Positive || sign == .Signless) ? self : AbsoluteValue(self)
+    }
+}
+
+extension NumericalValue {
+    func absoluteValue() -> Node {
+        return sign == .Negative ? self.opposite() : self
+    }
+}
