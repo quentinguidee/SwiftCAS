@@ -5,13 +5,13 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-class Division: Operator {
-    var numerator: Node
-    var denominator: Node
-    var dividend: Node { return numerator }
-    var divisor: Node { return denominator }
+public class Division: Operator {
+    public private(set) var numerator: Node
+    public private(set) var denominator: Node
+    public var dividend: Node { return numerator }
+    public var divisor: Node { return denominator }
     
-    var sign: Sign {
+    public var sign: Sign {
         if denominator.sign == .Signless {
             // Result = Infinity, we take the numerator sign.
             return numerator.sign
@@ -21,12 +21,12 @@ class Division: Operator {
         }
     }
     
-    init(_ numerator: Node, _ denominator: Node) {
+    public init(_ numerator: Node, _ denominator: Node) {
         self.numerator = numerator
         self.denominator = denominator
     }
     
-    func simplify() -> Node {
+    public func simplify() -> Node {
         numerator = numerator.simplify()
         denominator = denominator.simplify()
         
@@ -39,11 +39,11 @@ class Division: Operator {
         return self
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         return numerator.toString() + "/" + denominator.toString()
     }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
     }
 }

@@ -5,13 +5,13 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-protocol NumericalValue: Value {
+public protocol NumericalValue: Value {
     func toDouble() -> Double
     func isNull() -> Bool
 }
 
 extension NumericalValue {
-    var sign: Sign {
+    public var sign: Sign {
         switch self {
             case let x where x.toDouble() < 0:
                 return .Negative
@@ -22,7 +22,7 @@ extension NumericalValue {
         }
     }
     
-    func isNull() -> Bool {
+    public func isNull() -> Bool {
         return toDouble() == 0
     }
 }

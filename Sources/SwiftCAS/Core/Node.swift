@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-protocol Node: Differentiable, Integrable, AbsoluteValuable, Opposable {
+public protocol Node: Differentiable, Integrable, AbsoluteValuable, Opposable {
     var sign: Sign { get }
     
     func simplify() -> Node

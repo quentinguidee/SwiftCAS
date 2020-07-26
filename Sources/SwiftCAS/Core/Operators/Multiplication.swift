@@ -5,11 +5,11 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-class Multiplication: MultiNodesOperator {
-    var symbol = "*"
-    var children: [Node] = []
+public class Multiplication: MultiNodesOperator {
+    public private(set) var symbol = "*"
+    public var children: [Node] = []
     
-    var sign: Sign {
+    public var sign: Sign {
         var sign: Int = 1
         children.forEach({ sign *= $0.sign.rawValue })
         if let s = Sign(rawValue: sign) {
@@ -19,9 +19,9 @@ class Multiplication: MultiNodesOperator {
         }
     }
     
-    required init() {}
+    public required init() {}
     
-    func simplify() -> Node {
+    public func simplify() -> Node {
         mergeAllChildren()
         simplify(children: &children)
         

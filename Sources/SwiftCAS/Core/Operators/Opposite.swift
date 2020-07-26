@@ -5,9 +5,9 @@
 //  Created by Quentin Guidée on 03/07/2020.
 //
 
-class Opposite: Operator {
+public class Opposite: Operator {
     var argument: Node
-    var sign: Sign {
+    public var sign: Sign {
         switch argument.sign {
             case .Positive:
                 return .Negative
@@ -18,45 +18,45 @@ class Opposite: Operator {
         }
     }
     
-    init(_ argument: Node) {
+    public init(_ argument: Node) {
         self.argument = argument
     }
     
-    func simplify() -> Node {
+    public func simplify() -> Node {
         return argument.simplify().opposite()
     }
     
-    func opposite() -> Node {
+    public func opposite() -> Node {
         return argument
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         return "-" + argument.toString()
     }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         return "-" + argument.toLaTeX()
     }
 }
 
-protocol Opposable {
+public protocol Opposable {
     func opposite() -> Node
 }
 
 extension Node {
-    func opposite() -> Node {
+    public func opposite() -> Node {
         return Opposite(self)
     }
 }
 
 extension Double {
-    func opposite() -> Node {
+    public func opposite() -> Node {
         return -self
     }
 }
 
 extension Int {
-    func opposite() -> Node {
+    public func opposite() -> Node {
         return -self
     }
 }

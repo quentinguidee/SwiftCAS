@@ -6,19 +6,19 @@
 //
 
 extension Int: NumericalValue {
-    func toDouble() -> Double {
+    public func toDouble() -> Double {
         return Double(self)
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         return String(self)
     }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         return toString()
     }
     
-    func isNatural() -> Bool {
+    public func isNatural() -> Bool {
         return self >= 0
     }
     

@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Constant: SymbolicValue {
-    var symbol: String
-    var sign: Sign {
+public class Constant: SymbolicValue {
+    public var symbol: String
+    public var sign: Sign {
         switch self {
             case let x where x.toDouble() < 0:
                 return .Negative
@@ -34,16 +34,16 @@ class Constant: SymbolicValue {
         "pi": "\\pi"
     ]
     
-    init(_ symbol: String) {
+    public init(_ symbol: String) {
         self.symbol = symbol
     }
     
-    func toDouble() -> Double {
+    public func toDouble() -> Double {
         if let double = Constant.constants[symbol] { return double }
         fatalError("The constant \(symbol) doesn't exist")
     }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         if let latexCode = Constant.constantsInLatexCode[symbol] { return latexCode }
         return toString()
     }

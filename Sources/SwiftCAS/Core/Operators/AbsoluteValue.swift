@@ -5,39 +5,39 @@
 //  Created by Quentin Guidée on 01/07/2020.
 //
 
-class AbsoluteValue: Operator {
+public class AbsoluteValue: Operator {
     var argument: Node
-    var sign: Sign { return .Positive }
+    public var sign: Sign { return .Positive }
     
-    init(_ argument: Node) {
+    public init(_ argument: Node) {
         self.argument = argument
     }
     
-    func simplify() -> Node {
+    public func simplify() -> Node {
         return argument.absoluteValue()
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         return "|" + argument.toString() + "|"
     }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         return "\\left|" + argument.toLaTeX() + "\\right|"
     }
 }
 
-protocol AbsoluteValuable {
+public protocol AbsoluteValuable {
     func absoluteValue() -> Node
 }
 
 extension Node {
-    func absoluteValue() -> Node {
+    public func absoluteValue() -> Node {
         return (sign == .Positive || sign == .Signless) ? self : AbsoluteValue(self)
     }
 }
 
 extension NumericalValue {
-    func absoluteValue() -> Node {
+    public func absoluteValue() -> Node {
         return sign == .Negative ? self.opposite() : self
     }
 }

@@ -5,10 +5,10 @@
 //  Created by Quentin Guidée on 01/07/2020.
 //
 
-protocol Value: Node {}
+public protocol Value: Node {}
 
 extension Value {
-    func simplify() -> Node {
+    public func simplify() -> Node {
         return self
     }
 }

@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 01/07/2020.
 //
 
-enum Sign: Int {
+public enum Sign: Int {
     case Negative = -1
     case Signless = 0
     case Positive = 1

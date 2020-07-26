@@ -8,19 +8,19 @@
 import Foundation
 
 extension Double: NumericalValue {
-    func toDouble() -> Double {
+    public func toDouble() -> Double {
         return self
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         return String(self)
     }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         return toString()
     }
     
-    func toIntIfPossible() -> Node {
+    public func toIntIfPossible() -> Node {
         return self == floor(self) ? Int(self) : self
     }
 }

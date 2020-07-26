@@ -7,11 +7,11 @@
 
 import Foundation
 
-class Pow: Operator {
+public class Pow: Operator {
     var base: Node
     var power: Node
     
-    var sign: Sign {
+    public var sign: Sign {
         switch base.sign {
             case .Positive:
                 return .Positive
@@ -30,20 +30,20 @@ class Pow: Operator {
         return .Signless
     }
     
-    init(_ base: Node, _ power: Node) {
+    public init(_ base: Node, _ power: Node) {
         self.base = base
         self.power = power
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         return base.toString() + "^" + power.toString()
     }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
     }
     
-    func simplify() -> Node {
+    public func simplify() -> Node {
         base = base.simplify()
         power = power.simplify()
         

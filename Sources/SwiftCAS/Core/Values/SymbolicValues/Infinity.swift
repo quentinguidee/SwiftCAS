@@ -5,12 +5,12 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-class Infinity: SymbolicValue {
+public class Infinity: SymbolicValue {
     static let symbol: String = "∞"
-    var symbol: String = "∞"
-    var sign: Sign { return .Positive }
+    public var symbol: String = "∞"
+    public var sign: Sign { return .Positive }
     
-    func toLaTeX() -> String {
+    public func toLaTeX() -> String {
         return "\\infty"
     }
 }

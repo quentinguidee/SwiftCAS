@@ -5,18 +5,18 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-class Addition: MultiNodesOperator {
-    var symbol = "+"
-    var children: [Node] = []
+public class Addition: MultiNodesOperator {
+    public private(set) var symbol = "+"
+    public var children: [Node] = []
     
-    var sign: Sign {
+    public var sign: Sign {
         // TODO: Implement
         return .Positive
     }
     
-    required init() {}
+    public required init() {}
     
-    func simplify() -> Node {
+    public func simplify() -> Node {
         mergeAllChildren()
         simplify(children: &children)
         
