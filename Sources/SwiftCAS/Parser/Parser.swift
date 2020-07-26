@@ -8,12 +8,21 @@
 public class Parser {
     static let operations = [["^"], ["*", "/"], ["+", "-"]]
     
+    static let openingBrackets = ["(", "{", "["]
+    
+    static let closingBrackets = [")", "}", "]"]
+    
     public static func parse(_ expression: String) -> Node {
         // -> x^2.0+x+3
-        
-        // Step 1: Transform the expression into a basic Array
         var array: [Any] = self.array(of: expression)
         // -> ["x", "2", ".", "0", "+", "x", "+", "3"]
+        
+        return parse(&array)[0] as! Node
+    }
+    
+    public static func parse(_ array: inout [Any]) -> [Any] {
+        // Step 1: Match all parentheses and transform them into subarrays
+        replaceParenthesesBySubArrays(&array)
         
         // Step 2: Transform all "." as a floating point number, with the two adjacent characters
         replaceDotsByDoubles(&array)
@@ -23,11 +32,25 @@ public class Parser {
         replaceStringsByNodes(&array)
         // -> [Unknown("x"), 2.0, "+", Unknown("x"), "+", 3]
         
+        var i = 0
+        while i < array.count {
+            if var x = array[i] as? Array<Any> {
+                let _ = self.parse(&x)
+                if x.count == 1 {
+                    array[i] = x[0]
+                } else {
+                    array[i] = x
+                }
+            }
+            
+            i += 1
+        }
+        
         // Step 4: Replace operations with objects
         replaceOperatorsByNodes(&array)
         // -> [Addition((Addition(Unknown("x"), 2.0)), 3)]
         
-        return array[0] as! Node
+        return array
     }
     
     public static func array(of expression: String) -> [Any] {
@@ -38,6 +61,37 @@ public class Parser {
         }
         
         return array
+    }
+    
+    static func replaceParenthesesBySubArrays(_ array: inout [Any]) {
+        var i = 0
+        var matchingParentheseCount = 0
+        
+        while i < array.count {
+            if self.openingBrackets.contains(String(describing: array[i])) {
+                matchingParentheseCount = 1
+                
+                // Search the closing index
+                var j = i + 1
+                while j < array.count {
+                    if self.openingBrackets.contains(String(describing: array[j])) {
+                        matchingParentheseCount += 1
+                    } else if self.closingBrackets.contains(String(describing: array[j])) {
+                        matchingParentheseCount -= 1
+                    }
+                    
+                    if matchingParentheseCount == 0 {
+                        break
+                    }
+                    
+                    j += 1
+                }
+                
+                array[i...j] = [Array(array[i+1...j-1])]
+            }
+            
+            i += 1
+        }
     }
     
     static func replaceDotsByDoubles(_ array: inout [Any]) {
@@ -55,7 +109,9 @@ public class Parser {
     
     static func replaceStringsByNodes(_ array: inout [Any]) {
         for i in 0..<array.count {
-            if !(array[i] is Node) && getOperatorType(of: String(describing: array[i])) == nil {
+            if let _ = array[i] as? Array<Any> {
+                continue
+            } else if !(array[i] is Node) && getOperatorType(of: String(describing: array[i])) == nil {
                 let char = String(describing: array[i])
                 array[i] = NodeFactory.create(char)
             }

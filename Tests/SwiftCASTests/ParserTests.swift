@@ -33,10 +33,15 @@ final class ParserTests: XCTestCase {
         XCTAssertEqual((expression[0] as! Node).toString(), "x^2.0+x+2")
     }
     
+    func testParser() {
+        XCTAssertEqual(Parser.parse("x^2+x+2").differentiated().simplify().toString(), "x*2+1")
+    }
+    
     static var allTests = [
         ("testParseExpressionToArray", testParseExpressionToArray),
         ("testReplaceDotsByDoubles", testReplaceDotsByDoubles),
         ("testReplaceStringsByNodes", testReplaceStringsByNodes),
         ("testReplaceOperatorsByNodes", testReplaceOperatorsByNodes),
+        ("testParser", testParser),
     ]
 }
