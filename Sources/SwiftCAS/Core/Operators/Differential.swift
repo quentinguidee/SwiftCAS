@@ -28,7 +28,7 @@ public class Differential: Operator {
     }
     
     public func toLaTeX() -> String {
-        return "\\frac{d}{dx}\\left(" + argument.toString() + "\\right)"
+        return "\\frac{d}{dx}\\left(" + argument.toLaTeX() + "\\right)"
     }
 }
 
