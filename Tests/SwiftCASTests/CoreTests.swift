@@ -221,5 +221,9 @@ final class CoreTests: XCTestCase {
         ("testIntegral", testIntegral),
         ("testAbsoluteValue", testAbsoluteValue),
         ("testOpposite", testOpposite),
+        ("testSin", testSin),
+        ("testCos", testCos),
+        ("testTan", testTan),
+        ("testRoot", testRoot),
     ]
 }
