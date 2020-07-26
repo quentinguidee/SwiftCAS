@@ -11,7 +11,7 @@ public enum Sign: Int {
     case Positive = 1
     case Unknown = 2
     
-    var description: String {
+    public var description: String {
         switch self {
             case .Negative:
                 return "-"
