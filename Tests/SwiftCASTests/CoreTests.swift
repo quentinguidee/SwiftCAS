@@ -215,6 +215,17 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Root(4, 2).toLaTeX(), "\\sqrt{4}")
         XCTAssertEqual(Root(4, 3).toLaTeX(), "\\sqrt[3]{4}")
     }
+    
+    func testFactorial() {
+        XCTAssertEqual(Factorial(5).simplify().toString(), "120")
+        XCTAssertEqual(21.factorial().toString(), "∞")
+        XCTAssertEqual(20.factorial().toString(), "2432902008176640000")
+        XCTAssertEqual(5.factorial().toString(), "120")
+        XCTAssertEqual(2.factorial().toString(), "2")
+        XCTAssertEqual(1.factorial().toString(), "1")
+        XCTAssertEqual(0.factorial().toString(), "1")
+        XCTAssertEqual((-1).factorial().toString(), "∞")
+    }
 
     static var allTests = [
         ("testInt", testInt),
@@ -234,5 +245,6 @@ final class CoreTests: XCTestCase {
         ("testCos", testCos),
         ("testTan", testTan),
         ("testRoot", testRoot),
+        ("testFactorial", testFactorial),
     ]
 }
