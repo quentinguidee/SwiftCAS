@@ -32,6 +32,17 @@ public class Parser {
         replaceStringsByNodes(&array)
         // -> [Unknown("x"), 2.0, "+", Unknown("x"), "+", 3]
         
+        // Step 4: Parse recursively
+        parseRecursively(&array)
+        
+        // Step 4: Replace operations with objects
+        replaceOperatorsByNodes(&array)
+        // -> [Addition((Addition(Unknown("x"), 2.0)), 3)]
+        
+        return array
+    }
+    
+    public static func parseRecursively(_ array: inout [Any]) {
         var i = 0
         while i < array.count {
             if var x = array[i] as? Array<Any> {
@@ -45,12 +56,6 @@ public class Parser {
             
             i += 1
         }
-        
-        // Step 4: Replace operations with objects
-        replaceOperatorsByNodes(&array)
-        // -> [Addition((Addition(Unknown("x"), 2.0)), 3)]
-        
-        return array
     }
     
     public static func array(of expression: String) -> [Any] {
