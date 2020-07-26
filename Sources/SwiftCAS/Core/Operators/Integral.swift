@@ -32,6 +32,11 @@ class Integral: Operator {
     }
 }
 
+protocol Integrable {
+    func integrated() -> Node
+    func integrated(of unknown: Unknown) -> Node
+}
+
 extension Node {
     func integrated() -> Node {
         return integrated(of: Unknown())

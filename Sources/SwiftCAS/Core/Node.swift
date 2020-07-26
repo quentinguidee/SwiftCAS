@@ -5,17 +5,13 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-protocol Node {
+protocol Node: Differentiable, Integrable {
     var sign: Sign { get }
     func simplify() -> Node
     func toString() -> String
     func toLaTeX() -> String
     func absoluteValue() -> Node
     func opposite() -> Node
-    func differentiated() -> Node
-    func differentiated(of unknown: Unknown) -> Node
-    func integrated() -> Node
-    func integrated(of unknown: Unknown) -> Node
 }
 
 extension Node {

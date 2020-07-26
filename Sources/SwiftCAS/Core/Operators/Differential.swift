@@ -32,6 +32,11 @@ class Differential: Operator {
     }
 }
 
+protocol Differentiable {
+    func differentiated() -> Node
+    func differentiated(of unknown: Unknown) -> Node
+}
+
 extension Node {
     func differentiated() -> Node {
         return differentiated(of: Unknown())
