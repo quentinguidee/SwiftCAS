@@ -29,8 +29,4 @@ extension Int: NumericalValue {
     public func isOdd() -> Bool {
         return self.absoluteValue() as! Int % 2 == 1
     }
-    
-    func opposite() -> Node {
-        return -self
-    }
 }

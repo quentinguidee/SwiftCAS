@@ -20,10 +20,6 @@ extension Double: NumericalValue {
         return toString()
     }
     
-    func opposite() -> Node {
-        return -self
-    }
-    
     func toIntIfPossible() -> Node {
         return self == floor(self) ? Int(self) : self
     }

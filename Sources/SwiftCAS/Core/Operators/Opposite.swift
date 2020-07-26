@@ -38,3 +38,25 @@ class Opposite: Operator {
         return "-" + argument.toLaTeX()
     }
 }
+
+protocol Opposable {
+    func opposite() -> Node
+}
+
+extension Node {
+    func opposite() -> Node {
+        return Opposite(self)
+    }
+}
+
+extension Double {
+    func opposite() -> Node {
+        return -self
+    }
+}
+
+extension Int {
+    func opposite() -> Node {
+        return -self
+    }
+}
