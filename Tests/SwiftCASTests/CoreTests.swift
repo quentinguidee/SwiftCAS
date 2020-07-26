@@ -196,6 +196,15 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Tan(3).toLaTeX(), "\\tan{(3)}")
         XCTAssertEqual(Tan(3).differentiated().toString(), "0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2")
     }
+    
+    func testRoot() {
+        XCTAssertEqual(Root(4).toString(), "sqrt(4)")
+        XCTAssertEqual(Root(4, 2).toString(), "sqrt(4)")
+        XCTAssertEqual(Root(4, 3).toString(), "root(4, 3)")
+        XCTAssertEqual(Root(4).toLaTeX(), "\\sqrt{4}")
+        XCTAssertEqual(Root(4, 2).toLaTeX(), "\\sqrt{4}")
+        XCTAssertEqual(Root(4, 3).toLaTeX(), "\\sqrt[3]{4}")
+    }
 
     static var allTests = [
         ("testInt", testInt),
