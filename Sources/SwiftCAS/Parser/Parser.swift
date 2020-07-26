@@ -13,6 +13,8 @@ public class Parser {
     ]
     
     public static func parse(_ expression: String) -> Node {
+        if expression == "" { return 0 }
+        
         var array: [Any] = Lexer.tokenized(expression)
         
         parse(&array)
