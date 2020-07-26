@@ -5,6 +5,9 @@
 //  Created by Quentin Guidée on 26/07/2020.
 //
 
+prefix operator √
+public prefix func √(lhs: Node) -> Node { return Root(lhs) }
+
 public class Root: Operator {
     public var sign: Sign { return .Positive }
     var radicand: Node

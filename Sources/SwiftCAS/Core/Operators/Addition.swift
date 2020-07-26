@@ -5,6 +5,9 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
+public func +(lhs: Node, rhs: Node) -> Node { return Addition(lhs, rhs) }
+public func -(lhs: Node, rhs: Node) -> Node { return Addition(lhs, Opposite(rhs)) }
+
 public class Addition: MultiNodesOperator {
     public private(set) var symbol = "+"
     public var children: [Node] = []

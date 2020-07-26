@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
+public func *(lhs: Node, rhs: Node) -> Node { return Multiplication(lhs, rhs) }
+
 public class Multiplication: MultiNodesOperator {
     public private(set) var symbol = "*"
     public var children: [Node] = []

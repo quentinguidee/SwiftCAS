@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 03/07/2020.
 //
 
+public prefix func -(lhs: Node) -> Node { return Opposite(lhs) }
+
 public class Opposite: Operator {
     var argument: Node
     public var sign: Sign {
@@ -51,12 +53,16 @@ extension Node {
 
 extension Double {
     public func opposite() -> Node {
-        return -self
+        var n = self
+        n.negate()
+        return n
     }
 }
 
 extension Int {
     public func opposite() -> Node {
-        return -self
+        var n = self
+        n.negate()
+        return n
     }
 }

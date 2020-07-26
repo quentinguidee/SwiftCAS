@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
+public func /(lhs: Node, rhs: Node) -> Node { return Division(lhs, rhs) }
+
 public class Division: Operator {
     public private(set) var numerator: Node
     public private(set) var denominator: Node

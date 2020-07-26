@@ -83,6 +83,8 @@ final class CoreTests: XCTestCase {
     }
     
     func testAddition() {
+        XCTAssertEqual((Division(4, 3)+3).toString(), "4/3+3")
+        XCTAssertEqual((Division(4, 3)-3).toString(), "4/3+-3")
         XCTAssertEqual(Addition(32, 2).toString(), "32+2")
         XCTAssertEqual(Addition(32, 2.0).toString(), "32+2.0")
         XCTAssertEqual(Addition(32, 2).toLaTeX(), "32+2")
@@ -98,6 +100,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testMultiplication() {
+        XCTAssertEqual((Division(4, 3)*3).toString(), "4/3*3")
         XCTAssertEqual(Multiplication(32, 2).toString(), "32*2")
         XCTAssertEqual(Multiplication(32, 2.0).toString(), "32*2.0")
         XCTAssertEqual(Multiplication(32, 2).toLaTeX(), "32*2")
@@ -113,6 +116,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testDivision() {
+        XCTAssertEqual((Division(4, 3)/3).toString(), "4/3/3")
         XCTAssertEqual(Division(32, 2).toString(), "32/2")
         XCTAssertEqual(Division(32, 2.0).toString(), "32/2.0")
         XCTAssertEqual(Division(32, 2).toLaTeX(), "\\frac{32}{2}")
@@ -137,6 +141,8 @@ final class CoreTests: XCTestCase {
     }
     
     func testPow() {
+        XCTAssertEqual((Division(4, 3)^3).toString(), "4/3^3")
+        XCTAssertEqual((Division(4, 3)**3).toString(), "4/3^3")
         XCTAssertEqual(Pow(11, 2).toString(), "11^2")
         XCTAssertEqual(Pow(11, 2.0).toString(), "11^2.0")
         XCTAssertEqual(Pow(11, 2).toLaTeX(), "{11}^{2}")
@@ -165,6 +171,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testIntegral() {
+        XCTAssertEqual((∫Unknown()).toString(), "∫x dx")
         XCTAssertEqual(Integral(of: Unknown("y"), Pow(3, 2)).toString(), "∫3^2 dy")
         XCTAssertEqual(Integral(Pow(3, 2)).toString(), "∫3^2 dx")
         XCTAssertEqual(Integral(3).integrated(of: Unknown("y")).toString(), "∫∫3 dx dy")
@@ -176,6 +183,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testOpposite() {
+        XCTAssertEqual((-(√Unknown())).toString(), "-sqrt(x)")
         XCTAssertEqual(Opposite(-3).simplify() as! Int, 3)
     }
     
@@ -198,6 +206,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testRoot() {
+        XCTAssertEqual((√Unknown()).toString(), "sqrt(x)")
         XCTAssertEqual(Root(4).toString(), "sqrt(4)")
         XCTAssertEqual(Root(4, 2).toString(), "sqrt(4)")
         XCTAssertEqual(Root(4, 3).toString(), "cbrt(4)")

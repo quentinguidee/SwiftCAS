@@ -5,6 +5,9 @@
 //  Created by Quentin Guidée on 01/07/2020.
 //
 
+prefix operator ∫
+public prefix func ∫(lhs: Node) -> Node { return Integral(lhs) }
+
 public class Integral: Operator {
     var argument: Node
     var unknown: Unknown
