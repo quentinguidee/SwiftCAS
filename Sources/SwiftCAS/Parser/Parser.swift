@@ -27,6 +27,7 @@ public class Parser {
         parseRecursively(&array)
         replaceTokensByNodes(&array)
         replaceOperatorsByNodes(&array)
+        replaceCommandsByNodes(&array)
     }
     
     public static func parseRecursively(_ array: inout [Any]) {
@@ -72,7 +73,11 @@ public class Parser {
         for i in 0..<array.count {
             if let _ = array[i] as? Array<Any> {
                 continue
-            } else if let item = array[i] as? Token, !(item.tokenDefinition is OperatorDefinition) {
+            } else if let item = array[i] as? Token, !(item.tokenDefinition is OperatorDefinition
+                                                        || item.tokenDefinition is CommandDefinition
+                                                        || item.tokenDefinition is SurroundDefinition
+                                                        || item.tokenDefinition is PrefixDefinition
+                                                        || item.tokenDefinition is PostfixDefinition) {
                 array[i] = item.build(item.value)
             }
         }
@@ -106,6 +111,19 @@ public class Parser {
                         i += 1
                     }
                 }
+            }
+        }
+    }
+    
+    static func replaceCommandsByNodes(_ array: inout [Any]) {
+        var i = 0
+        while i < array.count {
+            if let token = array[i] as? Token {
+                if (i+1) < array.count {
+                    array[(i)...(i+1)] = [token.build(array[i+1])]
+                }
+            } else {
+                i += 1
             }
         }
     }

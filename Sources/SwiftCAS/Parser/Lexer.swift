@@ -26,7 +26,7 @@ public class Lexer {
             } else if tokenDefinition.token != latestTokenDefinition?.token
                    || latestTokenDefinition is OpeningBracketDefinition
                    || latestTokenDefinition is ClosingBracketDefinition {
-                array.append(Token(latestTokenDefinition!, currentElement))
+                array.append(Token(Token.getDefinition(of: currentElement), currentElement))
                 currentElement = String(char)
                 latestTokenDefinition = tokenDefinition
             } else {
@@ -34,7 +34,7 @@ public class Lexer {
             }
         }
         
-        array.append(Token(latestTokenDefinition!, currentElement))
+        array.append(Token(Token.getDefinition(of: currentElement), currentElement))
         
         return array
     }

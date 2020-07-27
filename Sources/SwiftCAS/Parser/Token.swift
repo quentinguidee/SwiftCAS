@@ -83,10 +83,10 @@ public struct Token: CustomStringConvertible {
     }
     
     public static func getDefinition(of element: String) -> TokenDefinition {
-        if element.isNumeric {
-            return integer
-        } else if element == "." {
+        if element.contains(".") {
             return real
+        } else if element.isNumeric {
+            return integer
         }
         
         for subTokenDefinitions in tokenDefinitions {
