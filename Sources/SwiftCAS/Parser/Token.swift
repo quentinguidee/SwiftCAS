@@ -15,21 +15,20 @@ public struct Token: CustomStringConvertible {
         closingBrackets,
         operators,
         commands,
-        surrounds,
         prefixes,
         postfixes
     ]
     
     public static let openingBrackets = [
-        OpeningBracketDefinition("(", { args in [args] }),
-        OpeningBracketDefinition("{", { args in [args] }),
-        OpeningBracketDefinition("[", { args in [args] }),
+        OpeningBracketDefinition("("),
+        OpeningBracketDefinition("{"),
+        OpeningBracketDefinition("["),
     ]
     
     public static let closingBrackets = [
-        ClosingBracketDefinition(")", { args in [args] }),
-        ClosingBracketDefinition("}", { args in [args] }),
-        ClosingBracketDefinition("]", { args in [args] }),
+        ClosingBracketDefinition(")"),
+        ClosingBracketDefinition("}"),
+        ClosingBracketDefinition("]"),
     ]
     
     public static let operators = [
@@ -45,14 +44,13 @@ public struct Token: CustomStringConvertible {
         CommandDefinition("sin", 1, { args in Sin(args[0] as! Node) }),
         CommandDefinition("cos", 1, { args in Cos(args[0] as! Node) }),
         CommandDefinition("tan", 1, { args in Tan(args[0] as! Node) }),
+        CommandDefinition("abs", 1, { args in AbsoluteValue(args[0] as! Node) }),
         CommandDefinition("sqrt", 1, { args in Root(args[0] as! Node, 2) }),
         CommandDefinition("root", 1, { args in Root(args[0] as! Node, 2) }),
         CommandDefinition("cbrt", 1, { args in Root(args[0] as! Node, 3) }),
         CommandDefinition("root", 2, { args in Root(args[0] as! Node, args[1] as! Node) }),
-    ]
-    
-    public static let surrounds = [
-        SurroundDefinition("|", { args in AbsoluteValue(args[0] as! Node) }),
+        CommandDefinition("fact", 1, { args in Factorial(args[0] as! Node) }),
+        CommandDefinition("factorial", 1, { args in Factorial(args[0] as! Node) }),
     ]
     
     public static let prefixes = [

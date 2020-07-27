@@ -77,7 +77,6 @@ public class Parser {
                 continue
             } else if let item = array[i] as? Token, !(item.tokenDefinition is OperatorDefinition
                                                         || item.tokenDefinition is CommandDefinition
-                                                        || item.tokenDefinition is SurroundDefinition
                                                         || item.tokenDefinition is PrefixDefinition
                                                         || item.tokenDefinition is PostfixDefinition) {
                 array[i] = item.build(item.value)

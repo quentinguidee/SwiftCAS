@@ -12,21 +12,19 @@ public protocol TokenDefinition {
 
 public struct OpeningBracketDefinition: TokenDefinition {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([Any]) -> Any = { args in "" }
     
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String) {
         self.token = token
-        self.build = build
     }
 }
 
 public struct ClosingBracketDefinition: TokenDefinition {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([Any]) -> Any = { args in "" }
     
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String) {
         self.token = token
-        self.build = build
     }
 }
 
@@ -49,16 +47,6 @@ public struct CommandDefinition: TokenDefinition {
     public init(_ token: String, _ nArgs: Int, _ build: @escaping ([Any]) -> Any) {
         self.token = token
         self.nArgs = nArgs
-        self.build = build
-    }
-}
-
-public struct SurroundDefinition: TokenDefinition {
-    public var token: String
-    public var build: ([Any]) -> Any
-    
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
-        self.token = token
         self.build = build
     }
 }
