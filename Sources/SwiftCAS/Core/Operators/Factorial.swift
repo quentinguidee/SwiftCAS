@@ -16,6 +16,8 @@ public class Factorial: Operator {
     public func simplify() -> Node {
         if let argument = argument as? Int {
             return argument.factorial()
+        } else if let argument = argument as? Factorial {
+            return argument.simplify().factorial().simplify()
         }
         
         return self
