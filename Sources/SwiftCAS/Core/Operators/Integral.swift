@@ -23,7 +23,7 @@ public class Integral: Operator {
     }
     
     public func simplify() -> Node {
-        return argument.integrated()
+        return argument.integrated(of: unknown)
     }
     
     public func toString() -> String {
