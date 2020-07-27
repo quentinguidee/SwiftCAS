@@ -14,6 +14,7 @@ public struct Token: CustomStringConvertible {
         openingBrackets,
         closingBrackets,
         operators,
+        constants,
         commands,
         prefixes,
         postfixes
@@ -39,6 +40,10 @@ public struct Token: CustomStringConvertible {
         OperatorDefinition("+", { args in Addition(args[0] as! Node, args[1] as! Node) }),
         OperatorDefinition("-", { args in Addition(args[0] as! Node, Opposite(args[1] as! Node)) }),
     ]
+    
+    public static let constants = Constant.constants.map({ (key, value) in
+        ConstantDefinition(key)
+    })
     
     public static let commands = [
         CommandDefinition("sin", 1, { args in Sin(args[0] as! Node) }),
