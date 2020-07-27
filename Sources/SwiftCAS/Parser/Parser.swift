@@ -6,10 +6,10 @@
 //
 
 public class Parser {
-    static let operations = [
-        [TokenType.PowOperator],
-        [TokenType.MultiplicationOperator, TokenType.MultiplicationOperator],
-        [TokenType.AdditionOperator, TokenType.SubstractionOperator]
+    static let operations: [[TokenDefinition]] = [
+        [Token.getDefinition(of: "^"), Token.getDefinition(of: "**")],
+        [Token.getDefinition(of: "*"), Token.getDefinition(of: "/")],
+        [Token.getDefinition(of: "+"), Token.getDefinition(of: "-")]
     ]
     
     public static func parse(_ expression: String) -> Node {
@@ -45,16 +45,16 @@ public class Parser {
         var matchingParentheseCount = 0
         
         while i < array.count {
-            if let itemI = array[i] as? Token, itemI.type == .OpeningBrackets {
+            if let itemI = array[i] as? Token, itemI.tokenDefinition is OpeningBracketDefinition {
                 matchingParentheseCount = 1
                 
                 // Search the closing index
                 var j = i + 1
                 while j < array.count {
                     if let itemJ = array[j] as? Token {
-                        switch itemJ.type {
-                            case .OpeningBrackets: matchingParentheseCount += 1
-                            case .ClosingBrackets: matchingParentheseCount -= 1
+                        switch itemJ.tokenDefinition {
+                            case is OpeningBracketDefinition: matchingParentheseCount += 1
+                            case is ClosingBracketDefinition: matchingParentheseCount -= 1
                             default: break
                         }
                     }
@@ -72,7 +72,7 @@ public class Parser {
         for i in 0..<array.count {
             if let _ = array[i] as? Array<Any> {
                 continue
-            } else if let item = array[i] as? Token, item.category != .Operator {
+            } else if let item = array[i] as? Token, !(item.tokenDefinition is OperatorDefinition) {
                 array[i] = item.build(item.value)
             }
         }
@@ -82,10 +82,11 @@ public class Parser {
         var i = 0
         
         for operation in self.operations {
-            if operation.contains(.PowOperator) {
+            //TODO: Replace by an enum "Direction" RightToLeft and LeftToRight
+            if operation.contains(where: { $0.token == "^" || $0.token == "**" }) {
                 i = array.count-1
                 while i > 0 {
-                    if let token = array[i] as? Token, operation.contains(token.type) {
+                    if let token = array[i] as? Token, operation.contains(where: { $0.token == token.tokenDefinition.token }) {
                         if (i-1) >= 0 {
                             array[(i-1)...(i+1)] = [token.build(array[i-1] as! Node, array[i+1] as! Node)]
                             i -= 2
@@ -97,7 +98,7 @@ public class Parser {
             } else {
                 i = 0
                 while i < array.count {
-                    if let token = array[i] as? Token, operation.contains(token.type) {
+                    if let token = array[i] as? Token, operation.contains(where: { $0.token == token.tokenDefinition.token }) {
                         if (i+1) < array.count {
                             array[(i-1)...(i+1)] = [token.build(array[i-1] as! Node, array[i+1] as! Node)]
                         }

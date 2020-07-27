@@ -34,7 +34,7 @@ public class Pow: Operator {
         return .Signless
     }
     
-    public init(_ base: Node, _ power: Node) {
+    public required init(_ base: Node, _ power: Node) {
         self.base = base
         self.power = power
     }

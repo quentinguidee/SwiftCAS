@@ -20,7 +20,7 @@ public class Opposite: Operator {
         }
     }
     
-    public init(_ argument: Node) {
+    public required init(_ argument: Node) {
         self.argument = argument
     }
     

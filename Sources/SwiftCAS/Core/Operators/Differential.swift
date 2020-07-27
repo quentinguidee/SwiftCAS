@@ -10,12 +10,12 @@ public class Differential: Operator {
     var unknown: Unknown
     public var sign: Sign { return .Positive }
     
-    public init(of unknown: Unknown, _ argument: Node) {
+    public required init(of unknown: Unknown, _ argument: Node) {
         self.unknown = unknown
         self.argument = argument
     }
     
-    convenience init(_ argument: Node) {
+    public convenience init(_ argument: Node) {
         self.init(of: Unknown(), argument)
     }
     

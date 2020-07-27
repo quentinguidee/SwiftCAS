@@ -13,7 +13,7 @@ public class Root: Operator {
     var radicand: Node
     var index: Node
     
-    public init(_ radicand: Node, _ index: Node) {
+    public required init(_ radicand: Node, _ index: Node) {
         self.radicand = radicand
         self.index = index
     }

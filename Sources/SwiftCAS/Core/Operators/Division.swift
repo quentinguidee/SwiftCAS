@@ -23,7 +23,7 @@ public class Division: Operator {
         }
     }
     
-    public init(_ numerator: Node, _ denominator: Node) {
+    public required init(_ numerator: Node, _ denominator: Node) {
         self.numerator = numerator
         self.denominator = denominator
     }

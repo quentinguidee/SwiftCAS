@@ -13,7 +13,7 @@ public class Integral: Operator {
     var unknown: Unknown
     public var sign: Sign { return .Positive }
     
-    public init(of unknown: Unknown, _ argument: Node) {
+    public required init(of unknown: Unknown, _ argument: Node) {
         self.unknown = unknown
         self.argument = argument
     }

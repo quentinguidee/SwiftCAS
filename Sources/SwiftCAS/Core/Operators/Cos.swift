@@ -9,7 +9,7 @@ public class Cos: Operator {
     var argument: Node
     public var sign: Sign { return .Unknown }
     
-    public init(_ argument: Node) {
+    public required init(_ argument: Node) {
         self.argument = argument
     }
     

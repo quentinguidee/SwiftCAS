@@ -8,50 +8,35 @@
 import Foundation
 
 public class Lexer {
-    public static let openingBrackets = ["(", "{", "["]
-    public static let closingBrackets = [")", "}", "]"]
-    
     public static func tokenized(_ expression: String) -> [Token] {
         var array: [Token] = []
-        var latestTokenType: TokenType = .None
+        var latestTokenDefinition: TokenDefinition? = nil
         var currentElement = ""
         
         for char in expression {
-            let tokenType = getTokenType(of: String(char))
+            let tokenDefinition = Token.getDefinition(of: String(char))
             
             if currentElement == "" {
                 currentElement = String(char)
-                latestTokenType = tokenType
-            } else if (latestTokenType == .IntNumber && tokenType == .DoubleNumber) || (latestTokenType == .DoubleNumber && tokenType == .IntNumber) {
-                latestTokenType = .DoubleNumber
+                latestTokenDefinition = tokenDefinition
+            } else if (latestTokenDefinition?.token == Token.integer.token && tokenDefinition.token == Token.real.token)
+                   || (latestTokenDefinition?.token == Token.real.token && tokenDefinition.token == Token.integer.token) {
+                latestTokenDefinition = Token.real
                 currentElement.append(char)
-            } else if tokenType != latestTokenType || latestTokenType == .OpeningBrackets || latestTokenType == .ClosingBrackets {
-                array.append(Token(latestTokenType, currentElement))
+            } else if tokenDefinition.token != latestTokenDefinition?.token
+                   || latestTokenDefinition is OpeningBracketDefinition
+                   || latestTokenDefinition is ClosingBracketDefinition {
+                array.append(Token(latestTokenDefinition!, currentElement))
                 currentElement = String(char)
-                latestTokenType = tokenType
+                latestTokenDefinition = tokenDefinition
             } else {
                 currentElement.append(char)
             }
         }
         
-        array.append(Token(latestTokenType, currentElement))
+        array.append(Token(latestTokenDefinition!, currentElement))
         
         return array
-    }
-    
-    public static func getTokenType(of element: String) -> TokenType {
-        switch element {
-            case let e where e.isNumeric: return .IntNumber
-            case let e where e.isOpeningBrackets: return .OpeningBrackets
-            case let e where e.isClosingBrackets: return .ClosingBrackets
-            case ".": return .DoubleNumber
-            case "^": return .PowOperator
-            case "*": return .MultiplicationOperator
-            case "/": return .DivisionOperator
-            case "+": return .AdditionOperator
-            case "-": return .SubstractionOperator
-            default: return .UnknownSymbol
-        }
     }
 }
 
@@ -61,10 +46,10 @@ extension String {
     }
     
     public var isOpeningBrackets: Bool {
-        return Lexer.openingBrackets.contains(self)
+        return Token.openingBrackets.contains(where: { $0.token == self })
     }
     
     public var isClosingBrackets: Bool {
-        return Lexer.closingBrackets.contains(self)
+        return Token.closingBrackets.contains(where: { $0.token == self })
     }
 }

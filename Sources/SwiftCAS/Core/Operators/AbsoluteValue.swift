@@ -9,7 +9,7 @@ public class AbsoluteValue: Operator {
     var argument: Node
     public var sign: Sign { return .Positive }
     
-    public init(_ argument: Node) {
+    public required init(_ argument: Node) {
         self.argument = argument
     }
     
