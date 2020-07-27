@@ -17,7 +17,8 @@ public struct Token: CustomStringConvertible {
         constants,
         commands,
         prefixes,
-        postfixes
+        postfixes,
+        separators
     ]
     
     public static let openingBrackets = [
@@ -64,6 +65,10 @@ public struct Token: CustomStringConvertible {
     
     public static let postfixes = [
         PostfixDefinition("!", { args in Factorial(args[0] as! Node) }),
+    ]
+    
+    public static let separators = [
+        SeparatorDefinition(","),
     ]
     
     // ---------------------------

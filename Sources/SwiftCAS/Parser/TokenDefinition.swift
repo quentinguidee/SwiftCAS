@@ -81,6 +81,15 @@ public struct NumberDefinition: TokenDefinition {
     }
 }
 
+public struct SeparatorDefinition: TokenDefinition {
+    public var token: String
+    public var build: ([Any]) -> Any = { args in "" }
+    
+    public init(_ token: String) {
+        self.token = token
+    }
+}
+
 public struct ConstantDefinition: TokenDefinition {
     public var token: String
     public var build: ([Any]) -> Any
