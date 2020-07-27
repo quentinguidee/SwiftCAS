@@ -28,6 +28,8 @@ public class Parser {
         replaceTokensByNodes(&array)
         replaceOperatorsByNodes(&array)
         replaceCommandsByNodes(&array)
+        replacePrefixesByNodes(&array)
+        replacePostfixesByNodes(&array)
     }
     
     public static func parseRecursively(_ array: inout [Any]) {
@@ -118,9 +120,35 @@ public class Parser {
     static func replaceCommandsByNodes(_ array: inout [Any]) {
         var i = 0
         while i < array.count {
-            if let token = array[i] as? Token {
+            if let token = array[i] as? Token, token.tokenDefinition is CommandDefinition {
                 if (i+1) < array.count {
                     array[(i)...(i+1)] = [token.build(array[i+1])]
+                }
+            } else {
+                i += 1
+            }
+        }
+    }
+    
+    static func replacePrefixesByNodes(_ array: inout [Any]) {
+        var i = 0
+        while i < array.count {
+            if let token = array[i] as? Token, token.tokenDefinition is PrefixDefinition {
+                if (i+1) < array.count {
+                    array[(i)...(i+1)] = [token.build(array[i+1])]
+                }
+            } else {
+                i += 1
+            }
+        }
+    }
+    
+    static func replacePostfixesByNodes(_ array: inout [Any]) {
+        var i = 0
+        while i < array.count {
+            if let token = array[i] as? Token, token.tokenDefinition is PostfixDefinition {
+                if i < array.count {
+                    array[(i-1)...(i)] = [token.build(array[i-1])]
                 }
             } else {
                 i += 1
