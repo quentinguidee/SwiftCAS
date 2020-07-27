@@ -23,7 +23,7 @@ public class Root: Operator {
     }
     
     public func simplify() -> Node {
-        return Multiplication(radicand, Division(1, index)).simplify()
+        return Pow(radicand, Division(1, index)).simplify()
     }
     
     public func toString() -> String {
