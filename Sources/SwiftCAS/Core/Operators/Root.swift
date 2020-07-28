@@ -27,20 +27,22 @@ public class Root: Operator {
     }
     
     public func toString() -> String {
-        if isSquareRoot() {
-            return "sqrt(" + radicand.toString() + ")"
-        } else if isCubeRoot() {
-            return "cbrt(" + radicand.toString() + ")"
-        } else {
-            return "root(" + radicand.toString() + ", " + index.toString() + ")"
+        switch self {
+            case let x where x.isSquareRoot():
+                return "sqrt(" + radicand.toString() + ")"
+            case let x where x.isCubeRoot():
+                return "cbrt(" + radicand.toString() + ")"
+            default:
+                return "root(" + radicand.toString() + ", " + index.toString() + ")"
         }
     }
     
     public func toLaTeX() -> String {
-        if isSquareRoot() {
-            return "\\sqrt{" + radicand.toLaTeX() + "}"
-        } else {
-            return "\\sqrt[" + index.toLaTeX() + "]{" + radicand.toLaTeX() + "}"
+        switch self {
+            case let x where x.isSquareRoot():
+                return "\\sqrt{" + radicand.toLaTeX() + "}"
+            default:
+                return "\\sqrt[" + index.toLaTeX() + "]{" + radicand.toLaTeX() + "}"
         }
     }
     
