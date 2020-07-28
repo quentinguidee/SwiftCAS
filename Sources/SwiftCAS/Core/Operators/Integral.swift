@@ -50,6 +50,16 @@ extension Node {
     }
 }
 
+extension AbsoluteValue {
+    public func integrated(of unknown: Unknown) -> Node {
+        if argument.sign == .Positive {
+            return argument.integrated(of: unknown)
+        } else {
+            return Multiplication(argument.integrated(of: unknown), SignOperator(unknown))
+        }
+    }
+}
+
 extension Addition {
     public func integrated(of unknown: Unknown) -> Node {
         var nodes: [Node] = []
