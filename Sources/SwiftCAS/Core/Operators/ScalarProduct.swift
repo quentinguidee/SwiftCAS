@@ -17,6 +17,12 @@ public class ScalarProduct: Operator {
     }
     
     public func simplify() -> Node {
+        if let leftNode = leftNode as? Vector, let rightNode = rightNode as? Vector {
+            if (leftNode.isZero() || rightNode.isZero()) {
+                return 0
+            }
+        }
+        
         return self
     }
     

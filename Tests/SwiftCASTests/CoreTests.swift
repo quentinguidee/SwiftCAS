@@ -238,6 +238,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(DotProduct(Vector(1, 0), Vector(0, 1)).toString(), "⟨(1,0),(0,1)⟩")
         XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toString(), "⟨(1,0),(0,1)⟩")
         XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toLaTeX(), "\\langle\\left(1,0\\right),\\left(0,1\\right)\\rangle")
+        XCTAssertEqual(ScalarProduct(Vector(0, 0), Vector(0, 0)).simplify().toString(), "0")
     }
 
     static var allTests = [
