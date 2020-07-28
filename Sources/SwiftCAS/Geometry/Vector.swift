@@ -8,9 +8,18 @@
 public class Vector: Node {
     var nodes: [Node]
     public var sign: Sign { return .Positive }
+    public var dimension: Int { return nodes.count }
     
-    public required init(_ nodes: Node...) {
+    public required init(_ nodes: [Node]) {
         self.nodes = nodes
+    }
+    
+    public convenience init(_ nodes: Node...) {
+        self.init(nodes)
+    }
+    
+    public static func zero(dim: Int) -> Vector {
+        return Vector(Array<Int>.init(repeating: 0, count: dim))
     }
     
     public func simplify() -> Node {
