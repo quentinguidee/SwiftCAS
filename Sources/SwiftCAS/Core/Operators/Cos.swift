@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 25/07/2020.
 //
 
+public typealias Cosine = Cos
+
 public class Cos: Operator {
     var argument: Node
     public var sign: Sign { return .Unknown }

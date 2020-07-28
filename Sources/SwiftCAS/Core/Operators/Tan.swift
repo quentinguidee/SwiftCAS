@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 25/07/2020.
 //
 
+public typealias Tangent = Tan
+
 public class Tan: Operator {
     var argument: Node
     public var sign: Sign { return .Unknown }

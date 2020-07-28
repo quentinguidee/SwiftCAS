@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 25/07/2020.
 //
 
+public typealias Sine = Sin
+
 public class Sin: Operator {
     var argument: Node
     public var sign: Sign { return .Unknown }

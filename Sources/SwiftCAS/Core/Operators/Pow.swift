@@ -11,6 +11,8 @@ infix operator **
 public func ^(lhs: Node, rhs: Node) -> Node { return Pow(lhs, rhs) }
 public func **(lhs: Node, rhs: Node) -> Node { return lhs^rhs }
 
+public typealias Power = Pow
+
 public class Pow: Operator {
     var base: Node
     var power: Node

@@ -12,12 +12,12 @@ public protocol MultiNodesOperator: AnyObject, Operator {
 }
 
 extension MultiNodesOperator {
-    init(_ children: [Node]) {
+    public init(_ children: [Node]) {
         self.init()
         self.children = children
     }
     
-    init(_ children: Node...) {
+    public init(_ children: Node...) {
         self.init(children)
     }
     
@@ -33,7 +33,7 @@ extension MultiNodesOperator {
         return String(s.dropLast())
     }
     
-    func mergeAllChildren() {
+    public func mergeAllChildren() {
         for child in children {
             if let child = child as? Self {
                 child.mergeAllChildren()
@@ -44,23 +44,23 @@ extension MultiNodesOperator {
         self.removeAllChildren(where: { type(of: $0) == Self.self })
     }
     
-    func append(children: Node...) {
+    public func append(children: Node...) {
         append(children: children)
     }
     
-    func append(children: [Node]) {
+    public func append(children: [Node]) {
         children.forEach({ self.append(child: $0) })
     }
     
-    func append(child: Node) {
+    public func append(child: Node) {
         children.append(child)
     }
     
-    func removeAllChildren(where: (Node) -> Bool) {
+    public func removeAllChildren(where: (Node) -> Bool) {
         children.removeAll(where: `where`)
     }
     
-    func simplify(children: inout [Node]) {
+    public func simplify(children: inout [Node]) {
         for i in 0..<children.count {
             children[i] = children[i].simplify()
         }

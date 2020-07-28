@@ -7,6 +7,8 @@
 
 public func *(lhs: Node, rhs: Node) -> Node { return Multiplication(lhs, rhs) }
 
+public typealias Mult = Multiplication
+
 public class Multiplication: MultiNodesOperator {
     public private(set) var symbol = "*"
     public var children: [Node] = []

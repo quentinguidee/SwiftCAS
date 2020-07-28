@@ -5,6 +5,8 @@
 //  Created by Quentin Guidée on 26/07/2020.
 //
 
+public typealias Fact = Factorial
+
 public class Factorial: Operator {
     var argument: Node
     public var sign: Sign { return .Positive }

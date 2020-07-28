@@ -85,6 +85,7 @@ final class CoreTests: XCTestCase {
     func testAddition() {
         XCTAssertEqual((Division(4, 3)+3).toString(), "4/3+3")
         XCTAssertEqual((Division(4, 3)-3).toString(), "4/3+-3")
+        XCTAssertEqual(Add(32, 2).toString(), "32+2")
         XCTAssertEqual(Addition(32, 2).toString(), "32+2")
         XCTAssertEqual(Addition(32, 2.0).toString(), "32+2.0")
         XCTAssertEqual(Addition(32, 2).toLaTeX(), "32+2")
@@ -101,6 +102,7 @@ final class CoreTests: XCTestCase {
     
     func testMultiplication() {
         XCTAssertEqual((Division(4, 3)*3).toString(), "4/3*3")
+        XCTAssertEqual(Mult(32, 2).toString(), "32*2")
         XCTAssertEqual(Multiplication(32, 2).toString(), "32*2")
         XCTAssertEqual(Multiplication(32, 2.0).toString(), "32*2.0")
         XCTAssertEqual(Multiplication(32, 2).toLaTeX(), "32*2")
@@ -143,6 +145,7 @@ final class CoreTests: XCTestCase {
     func testPow() {
         XCTAssertEqual((Division(4, 3)^3).toString(), "4/3^3")
         XCTAssertEqual((Division(4, 3)**3).toString(), "4/3^3")
+        XCTAssertEqual(Power(11, 2).toString(), "11^2")
         XCTAssertEqual(Pow(11, 2).toString(), "11^2")
         XCTAssertEqual(Pow(11, 2.0).toString(), "11^2.0")
         XCTAssertEqual(Pow(11, 2).toLaTeX(), "{11}^{2}")
@@ -188,18 +191,21 @@ final class CoreTests: XCTestCase {
     }
     
     func testSin() {
+        XCTAssertEqual(Sine(3).toString(), "sin(3)")
         XCTAssertEqual(Sin(3).toString(), "sin(3)")
         XCTAssertEqual(Sin(3).toLaTeX(), "\\sin{(3)}")
         XCTAssertEqual(Sin(3).differentiated().toString(), "0*cos(3)")
     }
     
     func testCos() {
+        XCTAssertEqual(Cosine(3).toString(), "cos(3)")
         XCTAssertEqual(Cos(3).toString(), "cos(3)")
         XCTAssertEqual(Cos(3).toLaTeX(), "\\cos{(3)}")
         XCTAssertEqual(Cos(3).differentiated().toString(), "0*-sin(3)")
     }
     
     func testTan() {
+        XCTAssertEqual(Tangent(3).toString(), "tan(3)")
         XCTAssertEqual(Tan(3).toString(), "tan(3)")
         XCTAssertEqual(Tan(3).toLaTeX(), "\\tan{(3)}")
         XCTAssertEqual(Tan(3).differentiated().toString(), "0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2")
@@ -217,6 +223,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testFactorial() {
+        XCTAssertEqual(Fact(5).simplify().toString(), "120")
         XCTAssertEqual(Factorial(5).simplify().toString(), "120")
         XCTAssertEqual(21.factorial().toString(), "∞")
         XCTAssertEqual(20.factorial().toString(), "2432902008176640000")

@@ -8,6 +8,8 @@
 public func +(lhs: Node, rhs: Node) -> Node { return Addition(lhs, rhs) }
 public func -(lhs: Node, rhs: Node) -> Node { return Addition(lhs, Opposite(rhs)) }
 
+public typealias Add = Addition
+
 public class Addition: MultiNodesOperator {
     public private(set) var symbol = "+"
     public var children: [Node] = []
