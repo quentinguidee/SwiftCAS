@@ -22,6 +22,12 @@ public class Vector: Node {
         return Vector(Array<Int>.init(repeating: 0, count: dim))
     }
     
+    public func isZero() -> Bool {
+        return nodes.allSatisfy { node in
+            node.sign == .Signless
+        }
+    }
+    
     public func simplify() -> Node {
         for i in 0..<nodes.count {
             nodes[i] = nodes[i].simplify()
