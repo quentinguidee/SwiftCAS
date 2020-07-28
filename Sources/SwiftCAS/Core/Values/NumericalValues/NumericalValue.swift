@@ -8,6 +8,7 @@
 public protocol NumericalValue: Value {
     func toDouble() -> Double
     func isNull() -> Bool
+    func isZero() -> Bool
 }
 
 extension NumericalValue {
@@ -23,6 +24,10 @@ extension NumericalValue {
     }
     
     public func isNull() -> Bool {
-        return toDouble() == 0
+        return isZero()
+    }
+    
+    public func isZero() -> Bool {
+        return sign == .Signless
     }
 }
