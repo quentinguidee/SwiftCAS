@@ -233,6 +233,12 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(0.factorial().toString(), "1")
         XCTAssertEqual((-1).factorial().toString(), "∞")
     }
+    
+    func testScalarProduct() {
+        XCTAssertEqual(DotProduct(Vector(1, 0), Vector(0, 1)).toString(), "⟨(1,0),(0,1)⟩")
+        XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toString(), "⟨(1,0),(0,1)⟩")
+        XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toLaTeX(), "\\langle\\left(1,0\\right),\\left(0,1\\right)\\rangle")
+    }
 
     static var allTests = [
         ("testInt", testInt),
@@ -253,5 +259,6 @@ final class CoreTests: XCTestCase {
         ("testTan", testTan),
         ("testRoot", testRoot),
         ("testFactorial", testFactorial),
+        ("testScalarProduct", testScalarProduct),
     ]
 }
