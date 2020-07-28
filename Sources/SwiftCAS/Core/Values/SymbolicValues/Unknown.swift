@@ -6,7 +6,7 @@
 //
 
 public class Unknown: SymbolicValue {
-    public var symbol: String
+    public let symbol: String
     public var sign: Sign { return .Unknown }
     
     public init() {

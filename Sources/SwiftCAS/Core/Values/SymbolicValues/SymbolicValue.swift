@@ -6,7 +6,7 @@
 //
 
 public protocol SymbolicValue: Value {
-    var symbol: String { get set }
+    var symbol: String { get }
 }
 
 extension SymbolicValue {
