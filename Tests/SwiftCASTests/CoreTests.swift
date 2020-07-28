@@ -50,9 +50,11 @@ final class CoreTests: XCTestCase {
     }
     
     func testComplex() {
-        XCTAssertEqual(Complex(1, 2).toString(), "1+2i")
+        XCTAssertEqual(Complex(1, 2).toString(), "1+2𝔦")
+        XCTAssertEqual(Complex(1, 0).simplify().toString(), "1")
+        XCTAssertEqual(Complex(0, 1).simplify().toString(), "0+1𝔦")
         XCTAssertEqual(Complex(1, 2).toLaTeX(), "1+2i")
-        XCTAssertEqual(Complex(1, 3).conjuguate().toString(), "1-3i")
+        XCTAssertEqual(Complex(1, 3).conjuguate().toString(), "1-3𝔦")
         XCTAssertEqual(Complex(1, 3).real.toString(), "1")
         XCTAssertEqual(Complex(1, 3).imaginary.toString(), "3")
         XCTAssertEqual(Complex(1, 3).re.toString(), "1")

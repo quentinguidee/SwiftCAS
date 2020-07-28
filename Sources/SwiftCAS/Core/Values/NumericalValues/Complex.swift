@@ -17,12 +17,23 @@ public struct Complex: NumericalValue {
         self.imaginary = imaginary
     }
     
+    public func simplify() -> Node {
+        switch (real.sign, imaginary.sign) {
+            case let (x, y) where x == .Signless && y == .Signless:
+                return 0
+            case let (_, y) where y == .Signless:
+                return real
+            default:
+                return self
+        }
+    }
+    
     public func toString() -> String {
         switch imaginary.sign {
             case .Positive, .Signless, .Unknown:
-                return "\(real.toString())+\(imaginary.toString())i"
+                return "\(real.toString())+\(imaginary.toString())𝔦"
             case .Negative:
-                return "\(real.toString())\(imaginary.toString())i"
+                return "\(real.toString())\(imaginary.toString())𝔦"
         }
     }
     
