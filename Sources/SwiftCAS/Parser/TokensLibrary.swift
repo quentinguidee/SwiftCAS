@@ -56,6 +56,7 @@ public class TokensLibrary {
     
     public static let postfixes = [
         PostfixDefinition("!", { args in Factorial(args[0] as! Node) }),
+        PostfixDefinition("𝔦", { args in Complex(0, args[0] as! Node) }),
     ]
     
     public static let separators = [
