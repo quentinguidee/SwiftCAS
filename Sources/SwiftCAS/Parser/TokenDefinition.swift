@@ -100,6 +100,16 @@ public struct ConstantDefinition: TokenDefinition {
     }
 }
 
+public struct InfinityDefinition: TokenDefinition {
+    public var token: String
+    public var build: ([Any]) -> Any
+    
+    public init(_ token: String) {
+        self.token = token
+        self.build = { args in Infinity() }
+    }
+}
+
 public struct UnknownDefinition: TokenDefinition {
     public var token: String
     public var build: ([Any]) -> Any

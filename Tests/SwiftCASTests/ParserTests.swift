@@ -18,6 +18,10 @@ final class ParserTests: XCTestCase {
         XCTAssertEqual(Parser.parse("fact(4)").simplify().toString(), "24")
         XCTAssertEqual(Parser.parse("4!").simplify().toLaTeX(), "24")
         XCTAssertEqual(Parser.parse("√x").simplify().toLaTeX(), "{x}^{\\frac{1}{2}}")
+        XCTAssertEqual(Parser.parse("∞").toLaTeX(), "∞")
+        XCTAssertEqual(Parser.parse("inf").toLaTeX(), "∞")
+        XCTAssertEqual(Parser.parse("infty").toLaTeX(), "∞")
+        XCTAssertEqual(Parser.parse("infinity").toLaTeX(), "∞")
     }
     
     static var allTests = [

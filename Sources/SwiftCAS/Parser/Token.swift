@@ -14,7 +14,7 @@ public struct Token: CustomStringConvertible {
         TokensLibrary.commands,
         TokensLibrary.prefixes,
         TokensLibrary.postfixes,
-        TokensLibrary.separators
+        TokensLibrary.separators,
     ]
     
     public var tokenDefinition: TokenDefinition
@@ -35,6 +35,10 @@ public struct Token: CustomStringConvertible {
     }
     
     public static func getDefinition(of element: String) -> TokenDefinition {
+        for tokenDefinition in TokensLibrary.infinities {
+            if tokenDefinition.token == element { return tokenDefinition }
+        }
+        
         if element.contains(".") {
             return TokensLibrary.real
         } else if element.isNumeric {

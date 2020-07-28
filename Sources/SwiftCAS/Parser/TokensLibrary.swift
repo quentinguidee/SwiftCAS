@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 28/07/2020.
 //
 
-class TokensLibrary {
+public class TokensLibrary {
     public static let integer = NumberDefinition("ℤ", { args in Int(args[0] as! String)! })
     public static let real = NumberDefinition("ℝ", { args in Double(args[0] as! String)! })
     public static let unknown = UnknownDefinition("�", { args in Unknown(args[0] as! String) })
@@ -58,5 +58,12 @@ class TokensLibrary {
     
     public static let separators = [
         SeparatorDefinition(","),
+    ]
+    
+    public static let infinities = [
+        InfinityDefinition("∞"),
+        InfinityDefinition("inf"),
+        InfinityDefinition("infty"),
+        InfinityDefinition("infinity"),
     ]
 }
