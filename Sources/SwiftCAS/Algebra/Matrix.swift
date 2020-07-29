@@ -6,41 +6,56 @@
 //
 
 public class Matrix: Node {
-    public private(set) var lines: [[Node]] = []
+    public private(set) var nodes: [[Node]] = []
     
-    public var linesCount: Int { return lines.count }
-    public var columnsCount: Int { return lines[0].count }
+    public var linesCount: Int { return nodes.count }
+    public var columnsCount: Int { return nodes[0].count }
+    public var isSquare: Bool { return linesCount == columnsCount }
     
     public var sign: Sign { return .Unknown }
-    public var determinant: Node {
+    
+    public required init(_ nodes: [[Node]]) {
+        self.nodes = nodes
+    }
+    
+    public convenience init(_ nodes: [Node]...) {
+        self.init(nodes)
+    }
+    
+    public func determinant() -> Node {
         if (linesCount, columnsCount) == (2, 2) {
             return Addition(
-                Multiplication(lines[0][0], lines[1][1]),
-                Opposite(Multiplication(lines[0][1], lines[1][0]))
+                Multiplication(nodes[0][0], nodes[1][1]),
+                Opposite(Multiplication(nodes[0][1], nodes[1][0]))
             ).simplify()
         } else if (linesCount, columnsCount) == (3, 3) {
             return Addition(
-                Multiplication(lines[0][0], lines[1][1], lines[2][2]),
-                Multiplication(lines[0][1], lines[1][2], lines[2][0]),
-                Multiplication(lines[0][2], lines[1][0], lines[2][1]),
-                Opposite(Multiplication(lines[0][2], lines[1][1], lines[2][0])),
-                Opposite(Multiplication(lines[0][0], lines[1][2], lines[2][1])),
-                Opposite(Multiplication(lines[0][1], lines[1][0], lines[2][2]))
+                Multiplication(nodes[0][0], nodes[1][1], nodes[2][2]),
+                Multiplication(nodes[0][1], nodes[1][2], nodes[2][0]),
+                Multiplication(nodes[0][2], nodes[1][0], nodes[2][1]),
+                Opposite(Multiplication(nodes[0][2], nodes[1][1], nodes[2][0])),
+                Opposite(Multiplication(nodes[0][0], nodes[1][2], nodes[2][1])),
+                Opposite(Multiplication(nodes[0][1], nodes[1][0], nodes[2][2]))
             ).simplify()
         }
         return Double.nan
     }
     
-    public required init(_ lines: [[Node]]) {
-        self.lines = lines
-    }
-    
-    public convenience init(_ lines: [Node]...) {
-        self.init(lines)
+    public func trace() -> Node {
+        var nodes: [Node] = []
+        
+        if !isSquare { return Double.nan }
+        
+        var i = 0
+        while i < linesCount {
+            nodes.append(self.nodes[i][i])
+            i += 1
+        }
+        return Addition(nodes).simplify()
     }
     
     public func simplify() -> Node {
-        var simplifiedLines: [[Node]] = lines
+        var simplifiedLines: [[Node]] = nodes
         for i in 0..<linesCount {
             for j in 0..<columnsCount {
                 simplifiedLines[i][j] = simplifiedLines[i][j].simplify()
@@ -51,7 +66,7 @@ public class Matrix: Node {
     
     public func toString() -> String {
         var string: String = "["
-        lines.forEach { lines in
+        nodes.forEach { lines in
             string.append("[")
             lines.forEach { element in
                 string.append("\(element.toString()),")
