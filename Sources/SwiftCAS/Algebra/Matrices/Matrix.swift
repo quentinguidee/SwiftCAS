@@ -10,6 +10,10 @@ public class Matrix: Node {
     
     public var linesCount: Int { return nodes.count }
     public var columnsCount: Int { return nodes[0].count }
+    
+    public var dimension: Dimension { return Dimension(linesCount, columnsCount) }
+    public var order: Order { return dimension }
+    
     public var isSquare: Bool { return linesCount == columnsCount }
     
     public var sign: Sign { return .Unknown }
@@ -52,6 +56,18 @@ public class Matrix: Node {
             i += 1
         }
         return Addition(nodes).simplify()
+    }
+    
+    public func transpose() -> Matrix {
+        var lines: [[Node]] = []
+        for i in 0..<columnsCount {
+            var newLine: [Node] = []
+            for j in 0..<linesCount {
+                newLine.append(nodes[j][i])
+            }
+            lines.append(newLine)
+        }
+        return Matrix(lines)
     }
     
     public func simplify() -> Node {
