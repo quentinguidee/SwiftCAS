@@ -22,7 +22,7 @@ public class Integral: Operator {
         self.init(of: Unknown(), argument)
     }
     
-    public func simplify() -> Node {
+    public func simplified() -> Node {
         return argument.integrated(of: unknown)
     }
     

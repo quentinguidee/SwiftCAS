@@ -15,8 +15,8 @@ public class Sin: Operator {
         self.argument = argument
     }
     
-    public func simplify() -> Node {
-        return self
+    public func simplified() -> Node {
+        return Sin(argument)
     }
     
     public func toString() -> String {

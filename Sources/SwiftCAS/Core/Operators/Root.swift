@@ -22,8 +22,8 @@ public class Root: Operator {
         self.init(radicand, 2)
     }
     
-    public func simplify() -> Node {
-        return Pow(radicand, Division(1, index)).simplify()
+    public func simplified() -> Node {
+        return Pow(radicand, Division(1, index)).simplified()
     }
     
     public func toString() -> String {

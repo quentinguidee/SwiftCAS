@@ -17,14 +17,14 @@ public struct Complex: NumericalValue {
         self.imaginary = imaginary
     }
     
-    public func simplify() -> Node {
+    public func simplified() -> Node {
         switch (real.sign, imaginary.sign) {
             case let (x, y) where x == .Signless && y == .Signless:
                 return 0
             case let (_, y) where y == .Signless:
                 return real
             default:
-                return self
+                return Complex(re, im)
         }
     }
     

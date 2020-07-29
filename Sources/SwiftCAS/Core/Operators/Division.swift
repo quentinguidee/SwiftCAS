@@ -28,9 +28,9 @@ public class Division: Operator {
         self.denominator = denominator
     }
     
-    public func simplify() -> Node {
-        numerator = numerator.simplify()
-        denominator = denominator.simplify()
+    public func simplified() -> Node {
+        numerator = numerator.simplified()
+        denominator = denominator.simplified()
         
         if let numerator = numerator as? NumericalValue, numerator.isNull() {
             return 0
@@ -38,7 +38,7 @@ public class Division: Operator {
             return numerator
         }
         
-        return self
+        return Division(numerator, denominator)
     }
     
     public func toString() -> String {

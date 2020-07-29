@@ -13,8 +13,8 @@ public class AbsoluteValue: Operator {
         self.argument = argument
     }
     
-    public func simplify() -> Node {
-        return argument.absoluteValue()
+    public func simplified() -> Node {
+        return argument.simplified().absoluteValue()
     }
     
     public func toString() -> String {

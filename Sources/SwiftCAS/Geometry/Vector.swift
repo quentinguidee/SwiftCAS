@@ -28,11 +28,12 @@ public class Vector: Node {
         }
     }
     
-    public func simplify() -> Node {
+    public func simplified() -> Node {
+        var simplifiedNodes: [Node] = []
         for i in 0..<nodes.count {
-            nodes[i] = nodes[i].simplify()
+            simplifiedNodes.append(nodes[i].simplified())
         }
-        return self
+        return Vector(simplifiedNodes)
     }
     
     public func toString() -> String {

@@ -13,12 +13,12 @@ class SignOperator: Operator {
         self.argument = argument
     }
     
-    public func simplify() -> Node {
+    public func simplified() -> Node {
         switch argument.sign {
             case .Positive: return 1
             case .Signless: return 0
             case .Negative: return -1
-            case .Unknown: return self
+            case .Unknown: return SignOperator(argument)
         }
     }
     

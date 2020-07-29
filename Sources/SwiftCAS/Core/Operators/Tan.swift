@@ -15,8 +15,8 @@ public class Tan: Operator {
         self.argument = argument
     }
     
-    public func simplify() -> Node {
-        return self
+    public func simplified() -> Node {
+        return Tan(argument)
     }
     
     public func toString() -> String {

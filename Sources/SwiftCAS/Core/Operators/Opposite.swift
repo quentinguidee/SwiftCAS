@@ -24,8 +24,8 @@ public class Opposite: Operator {
         self.argument = argument
     }
     
-    public func simplify() -> Node {
-        return argument.simplify().opposite()
+    public func simplified() -> Node {
+        return argument.simplified().opposite()
     }
     
     public func opposite() -> Node {

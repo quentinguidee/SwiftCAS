@@ -41,17 +41,9 @@ public class Pow: Operator {
         self.power = power
     }
     
-    public func toString() -> String {
-        return base.toString() + "^" + power.toString()
-    }
-    
-    public func toLaTeX() -> String {
-        return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
-    }
-    
-    public func simplify() -> Node {
-        base = base.simplify()
-        power = power.simplify()
+    public func simplified() -> Node {
+        base = base.simplified()
+        power = power.simplified()
         
         if let base = base as? NumericalValue, base.toDouble() == 1 {
             return 1
@@ -62,11 +54,19 @@ public class Pow: Operator {
         } else if let base = base as? Multiplication {
             var n: [Pow] = []
             base.children.forEach { child in n.append(Pow(child, power)) }
-            return Multiplication(n).simplify()
+            return Multiplication(n).simplified()
         } else if let base = base as? NumericalValue, let power = power as? NumericalValue {
             return pow(base.toDouble(), power.toDouble()).toIntIfPossible()
         }
         
-        return self
+        return Pow(base, power)
+    }
+    
+    public func toString() -> String {
+        return base.toString() + "^" + power.toString()
+    }
+    
+    public func toLaTeX() -> String {
+        return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
     }
 }

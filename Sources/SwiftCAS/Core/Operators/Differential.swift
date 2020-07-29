@@ -19,7 +19,7 @@ public class Differential: Operator {
         self.init(of: Unknown(), argument)
     }
     
-    public func simplify() -> Node {
+    public func simplified() -> Node {
         return argument.differentiated(of: unknown)
     }
     
@@ -103,7 +103,7 @@ extension Pow {
             }
         } else if let base = base as? Constant, let power = power as? Unknown {
             if (base.symbol == "e" && power.symbol == unknown.symbol) {
-                return self
+                return Pow(base, power)
             }
         }
         

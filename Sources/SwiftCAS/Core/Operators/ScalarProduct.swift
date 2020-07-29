@@ -16,14 +16,14 @@ public class ScalarProduct: Operator {
         self.rightNode = rightNode
     }
     
-    public func simplify() -> Node {
+    public func simplified() -> Node {
         if let leftNode = leftNode as? Vector, let rightNode = rightNode as? Vector {
             if (leftNode.isZero() || rightNode.isZero()) {
                 return 0
             }
         }
         
-        return self
+        return ScalarProduct(leftNode, rightNode)
     }
     
     public func toString() -> String {

@@ -31,7 +31,7 @@ public class Matrix: Node {
             return Addition(
                 Multiplication(nodes[0][0], nodes[1][1]),
                 Opposite(Multiplication(nodes[0][1], nodes[1][0]))
-            ).simplify()
+            ).simplified()
         } else if (linesCount, columnsCount) == (3, 3) {
             return Addition(
                 Multiplication(nodes[0][0], nodes[1][1], nodes[2][2]),
@@ -40,7 +40,7 @@ public class Matrix: Node {
                 Opposite(Multiplication(nodes[0][2], nodes[1][1], nodes[2][0])),
                 Opposite(Multiplication(nodes[0][0], nodes[1][2], nodes[2][1])),
                 Opposite(Multiplication(nodes[0][1], nodes[1][0], nodes[2][2]))
-            ).simplify()
+            ).simplified()
         }
         return Double.nan
     }
@@ -55,7 +55,7 @@ public class Matrix: Node {
             nodes.append(self.nodes[i][i])
             i += 1
         }
-        return Addition(nodes).simplify()
+        return Addition(nodes).simplified()
     }
     
     public func transpose() -> Matrix {
@@ -70,12 +70,14 @@ public class Matrix: Node {
         return Matrix(lines)
     }
     
-    public func simplify() -> Node {
-        var simplifiedLines: [[Node]] = nodes
+    public func simplified() -> Node {
+        var simplifiedLines: [[Node]] = []
         for i in 0..<linesCount {
+            var simplifiedLine: [Node] = []
             for j in 0..<columnsCount {
-                simplifiedLines[i][j] = simplifiedLines[i][j].simplify()
+                simplifiedLine.append(nodes[i][j].simplified())
             }
+            simplifiedLines.append(simplifiedLine)
         }
         return Matrix(simplifiedLines)
     }

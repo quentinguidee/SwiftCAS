@@ -62,7 +62,7 @@ extension MultiNodesOperator {
     
     public func simplify(children: inout [Node]) {
         for i in 0..<children.count {
-            children[i] = children[i].simplify()
+            children[i] = children[i].simplified()
         }
     }
 }

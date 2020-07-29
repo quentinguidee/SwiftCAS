@@ -8,7 +8,7 @@
 public protocol Value: Node {}
 
 extension Value {
-    public func simplify() -> Node {
+    public func simplified() -> Node {
         return self
     }
 }

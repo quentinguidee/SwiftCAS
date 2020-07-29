@@ -15,8 +15,8 @@ public class Cos: Operator {
         self.argument = argument
     }
     
-    public func simplify() -> Node {
-        return self
+    public func simplified() -> Node {
+        return Cos(argument)
     }
     
     public func toString() -> String {

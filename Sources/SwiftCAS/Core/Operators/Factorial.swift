@@ -15,14 +15,14 @@ public class Factorial: Operator {
         self.argument = argument
     }
     
-    public func simplify() -> Node {
+    public func simplified() -> Node {
         if let argument = argument as? Int {
             return argument.factorial()
         } else if let argument = argument as? Factorial {
-            return argument.simplify().factorial().simplify()
+            return argument.simplified().factorial().simplified()
         }
         
-        return self
+        return Factorial(argument)
     }
     
     public func toString() -> String {

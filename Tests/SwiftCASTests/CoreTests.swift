@@ -51,8 +51,8 @@ final class CoreTests: XCTestCase {
     
     func testComplex() {
         XCTAssertEqual(Complex(1, 2).toString(), "1+2𝔦")
-        XCTAssertEqual(Complex(1, 0).simplify().toString(), "1")
-        XCTAssertEqual(Complex(0, 1).simplify().toString(), "0+1𝔦")
+        XCTAssertEqual(Complex(1, 0).simplified().toString(), "1")
+        XCTAssertEqual(Complex(0, 1).simplified().toString(), "0+1𝔦")
         XCTAssertEqual(Complex(1, 2).toLaTeX(), "1+2i")
         XCTAssertEqual(Complex(1, 3).conjuguate().toString(), "1-3𝔦")
         XCTAssertEqual(Complex(1, 3).real.toString(), "1")
@@ -99,6 +99,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testAddition() {
+        XCTAssertEqual(Add(32, 2).toString(), "32+2")
         XCTAssertEqual((Division(4, 3)+3).toString(), "4/3+3")
         XCTAssertEqual((Division(4, 3)-3).toString(), "4/3+-3")
         XCTAssertEqual(Add(32, 2).toString(), "32+2")
@@ -106,8 +107,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Addition(32, 2.0).toString(), "32+2.0")
         XCTAssertEqual(Addition(32, 2).toLaTeX(), "32+2")
         XCTAssertEqual(Addition(32, 2.0).toLaTeX(), "32+2.0")
-        XCTAssertEqual(Addition(Addition(1, 2), 3).simplify().toString(), "6")
-        XCTAssertEqual(Addition(Addition(0, 2), 3).simplify().toString(), "5")
+        XCTAssertEqual(Addition(Addition(1, 2), 3).simplified().toString(), "6")
+        XCTAssertEqual(Addition(Addition(0, 2), 3).simplified().toString(), "5")
         XCTAssertEqual(Addition(Addition(1, 2), 3).differentiated().toString(), "0+0+0")
         XCTAssertEqual(Addition(1, 2, 3).differentiated().toString(), "0+0+0")
         XCTAssertEqual(Addition(Unknown(), 2, 3).differentiated().toString(), "1+0+0")
@@ -126,9 +127,9 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Multiplication(-2, 3, -4, -5.2).sign, Sign.Negative)
         XCTAssertEqual(Multiplication(0, -2, 3, -4).sign, Sign.Signless)
         XCTAssertEqual(Multiplication(1, -2, 3, 4).absoluteValue().toString(), "|1*-2*3*4|")
-        XCTAssertEqual(Multiplication(2, -2, 3, -4).simplify().toString(), "48")
-        XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).simplify().toString(), "6")
-        XCTAssertEqual(Multiplication(Multiplication(0, 2), 3).simplify().toString(), "0")
+        XCTAssertEqual(Multiplication(2, -2, 3, -4).simplified().toString(), "48")
+        XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).simplified().toString(), "6")
+        XCTAssertEqual(Multiplication(Multiplication(0, 2), 3).simplified().toString(), "0")
         XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).differentiated().toString(), "d/dx(1*2*3)")
         XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).integrated().toString(), "∫1*2*3 dx")
     }
@@ -147,13 +148,13 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(0, 2).sign, Sign.Signless)
         XCTAssertEqual(Division(-1, 2).sign, Sign.Negative)
         XCTAssertEqual(Division(-1, -2).sign, Sign.Positive)
-        XCTAssertEqual(Division(3, 1).simplify().toString(), "3")
-        XCTAssertEqual(Division(3, Multiplication(1, 2)).simplify().toString(), "3/2")
-        XCTAssertEqual(Division(3, 1.0).simplify().toString(), "3")
+        XCTAssertEqual(Division(3, 1).simplified().toString(), "3")
+        XCTAssertEqual(Division(3, Multiplication(1, 2)).simplified().toString(), "3/2")
+        XCTAssertEqual(Division(3, 1.0).simplified().toString(), "3")
         XCTAssertEqual(Division(1, -2).absoluteValue().toString(), "|1/-2|")
-        XCTAssertEqual(Division(0, 2).simplify().toString(), "0")
-        XCTAssertEqual(Division(1, 2).differentiated().simplify().toString(), "0")
-        XCTAssertEqual(Division(Unknown(), 2).differentiated().simplify().toString(), "2/4")
+        XCTAssertEqual(Division(0, 2).simplified().toString(), "0")
+        XCTAssertEqual(Division(1, 2).differentiated().simplified().toString(), "0")
+        XCTAssertEqual(Division(Unknown(), 2).differentiated().simplified().toString(), "2/4")
         XCTAssertEqual(Division(Unknown(), 2).integrated().toString(), "∫x/2 dx")
         XCTAssertEqual(Division(1, 2).integrated().toString(), "1/2*x")
     }
@@ -168,19 +169,19 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Pow(11, 2.0).toLaTeX(), "{11}^{2.0}")
         XCTAssertEqual(Pow(11, 2).base.toString(), "11")
         XCTAssertEqual(Pow(11, 2).power.toString(), "2")
-        XCTAssertEqual(Pow(1, Multiplication(3, 4, 5)).simplify().toString(), "1")
-        XCTAssertEqual(Pow(Multiplication(3, 1, 5), 1).simplify().toString(), "15")
-        XCTAssertEqual(Pow(Pow(1, 2), 3).simplify().toString(), "1")
-        XCTAssertEqual(Pow(Pow(4, 2), 3).simplify().toString(), "4096")
-        XCTAssertEqual(Pow(Multiplication(4, Unknown()), 3).simplify().toString(), "x^3*64")
-        XCTAssertEqual(Pow(Multiplication(3, Unknown(), Constant("π")), 3).simplify().toString(), "x^3*π^3*27")
+        XCTAssertEqual(Pow(1, Multiplication(3, 4, 5)).simplified().toString(), "1")
+        XCTAssertEqual(Pow(Multiplication(3, 1, 5), 1).simplified().toString(), "15")
+        XCTAssertEqual(Pow(Pow(1, 2), 3).simplified().toString(), "1")
+        XCTAssertEqual(Pow(Pow(4, 2), 3).simplified().toString(), "4096")
+        XCTAssertEqual(Pow(Multiplication(4, Unknown()), 3).simplified().toString(), "x^3*64")
+        XCTAssertEqual(Pow(Multiplication(3, Unknown(), Constant("π")), 3).simplified().toString(), "x^3*π^3*27")
         XCTAssertEqual(Pow(1, -2).absoluteValue().toString(), "1^-2")
         XCTAssertEqual(Pow(-2, 3).absoluteValue().toString(), "|-2^3|")
         XCTAssertEqual(Pow(-2, 2).absoluteValue().toString(), "-2^2")
         XCTAssertEqual(Pow(3, 2).differentiated().toString(), "0")
-        XCTAssertEqual(Pow(Unknown(), 2).differentiated().simplify().toString(), "x*2")
+        XCTAssertEqual(Pow(Unknown(), 2).differentiated().simplified().toString(), "x*2")
         XCTAssertEqual(Pow(3, 2).integrated().toString(), "∫3^2 dx")
-        XCTAssertEqual(Pow(Unknown(), 2).integrated().simplify().toString(), "1/3*x^3")
+        XCTAssertEqual(Pow(Unknown(), 2).integrated().simplified().toString(), "1/3*x^3")
     }
     
     func testDifferentiate() {
@@ -197,13 +198,13 @@ final class CoreTests: XCTestCase {
     }
     
     func testAbsoluteValue() {
-        XCTAssertEqual(AbsoluteValue(-3).simplify() as! Int, 3)
+        XCTAssertEqual(AbsoluteValue(-3).simplified() as! Int, 3)
         XCTAssertEqual(AbsoluteValue(-3).absoluteValue().toString(), "|-3|")
     }
     
     func testOpposite() {
         XCTAssertEqual((-(√Unknown())).toString(), "-sqrt(x)")
-        XCTAssertEqual(Opposite(-3).simplify() as! Int, 3)
+        XCTAssertEqual(Opposite(-3).simplified() as! Int, 3)
     }
     
     func testSin() {
@@ -239,8 +240,8 @@ final class CoreTests: XCTestCase {
     }
     
     func testFactorial() {
-        XCTAssertEqual(Fact(5).simplify().toString(), "120")
-        XCTAssertEqual(Factorial(5).simplify().toString(), "120")
+        XCTAssertEqual(Fact(5).simplified().toString(), "120")
+        XCTAssertEqual(Factorial(5).simplified().toString(), "120")
         XCTAssertEqual(21.factorial().toString(), "∞")
         XCTAssertEqual(20.factorial().toString(), "2432902008176640000")
         XCTAssertEqual(5.factorial().toString(), "120")
@@ -254,7 +255,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(DotProduct(Vector(1, 0), Vector(0, 1)).toString(), "⟨(1,0),(0,1)⟩")
         XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toString(), "⟨(1,0),(0,1)⟩")
         XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toLaTeX(), "\\langle\\left(1,0\\right),\\left(0,1\\right)\\rangle")
-        XCTAssertEqual(ScalarProduct(Vector(0, 0), Vector(0, 0)).simplify().toString(), "0")
+        XCTAssertEqual(ScalarProduct(Vector(0, 0), Vector(0, 0)).simplified().toString(), "0")
     }
 
     static var allTests = [
