@@ -8,6 +8,7 @@
 public protocol MultiNodesOperator: AnyObject, Operator {
     var symbol: String { get }
     var children: [Node] { get set }
+    var neutral: Int { get }
     init()
 }
 
@@ -58,6 +59,10 @@ extension MultiNodesOperator {
     
     public func removeAllChildren(where: (Node) -> Bool) {
         children.removeAll(where: `where`)
+    }
+    
+    public func removeAllNeutrals() {
+        children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == self.neutral.toDouble() })
     }
     
     public func simplify(children: inout [Node]) {

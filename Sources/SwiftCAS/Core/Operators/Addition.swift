@@ -13,6 +13,7 @@ public typealias Add = Addition
 public class Addition: MultiNodesOperator {
     public private(set) var symbol = "+"
     public var children: [Node] = []
+    public var neutral: Int = 0
     
     public var sign: Sign {
         // TODO: Implement
@@ -25,9 +26,8 @@ public class Addition: MultiNodesOperator {
         let simplified = Addition(children)
         simplified.mergeAllChildren()
         simplify(children: &simplified.children)
-        
-        // 3+0 = 3
-        simplified.children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == 0 })
+
+        simplified.removeAllNeutrals()
         
         // 3+2 = 5
         var doubleSum: Double = 0

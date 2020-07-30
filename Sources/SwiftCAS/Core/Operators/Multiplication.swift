@@ -12,6 +12,7 @@ public typealias Mult = Multiplication
 public class Multiplication: MultiNodesOperator {
     public private(set) var symbol = "*"
     public var children: [Node] = []
+    public var neutral: Int = 1
     
     public var sign: Sign {
         var sign: Int = 1
@@ -34,8 +35,7 @@ public class Multiplication: MultiNodesOperator {
         // x*0 = 0
         if simplified.children.contains(where: { ($0 as? NumericalValue)?.toDouble() == 0 }) { return 0 }
         
-        // x*1 = x
-        simplified.children.removeAll(where: { ($0 as? NumericalValue)?.toDouble() == 1 })
+        simplified.removeAllNeutrals()
         
         // 3*2 = 6
         var doubleMultiplication: Double = 1
