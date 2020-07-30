@@ -142,6 +142,8 @@ final class CoreTests: XCTestCase {
     func testDivision() {
         XCTAssertEqual((Division(4, 3)/3).toString(), "4/3/3")
         XCTAssertEqual(Division(32, 2).simplified().toString(), "16")
+        XCTAssertEqual(Division(32, 0).simplified().toString(), "nan")
+        XCTAssertEqual(Division(0, 0).simplified().toString(), "nan")
         XCTAssertEqual(Division(32, 2.0).toString(), "32/2.0")
         XCTAssertEqual(Division(32, 2).toLaTeX(), "\\frac{32}{2}")
         XCTAssertEqual(Division(32, 2.0).toLaTeX(), "\\frac{32}{2.0}")

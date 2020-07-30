@@ -32,7 +32,9 @@ public class Division: Operator {
         var numerator = self.numerator.simplified()
         var denominator = self.denominator.simplified()
         
-        if let numerator = numerator as? NumericalValue, numerator.isNull() {
+        if let denominator = denominator as? NumericalValue, denominator.isNull() {
+            return Double.nan
+        } else if let numerator = numerator as? NumericalValue, numerator.isNull() {
             return 0
         }
         
