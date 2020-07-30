@@ -135,6 +135,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Multiplication(2, -2, 3, -4).simplified().toString(), "48")
         XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).simplified().toString(), "6")
         XCTAssertEqual(Multiplication(Multiplication(0, 2), 3).simplified().toString(), "0")
+        XCTAssertEqual(Multiplication(Unknown("x"), Opposite(Unknown("y"))).simplified().toString(), "x*y*-1")
+        XCTAssertEqual(Multiplication(Opposite(Unknown("x")), Opposite(Unknown("y"))).simplified().toString(), "x*y")
         XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).differentiated().toString(), "d/dx(1*2*3)")
         XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).integrated().toString(), "∫1*2*3 dx")
     }
