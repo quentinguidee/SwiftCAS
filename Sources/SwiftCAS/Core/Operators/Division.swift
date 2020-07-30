@@ -29,12 +29,19 @@ public class Division: Operator {
     }
     
     public func simplified() -> Node {
-        numerator = numerator.simplified()
-        denominator = denominator.simplified()
+        var numerator = self.numerator.simplified()
+        var denominator = self.denominator.simplified()
         
         if let numerator = numerator as? NumericalValue, numerator.isNull() {
             return 0
-        } else if let denominator = denominator as? NumericalValue, denominator.toDouble() == 1 {
+        }
+        
+        if let n = numerator as? Int, let d = denominator as? Int, let gcd = gcd(n, d) as? Int, gcd != 1 {
+            numerator = n/gcd
+            denominator = d/gcd
+        }
+        
+        if let denominator = denominator as? NumericalValue, denominator.toDouble() == 1 {
             return numerator
         }
         

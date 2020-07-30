@@ -93,6 +93,11 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Unknown("x").integrated(of: Unknown("y")).toString(), "x*y")
     }
     
+    func testGcd() {
+        XCTAssertEqual(Gcd(30, 20).toString(), "gcd(30, 20)")
+        XCTAssertEqual(Gcd(30, 20).simplified().toString(), "10")
+    }
+    
     func testMultiNodesOperator() {
         XCTAssertEqual(Addition(1, 2).toString(), "1+2")
         XCTAssertEqual(Addition([1, 2]).toString(), "1+2")
@@ -136,7 +141,7 @@ final class CoreTests: XCTestCase {
     
     func testDivision() {
         XCTAssertEqual((Division(4, 3)/3).toString(), "4/3/3")
-        XCTAssertEqual(Division(32, 2).toString(), "32/2")
+        XCTAssertEqual(Division(32, 2).simplified().toString(), "16")
         XCTAssertEqual(Division(32, 2.0).toString(), "32/2.0")
         XCTAssertEqual(Division(32, 2).toLaTeX(), "\\frac{32}{2}")
         XCTAssertEqual(Division(32, 2.0).toLaTeX(), "\\frac{32}{2.0}")
@@ -154,7 +159,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(1, -2).absoluteValue().toString(), "|1/-2|")
         XCTAssertEqual(Division(0, 2).simplified().toString(), "0")
         XCTAssertEqual(Division(1, 2).differentiated().simplified().toString(), "0")
-        XCTAssertEqual(Division(Unknown(), 2).differentiated().simplified().toString(), "2/4")
+        XCTAssertEqual(Division(Unknown(), 2).differentiated().simplified().toString(), "1/2")
         XCTAssertEqual(Division(Unknown(), 2).integrated().toString(), "∫x/2 dx")
         XCTAssertEqual(Division(1, 2).integrated().toString(), "1/2*x")
     }
