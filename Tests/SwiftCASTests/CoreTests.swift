@@ -213,6 +213,7 @@ final class CoreTests: XCTestCase {
     }
     
     func testOpposite() {
+        XCTAssertEqual(Opposite(Unknown()).simplified().toString(), "-1*x")
         XCTAssertEqual((-(√Unknown())).toString(), "-sqrt(x)")
         XCTAssertEqual(Opposite(-3).simplified() as! Int, 3)
     }

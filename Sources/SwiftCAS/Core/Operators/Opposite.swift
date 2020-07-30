@@ -25,7 +25,12 @@ public class Opposite: Operator {
     }
     
     public func simplified() -> Node {
-        return argument.simplified().opposite()
+        let simplified = argument.simplified().opposite()
+        if let simplified = simplified as? Opposite {
+            return Multiplication(-1, simplified.argument)
+        } else {
+            return simplified
+        }
     }
     
     public func opposite() -> Node {

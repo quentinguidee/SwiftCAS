@@ -28,21 +28,8 @@ public class Multiplication: MultiNodesOperator {
     public func simplified() -> Node {
         let simplified = Multiplication(children)
         simplified.mergeAllChildren()
-        
-        // Merge all opposite nodes
-        var oppositeCount = 0
-        simplified.children = simplified.children.map { node -> Node in
-            if let node = node as? Opposite {
-                oppositeCount += 1
-                return node.argument
-            } else {
-                return node
-            }
-        }
-        if oppositeCount.isOdd() { simplified.children.append(-1) }
-        
-        // Simplify children
         simplify(children: &simplified.children)
+        simplified.mergeAllChildren()
         
         // x*0 = 0
         if simplified.children.contains(where: { ($0 as? NumericalValue)?.toDouble() == 0 }) { return 0 }
