@@ -8,7 +8,14 @@
 public protocol Node: Differentiable, Integrable, AbsoluteValuable, Opposable {
     var sign: Sign { get }
     
+    func inverse() -> Node
     func simplified() -> Node
     func toString() -> String
     func toLaTeX() -> String
+}
+
+extension Node {
+    public func inverse() -> Node {
+        return Pow(self, -1)
+    }
 }
