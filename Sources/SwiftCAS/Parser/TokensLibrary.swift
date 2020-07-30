@@ -48,6 +48,7 @@ public class TokensLibrary {
         CommandDefinition("factorial", 1, { args in Factorial(args[0] as! Node) }),
         CommandDefinition("int", 1, { args in Integral(args[0] as! Node) }),
         CommandDefinition("diff", 1, { args in Differential(args[0] as! Node) }),
+        CommandDefinition("gcd", 2, { args in Gcd(args[0] as! Node, args[1] as! Node) }),
     ]
     
     public static let prefixes = [
