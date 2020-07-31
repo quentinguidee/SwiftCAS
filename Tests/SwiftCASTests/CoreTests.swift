@@ -29,6 +29,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(3.differentiated(of: Unknown("y")).toString(), "0")
         XCTAssertEqual(3.integrated().toString(), "3*x")
         XCTAssertEqual(3.integrated(of: Unknown("y")).toString(), "3*y")
+        XCTAssertEqual(88.factorize().description, "[2, 2, 2, 11]")
     }
     
     func testDouble() {
