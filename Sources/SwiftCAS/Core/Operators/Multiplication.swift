@@ -51,6 +51,33 @@ public class Multiplication: MultiNodesOperator {
         if simplified.children.count == 1 { return simplified.children[0] }
         if simplified.children.count == 0 { return 0 }
         
+        simplified.sortChildren()
+        
         return simplified
+    }
+    
+    var sortingOrder: [Any] = [NumericalValue.self, SymbolicValue.self, Node.self]
+    
+    public func sortChildren() {
+        children.sort(by: { areInIncreasingOrder($0, $1) })
+    }
+    
+    func areInIncreasingOrder(_ a: Node, _ b: Node) -> Bool {
+        let sortID = (a: getSortID(of: a), b: getSortID(of: b))
+        if sortID.a == sortID.b, let a = a as? SymbolicValue, let b = b as? SymbolicValue {
+            return a.symbol < b.symbol
+        }
+        return sortID.a < sortID.b
+    }
+    
+    func getSortID(of node: Node) -> Int {
+        switch node {
+            case is NumericalValue:
+                return 0
+            case is SymbolicValue:
+                return 1
+            default:
+                return 2
+        }
     }
 }

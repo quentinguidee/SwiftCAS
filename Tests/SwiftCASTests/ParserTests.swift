@@ -10,7 +10,7 @@ import XCTest
 
 final class ParserTests: XCTestCase {
     func testParser() {
-        XCTAssertEqual(Parser.parse("x^2+x+2").differentiated().simplified().toString(), "x*2+1")
+        XCTAssertEqual(Parser.parse("x^2+x+2").differentiated().simplified().toString(), "2*x+1")
         XCTAssertEqual(Parser.parse("((x^2)+3)+30.0").toString(), "x^2+3+30.0")
         XCTAssertEqual(Parser.parse("a^b^c").toLaTeX(), "{a}^{{b}^{c}}")
         XCTAssertEqual(Parser.parse("sin(x^2)").toLaTeX(), "\\sin{({x}^{2})}")
