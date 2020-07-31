@@ -14,12 +14,7 @@ class SignOperator: Operator {
     }
     
     public func simplified() -> Node {
-        switch argument.sign {
-            case .Positive: return 1
-            case .Signless: return 0
-            case .Negative: return -1
-            case .Unknown: return SignOperator(argument)
-        }
+        return sign == .Unknown ? SignOperator(argument) : sign.rawValue
     }
     
     public func toString() -> String {
