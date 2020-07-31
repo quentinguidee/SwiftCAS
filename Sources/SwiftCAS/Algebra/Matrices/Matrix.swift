@@ -26,6 +26,18 @@ public class Matrix: Node {
         self.init(nodes)
     }
     
+    public static func identity(order: Int) -> Matrix {
+        var nodes: [[Node]] = []
+        for i in 0..<order {
+            var line: [Node] = []
+            for j in 0..<order {
+                line.append(i == j ? 1 : 0)
+            }
+            nodes.append(line)
+        }
+        return Matrix(nodes)
+    }
+    
     public func determinant() -> Node {
         if (linesCount, columnsCount) == (2, 2) {
             return Addition(

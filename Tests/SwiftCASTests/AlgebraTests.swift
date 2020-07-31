@@ -26,6 +26,8 @@ final class AlgebraTests: XCTestCase {
         XCTAssertEqual(Matrix([1, 2, 3], [3, 4, 5]).order.m, 3)
         XCTAssertEqual(Matrix([[1, Unknown()], [Addition(4+5), 4]]).simplified().toString(), "[[1,x],[9,4]]")
         XCTAssertEqual(Matrix([[1, 2], [3, 3]]).determinant().toString(), "-3")
+        XCTAssertEqual(Matrix.identity(order: 2).toString(), "[[1,0],[0,1]]")
+        XCTAssertEqual(Matrix.identity(order: 4).toString(), "[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]")
     }
     
     static var allTests = [
