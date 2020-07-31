@@ -23,15 +23,11 @@ extension MultiNodesOperator {
     }
     
     public func toString() -> String {
-        var s: String = ""
-        children.forEach { s += $0.toString() + symbol }
-        return String(s.dropLast())
+        return children.map({ $0.toString() }).joined(separator: symbol)
     }
     
     public func toLaTeX() -> String {
-        var s: String = ""
-        children.forEach { s += $0.toLaTeX() + symbol }
-        return String(s.dropLast())
+        return children.map({ $0.toLaTeX() }).joined(separator: symbol)
     }
     
     public func mergeAllChildren() {
