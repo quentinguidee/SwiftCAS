@@ -41,9 +41,13 @@ public class Pow: Operator {
         self.power = power
     }
     
+    public func shallowCopy() -> Node {
+        return Pow(base, power)
+    }
+    
     public func simplified() -> Node {
-        base = base.simplified()
-        power = power.simplified()
+        let base = self.base.simplified()
+        let power = self.power.simplified()
         
         if let base = base as? NumericalValue, base.toDouble() == 1 {
             return 1

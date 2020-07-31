@@ -14,11 +14,15 @@ public class Gcd: Operator{
         self.b = b
     }
     
+    public func shallowCopy() -> Node {
+        Gcd(a, b)
+    }
+    
     public func simplified() -> Node {
         if let a = a as? Int, let b = b as? Int {
             return gcd(a, b)
         }
-        return Gcd(a, b)
+        return shallowCopy()
     }
     
     public func toString() -> String {

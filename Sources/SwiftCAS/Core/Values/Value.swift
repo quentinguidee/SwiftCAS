@@ -9,6 +9,6 @@ public protocol Value: Node {}
 
 extension Value {
     public func simplified() -> Node {
-        return self
+        return shallowCopy()
     }
 }

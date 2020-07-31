@@ -38,6 +38,10 @@ public class Constant: SymbolicValue {
         self.symbol = symbol
     }
     
+    public func shallowCopy() -> Node {
+        return Constant(symbol)
+    }
+    
     public func toDouble() -> Double {
         if let double = Constant.constants[symbol] { return double }
         fatalError("The constant \(symbol) doesn't exist")

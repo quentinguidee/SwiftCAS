@@ -28,6 +28,10 @@ public class Vector: Node {
         }
     }
     
+    public func shallowCopy() -> Node {
+        return Vector(nodes)
+    }
+    
     public func simplified() -> Node {
         var simplifiedNodes: [Node] = []
         for i in 0..<nodes.count {

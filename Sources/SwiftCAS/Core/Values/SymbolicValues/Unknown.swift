@@ -16,4 +16,8 @@ public class Unknown: SymbolicValue {
     public init(_ symbol: String) {
         self.symbol = symbol
     }
+    
+    public func shallowCopy() -> Node {
+        return Unknown(symbol)
+    }
 }

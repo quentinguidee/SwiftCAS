@@ -13,6 +13,10 @@ public class AbsoluteValue: Operator {
         self.argument = argument
     }
     
+    public func shallowCopy() -> Node {
+        return AbsoluteValue(argument)
+    }
+    
     public func simplified() -> Node {
         return argument.simplified().absoluteValue()
     }

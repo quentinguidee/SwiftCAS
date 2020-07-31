@@ -26,6 +26,10 @@ public class Matrix: Node {
         self.init(nodes)
     }
     
+    public func shallowCopy() -> Node {
+        return Matrix(nodes)
+    }
+    
     public static func identity(order: Int) -> Matrix {
         var nodes: [[Node]] = []
         for i in 0..<order {

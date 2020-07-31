@@ -19,6 +19,10 @@ public class Differential: Operator {
         self.init(of: Unknown(), argument)
     }
     
+    public func shallowCopy() -> Node {
+        return Differential(of: unknown, argument)
+    }
+    
     public func simplified() -> Node {
         return argument.differentiated(of: unknown)
     }

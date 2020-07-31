@@ -8,6 +8,7 @@
 public protocol Node: Differentiable, Integrable, AbsoluteValuable, Opposable {
     var sign: Sign { get }
     
+    func shallowCopy() -> Node
     func inverse() -> Node
     func simplified() -> Node
     func toString() -> String

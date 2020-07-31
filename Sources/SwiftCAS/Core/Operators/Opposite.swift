@@ -24,6 +24,10 @@ public class Opposite: Operator {
         self.argument = argument
     }
     
+    public func shallowCopy() -> Node {
+        return Opposite(argument)
+    }
+    
     public func simplified() -> Node {
         let simplified = argument.simplified().opposite()
         if let simplified = simplified as? Opposite {

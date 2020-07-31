@@ -17,6 +17,10 @@ public struct Complex: NumericalValue {
         self.imaginary = imaginary
     }
     
+    public func shallowCopy() -> Node {
+        return Complex(real, imaginary)
+    }
+    
     public func simplified() -> Node {
         switch (real.sign, imaginary.sign) {
             case let (x, y) where x == .Signless && y == .Signless:
@@ -24,7 +28,7 @@ public struct Complex: NumericalValue {
             case let (_, y) where y == .Signless:
                 return real
             default:
-                return Complex(re, im)
+                return shallowCopy()
         }
     }
     

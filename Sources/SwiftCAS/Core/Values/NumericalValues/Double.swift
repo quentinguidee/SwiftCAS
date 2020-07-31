@@ -8,6 +8,10 @@
 import Foundation
 
 extension Double: NumericalValue {
+    public func shallowCopy() -> Node {
+        return self
+    }
+    
     public func toDouble() -> Double {
         return self
     }

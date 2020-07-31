@@ -26,8 +26,12 @@ public class Multiplication: MultiNodesOperator {
     
     public required init() {}
     
+    public func shallowCopy() -> Node {
+        return Multiplication(children)
+    }
+    
     public func simplified() -> Node {
-        let simplified = Multiplication(children)
+        let simplified = shallowCopy() as! Multiplication
         simplified.mergeAllChildren()
         simplify(children: &simplified.children)
         simplified.mergeAllChildren()

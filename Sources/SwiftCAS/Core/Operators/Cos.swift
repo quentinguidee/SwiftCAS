@@ -15,8 +15,12 @@ public class Cos: Operator {
         self.argument = argument
     }
     
-    public func simplified() -> Node {
+    public func shallowCopy() -> Node {
         return Cos(argument)
+    }
+    
+    public func simplified() -> Node {
+        return shallowCopy()
     }
     
     public func toString() -> String {

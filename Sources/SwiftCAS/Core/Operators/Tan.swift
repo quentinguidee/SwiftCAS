@@ -15,8 +15,12 @@ public class Tan: Operator {
         self.argument = argument
     }
     
-    public func simplified() -> Node {
+    public func shallowCopy() -> Node {
         return Tan(argument)
+    }
+    
+    public func simplified() -> Node {
+        return shallowCopy()
     }
     
     public func toString() -> String {

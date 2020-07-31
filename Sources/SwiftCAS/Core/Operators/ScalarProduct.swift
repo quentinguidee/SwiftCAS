@@ -16,6 +16,10 @@ public class ScalarProduct: Operator {
         self.rightNode = rightNode
     }
     
+    public func shallowCopy() -> Node {
+        return ScalarProduct(leftNode, rightNode)
+    }
+    
     public func simplified() -> Node {
         if let leftNode = leftNode as? Vector, let rightNode = rightNode as? Vector {
             if (leftNode.isZero() || rightNode.isZero()) {
@@ -23,7 +27,7 @@ public class ScalarProduct: Operator {
             }
         }
         
-        return ScalarProduct(leftNode, rightNode)
+        return shallowCopy()
     }
     
     public func toString() -> String {

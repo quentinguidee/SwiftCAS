@@ -6,6 +6,10 @@
 //
 
 extension Int: NumericalValue {
+    public func shallowCopy() -> Node {
+        return self
+    }
+    
     public func toDouble() -> Double {
         return Double(self)
     }

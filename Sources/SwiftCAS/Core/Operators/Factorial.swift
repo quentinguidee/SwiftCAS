@@ -15,6 +15,10 @@ public class Factorial: Operator {
         self.argument = argument
     }
     
+    public func shallowCopy() -> Node {
+        return Factorial(argument)
+    }
+    
     public func simplified() -> Node {
         if let argument = argument as? Int {
             return argument.factorial()
@@ -22,7 +26,7 @@ public class Factorial: Operator {
             return argument.simplified().factorial().simplified()
         }
         
-        return Factorial(argument)
+        return shallowCopy()
     }
     
     public func toString() -> String {
