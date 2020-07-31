@@ -41,8 +41,8 @@ public class Pow: Operator {
         self.power = power
     }
     
-    public func shallowCopy() -> Node {
-        return Pow(base, power)
+    public func shallowCopy() -> Self {
+        return Self(base, power)
     }
     
     public func simplified() -> Node {

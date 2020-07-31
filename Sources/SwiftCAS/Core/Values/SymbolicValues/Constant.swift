@@ -34,12 +34,12 @@ public class Constant: SymbolicValue {
         "pi": "\\pi"
     ]
     
-    public init(_ symbol: String) {
+    public required init(_ symbol: String) {
         self.symbol = symbol
     }
     
-    public func shallowCopy() -> Node {
-        return Constant(symbol)
+    public func shallowCopy() -> Self {
+        return Self(symbol)
     }
     
     public func toDouble() -> Double {

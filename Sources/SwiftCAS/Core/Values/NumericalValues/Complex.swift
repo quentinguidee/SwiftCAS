@@ -17,8 +17,8 @@ public struct Complex: NumericalValue {
         self.imaginary = imaginary
     }
     
-    public func shallowCopy() -> Node {
-        return Complex(real, imaginary)
+    public func shallowCopy() -> Self {
+        return Self(real, imaginary)
     }
     
     public func simplified() -> Node {

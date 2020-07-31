@@ -13,8 +13,8 @@ class SignOperator: Operator {
         self.argument = argument
     }
     
-    func shallowCopy() -> Node {
-        return SignOperator(argument)
+    func shallowCopy() -> Self {
+        return Self(argument)
     }
     
     public func simplified() -> Node {

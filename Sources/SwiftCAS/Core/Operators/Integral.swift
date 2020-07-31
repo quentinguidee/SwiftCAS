@@ -22,8 +22,8 @@ public class Integral: Operator {
         self.init(of: Unknown(), argument)
     }
     
-    public func shallowCopy() -> Node {
-        return Integral(of: unknown, argument)
+    public func shallowCopy() -> Self {
+        return Self(of: unknown, argument)
     }
     
     public func simplified() -> Node {

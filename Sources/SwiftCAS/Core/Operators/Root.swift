@@ -22,8 +22,8 @@ public class Root: Operator {
         self.init(radicand, 2)
     }
     
-    public func shallowCopy() -> Node {
-        return Pow(radicand, index)
+    public func shallowCopy() -> Self {
+        return Self(radicand, index)
     }
     
     public func simplified() -> Node {

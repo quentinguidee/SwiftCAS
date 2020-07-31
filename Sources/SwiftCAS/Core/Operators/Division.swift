@@ -28,8 +28,8 @@ public class Division: Operator {
         self.denominator = denominator
     }
     
-    public func shallowCopy() -> Node {
-        return Division(numerator, denominator)
+    public func shallowCopy() -> Self {
+        return Self(numerator, denominator)
     }
     
     public func simplified() -> Node {

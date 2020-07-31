@@ -24,8 +24,8 @@ public class Opposite: Operator {
         self.argument = argument
     }
     
-    public func shallowCopy() -> Node {
-        return Opposite(argument)
+    public func shallowCopy() -> Self {
+        return Self(argument)
     }
     
     public func simplified() -> Node {

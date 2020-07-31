@@ -15,8 +15,8 @@ public class Tan: Operator {
         self.argument = argument
     }
     
-    public func shallowCopy() -> Node {
-        return Tan(argument)
+    public func shallowCopy() -> Self {
+        return Self(argument)
     }
     
     public func simplified() -> Node {

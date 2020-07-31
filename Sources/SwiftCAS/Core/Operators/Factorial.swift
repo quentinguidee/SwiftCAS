@@ -15,8 +15,8 @@ public class Factorial: Operator {
         self.argument = argument
     }
     
-    public func shallowCopy() -> Node {
-        return Factorial(argument)
+    public func shallowCopy() -> Self {
+        return Self(argument)
     }
     
     public func simplified() -> Node {

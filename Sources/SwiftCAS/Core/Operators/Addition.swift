@@ -22,12 +22,12 @@ public class Addition: MultiNodesOperator {
     
     public required init() {}
     
-    public func shallowCopy() -> Node {
-        return Addition(children)
+    public func shallowCopy() -> Self {
+        return Self(children)
     }
     
     public func simplified() -> Node {
-        let simplified = shallowCopy() as! Addition
+        let simplified = shallowCopy()
         simplified.mergeAllChildren()
         simplify(children: &simplified.children)
         

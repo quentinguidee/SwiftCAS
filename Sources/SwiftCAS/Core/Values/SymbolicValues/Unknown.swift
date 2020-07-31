@@ -13,11 +13,11 @@ public class Unknown: SymbolicValue {
         self.symbol = "x"
     }
     
-    public init(_ symbol: String) {
+    public required init(_ symbol: String) {
         self.symbol = symbol
     }
     
-    public func shallowCopy() -> Node {
-        return Unknown(symbol)
+    public func shallowCopy() -> Self {
+        return Self(symbol)
     }
 }

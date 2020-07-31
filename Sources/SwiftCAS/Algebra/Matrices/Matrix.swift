@@ -26,8 +26,8 @@ public class Matrix: Node {
         self.init(nodes)
     }
     
-    public func shallowCopy() -> Node {
-        return Matrix(nodes)
+    public func shallowCopy() -> Self {
+        return Self(nodes)
     }
     
     public static func identity(order: Int) -> Matrix {

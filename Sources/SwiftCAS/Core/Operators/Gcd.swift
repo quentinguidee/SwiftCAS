@@ -14,8 +14,8 @@ public class Gcd: Operator{
         self.b = b
     }
     
-    public func shallowCopy() -> Node {
-        Gcd(a, b)
+    public func shallowCopy() -> Self {
+        Self(a, b)
     }
     
     public func simplified() -> Node {

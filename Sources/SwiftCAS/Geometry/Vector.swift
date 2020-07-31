@@ -28,8 +28,8 @@ public class Vector: Node {
         }
     }
     
-    public func shallowCopy() -> Node {
-        return Vector(nodes)
+    public func shallowCopy() -> Self {
+        return Self(nodes)
     }
     
     public func simplified() -> Node {

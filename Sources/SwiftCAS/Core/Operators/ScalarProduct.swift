@@ -16,8 +16,8 @@ public class ScalarProduct: Operator {
         self.rightNode = rightNode
     }
     
-    public func shallowCopy() -> Node {
-        return ScalarProduct(leftNode, rightNode)
+    public func shallowCopy() -> Self {
+        return Self(leftNode, rightNode)
     }
     
     public func simplified() -> Node {

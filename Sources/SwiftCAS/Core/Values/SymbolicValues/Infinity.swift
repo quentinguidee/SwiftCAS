@@ -10,8 +10,10 @@ public class Infinity: SymbolicValue {
     public var symbol: String = "∞"
     public var sign: Sign { return .Positive }
     
-    public func shallowCopy() -> Node {
-        return Infinity()
+    required init() {}
+    
+    public func shallowCopy() -> Self {
+        return Self()
     }
     
     public func toLaTeX() -> String {

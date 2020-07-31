@@ -15,8 +15,8 @@ public class Sin: Operator {
         self.argument = argument
     }
     
-    public func shallowCopy() -> Node {
-        return Sin(argument)
+    public func shallowCopy() -> Self {
+        return Self(argument)
     }
     
     public func simplified() -> Node {
