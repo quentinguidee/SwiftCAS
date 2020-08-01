@@ -46,7 +46,7 @@ extension MultiNodesOperator {
     }
     
     public func append(children: [Node]) {
-        children.forEach({ self.append(child: $0) })
+        children.forEach { self.append(child: $0) }
     }
     
     public func append(child: Node) {

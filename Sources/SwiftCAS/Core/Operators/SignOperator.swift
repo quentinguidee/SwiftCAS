@@ -26,6 +26,6 @@ class SignOperator: Operator {
     }
     
     public func toLaTeX() -> String {
-        return toString()
+        return "sign(\(argument.toLaTeX()))"
     }
 }

@@ -16,7 +16,7 @@ public class Multiplication: MultiNodesOperator {
     
     public var sign: Sign {
         var sign: Int = 1
-        children.forEach({ sign *= $0.sign.rawValue })
+        children.forEach { sign *= $0.sign.rawValue }
         if let s = Sign(rawValue: sign) {
             return s
         } else {

@@ -56,9 +56,7 @@ public class Pow: Operator {
         } else if let base = base as? Pow {
             return Pow(base.base, Multiplication(base.power, power))
         } else if let base = base as? Multiplication {
-            var n: [Pow] = []
-            base.children.forEach { child in n.append(Pow(child, power)) }
-            return Multiplication(n).simplified()
+            return Multiplication(base.children.map { return Pow($0, power) }).simplified()
         } else if let base = base as? NumericalValue, let power = power as? NumericalValue {
             return pow(base.toDouble(), power.toDouble()).toIntIfPossible()
         }
