@@ -23,17 +23,16 @@ public class Pow: Operator {
                 return .Positive
             case .Signless:
                 return .Signless
-            default:
+            case .Negative:
                 if let power = power as? Int {
-                    if power.isEven() {
-                        return .Positive
-                    } else {
-                        return .Negative
-                    }
+                    return power.isEven() ? .Positive : .Negative
+                }
+            case .Unknown:
+                if let power = power as? Int {
+                    return power.isEven() ? .Positive : .Unknown
                 }
         }
-        
-        return .Signless
+        return .Unknown
     }
     
     public required init(_ base: Node, _ power: Node) {
