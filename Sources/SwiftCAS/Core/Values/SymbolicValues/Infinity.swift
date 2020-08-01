@@ -20,3 +20,9 @@ public class Infinity: SymbolicValue {
         return "\\infty"
     }
 }
+
+extension Infinity: Equatable {
+    public static func == (lhs: Infinity, rhs: Infinity) -> Bool {
+        return true
+    }
+}

@@ -62,3 +62,9 @@ public struct Complex: NumericalValue {
         }
     }
 }
+
+extension Complex: Equatable {
+    public static func == (lhs: Complex, rhs: Complex) -> Bool {
+        return lhs.real.isEqualTo(rhs.real) && lhs.imaginary.isEqualTo(rhs.imaginary)
+    }
+}

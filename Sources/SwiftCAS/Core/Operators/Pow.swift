@@ -72,3 +72,9 @@ public class Pow: Operator {
         return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
     }
 }
+
+extension Pow: Equatable {
+    public static func == (lhs: Pow, rhs: Pow) -> Bool {
+        return lhs.base.isEqualTo(rhs.base) && lhs.power.isEqualTo(rhs.power)
+    }
+}

@@ -38,3 +38,9 @@ public class ScalarProduct: Operator {
         return "\\langle\(leftNode.toLaTeX()),\(rightNode.toLaTeX())\\rangle"
     }
 }
+
+extension ScalarProduct: Equatable {
+    public static func == (lhs: ScalarProduct, rhs: ScalarProduct) -> Bool {
+        return lhs.leftNode.isEqualTo(rhs.leftNode) && lhs.rightNode.isEqualTo(rhs.rightNode)
+    }
+}

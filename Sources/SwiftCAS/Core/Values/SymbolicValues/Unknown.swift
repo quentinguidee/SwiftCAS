@@ -21,3 +21,9 @@ public class Unknown: SymbolicValue {
         return Self(symbol)
     }
 }
+
+extension Unknown: Equatable {
+    public static func == (lhs: Unknown, rhs: Unknown) -> Bool {
+        return lhs.symbol == rhs.symbol
+    }
+}

@@ -34,6 +34,12 @@ public class Gcd: Operator{
     }
 }
 
+extension Gcd: Equatable {
+    public static func == (lhs: Gcd, rhs: Gcd) -> Bool {
+        return lhs.a.isEqualTo(rhs.a) && lhs.b.isEqualTo(rhs.b)
+    }
+}
+
 public func gcd(_ a: Int, _ b: Int) -> Node {
     var A = a
     var B = b

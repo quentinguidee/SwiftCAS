@@ -60,6 +60,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Complex(1, 3).imaginary.toString(), "3")
         XCTAssertEqual(Complex(1, 3).re.toString(), "1")
         XCTAssertEqual(Complex(1, 3).im.toString(), "3")
+        XCTAssertTrue(Complex(1, 2) == Complex(1, 2))
+        XCTAssertFalse(Complex(1, 2) == Complex(1, 3))
     }
     
     func testInfinity() {
@@ -69,6 +71,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Infinity().absoluteValue().toString(), "∞")
         XCTAssertEqual(Infinity().differentiated(of: Unknown("y")).toString(), "0")
         XCTAssertEqual(Infinity().integrated(of: Unknown("y")).toString(), "∞")
+        XCTAssertTrue(Infinity() == Infinity())
     }
     
     func testConstant() {
@@ -80,6 +83,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Constant("e").absoluteValue().toString(), "e")
         XCTAssertEqual(Constant("e").differentiated(of: Unknown("y")).toString(), "0")
         XCTAssertEqual(Constant("e").integrated(of: Unknown("y")).toString(), "e*y")
+        XCTAssertTrue(Constant("e") == Constant("e"))
+        XCTAssertFalse(Constant("e") == Constant("π"))
     }
     
     func testUnknown() {
@@ -92,11 +97,15 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Unknown("x").differentiated(of: Unknown("y")).toString(), "0")
         XCTAssertEqual(Unknown("x").integrated().toString(), "x^2/2")
         XCTAssertEqual(Unknown("x").integrated(of: Unknown("y")).toString(), "x*y")
+        XCTAssertTrue(Unknown("x") == Unknown("x"))
+        XCTAssertFalse(Unknown("x") == Unknown("y"))
     }
     
     func testGcd() {
         XCTAssertEqual(Gcd(30, 20).toString(), "gcd(30, 20)")
         XCTAssertEqual(Gcd(30, 20).simplified().toString(), "10")
+        XCTAssertTrue(Gcd(30, 20) == Gcd(30, 20))
+        XCTAssertFalse(Gcd(30, 20) == Gcd(30, 30))
     }
     
     func testMultiNodesOperator() {
@@ -121,6 +130,10 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Addition(Addition(1, 2), 3).integrated().toString(), "1*x+2*x+3*x")
         XCTAssertEqual(Addition(1, 2, 3).integrated().toString(), "1*x+2*x+3*x")
         XCTAssertEqual(Addition(Unknown(), 2, 3).integrated().toString(), "x^2/2+2*x+3*x")
+        XCTAssertTrue(Addition(1, 2, 3) == Addition(1, 3, 2))
+        XCTAssertFalse(Addition(1, 3) == Addition(1, 3, 2))
+        XCTAssertFalse(Addition(1, 3, 3) == Addition(1, 3, 2))
+        XCTAssertFalse(Addition(1, 3, 2) == Addition(1, 3, 3))
     }
     
     func testMultiplication() {
@@ -141,6 +154,10 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Multiplication(Opposite(Unknown("x")), Opposite(Unknown("y"))).simplified().toString(), "x*y")
         XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).differentiated().toString(), "d/dx(1*2*3)")
         XCTAssertEqual(Multiplication(Multiplication(1, 2), 3).integrated().toString(), "∫1*2*3 dx")
+        XCTAssertTrue(Multiplication(1, 2, 3) == Multiplication(1, 3, 2))
+        XCTAssertFalse(Multiplication(1, 3) == Multiplication(1, 3, 2))
+        XCTAssertFalse(Multiplication(1, 3, 3) == Multiplication(1, 3, 2))
+        XCTAssertFalse(Multiplication(1, 3, 2) == Multiplication(1, 3, 3))
     }
     
     func testDivision() {
@@ -168,6 +185,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Division(Unknown(), 2).differentiated().simplified().toString(), "1/2")
         XCTAssertEqual(Division(Unknown(), 2).integrated().toString(), "∫x/2 dx")
         XCTAssertEqual(Division(1, 2).integrated().toString(), "1/2*x")
+        XCTAssertTrue(Division(1, 2) == Division(1, 2))
+        XCTAssertFalse(Division(1, 2) == Division(2, 1))
     }
     
     func testPow() {
@@ -194,12 +213,17 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Pow(3, 2).integrated().toString(), "∫3^2 dx")
         XCTAssertEqual(Pow(Unknown(), 2).integrated().simplified().toString(), "1/3*x^3")
         XCTAssertEqual(3.inverse().toString(), "3^-1")
+        XCTAssertTrue(Pow(2, 3) == Pow(2, 3))
+        XCTAssertFalse(Pow(2, 3) == Pow(3, 2))
     }
     
     func testDifferentiate() {
         XCTAssertEqual(Differential(of: Unknown("y"), Pow(3, 2)).toString(), "d/dy(3^2)")
         XCTAssertEqual(Differential(Pow(3, 2)).toString(), "d/dx(3^2)")
         XCTAssertEqual(Differential(3).integrated(of: Unknown("y")).toString(), "∫d/dx(3) dy")
+        XCTAssertTrue(Differential(Pow(Unknown(), 2)) == Differential(Pow(Unknown("x"), 2)))
+        XCTAssertFalse(Differential(of: Unknown(), 3) == Differential(of: Unknown("y"), 3))
+        XCTAssertFalse(Differential(Pow(Unknown(), 2)) == Differential(Pow(Unknown("y"), 2)))
     }
     
     func testIntegral() {
@@ -207,17 +231,24 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Integral(of: Unknown("y"), Pow(3, 2)).toString(), "∫3^2 dy")
         XCTAssertEqual(Integral(Pow(3, 2)).toString(), "∫3^2 dx")
         XCTAssertEqual(Integral(3).integrated(of: Unknown("y")).toString(), "∫∫3 dx dy")
+        XCTAssertTrue(Integral(Pow(Unknown(), 2)) == Integral(Pow(Unknown("x"), 2)))
+        XCTAssertFalse(Integral(of: Unknown(), 3) == Integral(of: Unknown("y"), 3))
+        XCTAssertFalse(Integral(Pow(Unknown(), 2)) == Integral(Pow(Unknown("y"), 2)))
     }
     
     func testAbsoluteValue() {
         XCTAssertEqual(AbsoluteValue(-3).simplified() as! Int, 3)
         XCTAssertEqual(AbsoluteValue(-3).absoluteValue().toString(), "|-3|")
+        XCTAssertTrue(AbsoluteValue(-3) == AbsoluteValue(-3))
+        XCTAssertFalse(AbsoluteValue(-3) == AbsoluteValue(-2))
     }
     
     func testOpposite() {
         XCTAssertEqual(Opposite(Unknown()).simplified().toString(), "-1*x")
         XCTAssertEqual((-(√Unknown())).toString(), "-sqrt(x)")
         XCTAssertEqual(Opposite(-3).simplified() as! Int, 3)
+        XCTAssertTrue(Opposite(-3) == Opposite(-3))
+        XCTAssertFalse(Opposite(-3) == Opposite(-2))
     }
     
     func testSin() {
@@ -225,6 +256,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Sin(3).toString(), "sin(3)")
         XCTAssertEqual(Sin(3).toLaTeX(), "\\sin{(3)}")
         XCTAssertEqual(Sin(3).differentiated().toString(), "0*cos(3)")
+        XCTAssertTrue(Sin(-3) == Sin(-3))
+        XCTAssertFalse(Sin(-3) == Sin(-2))
     }
     
     func testCos() {
@@ -232,6 +265,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Cos(3).toString(), "cos(3)")
         XCTAssertEqual(Cos(3).toLaTeX(), "\\cos{(3)}")
         XCTAssertEqual(Cos(3).differentiated().toString(), "0*-sin(3)")
+        XCTAssertTrue(Cos(-3) == Cos(-3))
+        XCTAssertFalse(Cos(-3) == Cos(-2))
     }
     
     func testTan() {
@@ -239,6 +274,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Tan(3).toString(), "tan(3)")
         XCTAssertEqual(Tan(3).toLaTeX(), "\\tan{(3)}")
         XCTAssertEqual(Tan(3).differentiated().toString(), "0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2")
+        XCTAssertTrue(Tan(-3) == Tan(-3))
+        XCTAssertFalse(Tan(-3) == Tan(-2))
     }
     
     func testRoot() {
@@ -250,6 +287,9 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(Root(4).toLaTeX(), "\\sqrt{4}")
         XCTAssertEqual(Root(4, 2).toLaTeX(), "\\sqrt{4}")
         XCTAssertEqual(Root(4, 3).toLaTeX(), "\\sqrt[3]{4}")
+        XCTAssertTrue(Root(-3, 3) == Root(-3, 3))
+        XCTAssertFalse(Root(-3, 3) == Root(-3, 2))
+        XCTAssertFalse(Root(-3, 3) == Root(-2, 3))
     }
     
     func testFactorial() {
@@ -262,6 +302,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(1.factorial().toString(), "1")
         XCTAssertEqual(0.factorial().toString(), "1")
         XCTAssertEqual((-1).factorial().toString(), "∞")
+        XCTAssertTrue(Factorial(3) == Factorial(3))
+        XCTAssertFalse(Factorial(3) == Factorial(2))
     }
     
     func testScalarProduct() {
@@ -269,6 +311,8 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toString(), "⟨(1,0),(0,1)⟩")
         XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toLaTeX(), "\\langle\\left(1,0\\right),\\left(0,1\\right)\\rangle")
         XCTAssertEqual(ScalarProduct(Vector(0, 0), Vector(0, 0)).simplified().toString(), "0")
+        XCTAssertTrue(ScalarProduct(Vector(0, 0), Vector(0, 1)) == ScalarProduct(Vector(0, 0), Vector(0, 1)))
+        XCTAssertFalse(ScalarProduct(Vector(0, 0), Vector(0, 1)) == ScalarProduct(Vector(0, 0), Vector(0, 0)))
     }
 
     static var allTests = [

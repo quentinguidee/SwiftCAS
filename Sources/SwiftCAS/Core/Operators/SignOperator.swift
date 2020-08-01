@@ -13,7 +13,7 @@ public class SignOperator: Operator {
         self.argument = argument
     }
     
-    func shallowCopy() -> Self {
+    public func shallowCopy() -> Self {
         return Self(argument)
     }
     
@@ -27,5 +27,11 @@ public class SignOperator: Operator {
     
     public func toLaTeX() -> String {
         return "sign(\(argument.toLaTeX()))"
+    }
+}
+
+extension SignOperator: Equatable {
+    public static func == (lhs: SignOperator, rhs: SignOperator) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument)
     }
 }

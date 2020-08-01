@@ -50,3 +50,19 @@ public class Addition: MultiNodesOperator {
         return simplified
     }
 }
+
+extension Addition: Equatable {
+    public static func == (lhs: Addition, rhs: Addition) -> Bool {
+        guard lhs.children.count == rhs.children.count else { return false }
+        
+        let lhsChildren = lhs.children
+        var rhsChildren = rhs.children
+        
+        for node in lhsChildren {
+            let i = rhsChildren.firstIndex(where: { $0.isEqualTo(node)}) ?? -1
+            if i != -1 { rhsChildren.remove(at: i) }
+        }
+        
+        return rhsChildren.isEmpty
+    }
+}

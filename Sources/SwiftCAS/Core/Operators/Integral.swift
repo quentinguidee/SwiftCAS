@@ -39,6 +39,12 @@ public class Integral: Operator {
     }
 }
 
+extension Integral: Equatable {
+    public static func == (lhs: Integral, rhs: Integral) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument) && lhs.unknown.isEqualTo(rhs.unknown)
+    }
+}
+
 public protocol Integrable {
     func integrated() -> Node
     func integrated(of unknown: Unknown) -> Node

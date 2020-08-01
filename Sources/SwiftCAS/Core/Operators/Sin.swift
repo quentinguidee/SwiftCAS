@@ -31,3 +31,9 @@ public class Sin: Operator {
         return "\\sin{(" + argument.toLaTeX() + ")}"
     }
 }
+
+extension Sin: Equatable {
+    public static func == (lhs: Sin, rhs: Sin) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument)
+    }
+}

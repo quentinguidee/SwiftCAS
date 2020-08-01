@@ -36,6 +36,12 @@ public class Differential: Operator {
     }
 }
 
+extension Differential: Equatable {
+    public static func == (lhs: Differential, rhs: Differential) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument) && lhs.unknown.isEqualTo(rhs.unknown)
+    }
+}
+
 public protocol Differentiable {
     func differentiated() -> Node
     func differentiated(of unknown: Unknown) -> Node

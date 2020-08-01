@@ -13,10 +13,19 @@ public protocol Node: Differentiable, Integrable, AbsoluteValuable, Opposable {
     func simplified() -> Node
     func toString() -> String
     func toLaTeX() -> String
+    
+    func isEqualTo(_ node: Node) -> Bool
 }
 
 extension Node {
     public func inverse() -> Node {
         return Pow(self, -1)
+    }
+}
+
+extension Node where Self: Equatable {
+    public func isEqualTo(_ node: Node) -> Bool {
+        guard let node = node as? Self else { return false }
+        return self == node
     }
 }

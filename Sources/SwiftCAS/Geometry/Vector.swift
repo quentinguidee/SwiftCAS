@@ -52,3 +52,15 @@ public class Vector: Node {
         return String(s.dropLast()) + "\\right)"
     }
 }
+
+extension Vector: Equatable {
+    public static func == (lhs: Vector, rhs: Vector) -> Bool {
+        guard lhs.nodes.count == rhs.nodes.count else { return false }
+        
+        for i in 0..<lhs.nodes.count {
+            if !lhs.nodes[i].isEqualTo(rhs.nodes[i]) { return false }
+        }
+        
+        return true
+    }
+}

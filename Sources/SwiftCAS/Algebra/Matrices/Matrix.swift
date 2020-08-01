@@ -118,3 +118,13 @@ public class Matrix: Node {
         return "NOT IMPLEMENTED"
     }
 }
+
+extension Matrix: Equatable {
+    public static func == (lhs: Matrix, rhs: Matrix) -> Bool {
+        return lhs.nodes.elementsEqual(rhs.nodes, by: { nodesA, nodesB in
+            nodesA.elementsEqual(nodesB, by: { nodeA, nodeB in
+                nodeA.isEqualTo(nodeB)
+            })
+        })
+    }
+}

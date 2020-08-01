@@ -50,6 +50,12 @@ public class Opposite: Operator {
     }
 }
 
+extension Opposite: Equatable {
+    public static func == (lhs: Opposite, rhs: Opposite) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument)
+    }
+}
+
 public protocol Opposable {
     func opposite() -> Node
 }

@@ -30,6 +30,12 @@ public class AbsoluteValue: Operator {
     }
 }
 
+extension AbsoluteValue: Equatable {
+    public static func == (lhs: AbsoluteValue, rhs: AbsoluteValue) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument)
+    }
+}
+
 public protocol AbsoluteValuable {
     func absoluteValue() -> Node
 }

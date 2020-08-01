@@ -38,6 +38,12 @@ public class Factorial: Operator {
     }
 }
 
+extension Factorial: Equatable {
+    public static func == (lhs: Factorial, rhs: Factorial) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument)
+    }
+}
+
 extension Node {
     public func factorial() -> Node {
         return Factorial(self)

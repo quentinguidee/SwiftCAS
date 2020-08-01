@@ -60,3 +60,9 @@ public class Root: Operator {
         return i?.toDouble() == 3 ? true : false
     }
 }
+
+extension Root: Equatable {
+    public static func == (lhs: Root, rhs: Root) -> Bool {
+        return lhs.radicand.isEqualTo(rhs.radicand) && lhs.index.isEqualTo(rhs.index)
+    }
+}

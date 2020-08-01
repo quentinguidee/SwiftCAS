@@ -31,3 +31,9 @@ public class Cos: Operator {
         return "\\cos{(" + argument.toLaTeX() + ")}"
     }
 }
+
+extension Cos: Equatable {
+    public static func == (lhs: Cos, rhs: Cos) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument)
+    }
+}

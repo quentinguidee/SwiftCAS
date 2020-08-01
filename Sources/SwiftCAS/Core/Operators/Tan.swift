@@ -31,3 +31,9 @@ public class Tan: Operator {
         return "\\tan{(" + argument.toLaTeX() + ")}"
     }
 }
+
+extension Tan: Equatable {
+    public static func == (lhs: Tan, rhs: Tan) -> Bool {
+        return lhs.argument.isEqualTo(rhs.argument)
+    }
+}

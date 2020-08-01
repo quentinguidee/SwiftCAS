@@ -62,3 +62,9 @@ public class Division: Operator {
         return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
     }
 }
+
+extension Division: Equatable {
+    public static func == (lhs: Division, rhs: Division) -> Bool {
+        return lhs.numerator.isEqualTo(rhs.numerator) && lhs.denominator.isEqualTo(rhs.denominator)
+    }
+}

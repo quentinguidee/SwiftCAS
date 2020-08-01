@@ -52,3 +52,9 @@ public class Constant: SymbolicValue {
         return toString()
     }
 }
+
+extension Constant: Equatable {
+    public static func == (lhs: Constant, rhs: Constant) -> Bool {
+        return lhs.symbol == rhs.symbol
+    }
+}
