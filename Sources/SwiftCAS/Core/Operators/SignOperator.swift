@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 28/07/2020.
 //
 
-class SignOperator: Operator {
+public class SignOperator: Operator {
     var argument: Node
     public var sign: Sign { return argument.sign }
     
