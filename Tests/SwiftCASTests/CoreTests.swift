@@ -314,6 +314,13 @@ final class CoreTests: XCTestCase {
         XCTAssertTrue(ScalarProduct(Vector(0, 0), Vector(0, 1)) == ScalarProduct(Vector(0, 0), Vector(0, 1)))
         XCTAssertFalse(ScalarProduct(Vector(0, 0), Vector(0, 1)) == ScalarProduct(Vector(0, 0), Vector(0, 0)))
     }
+    
+    func testPercent() {
+        XCTAssertEqual(Percent(10).toString(), "10%")
+        XCTAssertEqual(Percent(10).simplified().toString(), "0.1")
+        XCTAssertTrue(Percent(10) == Percent(10))
+        XCTAssertFalse(Percent(10) == Percent(11))
+    }
 
     static var allTests = [
         ("testInt", testInt),
