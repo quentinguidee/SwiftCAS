@@ -35,8 +35,8 @@ protocol DisplayModuleDataSupport {
 
 extension Percent: DisplayModuleDataSupport {
     func generateDisplayModuleData() -> DisplayModuleData? {
-        if let simplified = simplified() as? Double {
-            return PercentageDisplayModuleData(percentage: simplified)
+        if let percentage = simplified() as? Double, percentage >= 0, percentage <= 1 {
+            return PercentageDisplayModuleData(percentage: percentage)
         } else {
             return nil
         }
