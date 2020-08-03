@@ -6,17 +6,6 @@
 //
 
 public struct Token: CustomStringConvertible {
-    public static let tokenDefinitions: [[TokenDefinition]] = [
-        TokensLibrary.openingBrackets,
-        TokensLibrary.closingBrackets,
-        TokensLibrary.operators,
-        TokensLibrary.constants,
-        TokensLibrary.commands,
-        TokensLibrary.prefixes,
-        TokensLibrary.postfixes,
-        TokensLibrary.separators,
-    ]
-    
     public var tokenDefinition: TokenDefinition
     
     public private(set) var value: String
@@ -35,17 +24,13 @@ public struct Token: CustomStringConvertible {
     }
     
     public static func getDefinition(of element: String) -> TokenDefinition {
-        for tokenDefinition in TokensLibrary.infinities {
-            if tokenDefinition.token == element { return tokenDefinition }
-        }
-        
         if element.contains(".") {
             return TokensLibrary.real
-        } else if element.isNumeric {
+        } else if element.isNumeric && element != "inf" && element != "infinity" {
             return TokensLibrary.integer
         }
         
-        for subTokenDefinitions in tokenDefinitions {
+        for subTokenDefinitions in TokensLibrary.allDefinitions {
             for tokenDefinition in subTokenDefinitions {
                 if tokenDefinition.token == element { return tokenDefinition }
             }

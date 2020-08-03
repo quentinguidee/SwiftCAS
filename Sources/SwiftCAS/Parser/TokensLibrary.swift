@@ -10,6 +10,25 @@ public class TokensLibrary {
     public static let real = NumberDefinition("ℝ", { args in Double(args[0] as! String)! })
     public static let unknown = UnknownDefinition("�", { args in Unknown(args[0] as! String) })
     
+    public static let allDefinitions: [[TokenDefinition]] = [
+        infinities,
+        openingBrackets,
+        closingBrackets,
+        operators,
+        constants,
+        commands,
+        prefixes,
+        postfixes,
+        separators,
+    ]
+    
+    public static let infinities = [
+        InfinityDefinition("∞"),
+        InfinityDefinition("inf"),
+        InfinityDefinition("infty"),
+        InfinityDefinition("infinity"),
+    ]
+    
     public static let openingBrackets = [
         OpeningBracketDefinition("("),
         OpeningBracketDefinition("{"),
@@ -63,12 +82,5 @@ public class TokensLibrary {
     
     public static let separators = [
         SeparatorDefinition(","),
-    ]
-    
-    public static let infinities = [
-        InfinityDefinition("∞"),
-        InfinityDefinition("inf"),
-        InfinityDefinition("infty"),
-        InfinityDefinition("infinity"),
     ]
 }
