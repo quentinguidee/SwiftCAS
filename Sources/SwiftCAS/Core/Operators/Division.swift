@@ -51,6 +51,11 @@ public class Division: Operator {
             return numerator
         }
         
+        // TODO: Remove this: should be simplified in the Multiplication node (3/2 = 3*2^(-1))
+        if let numerator = numerator as? NumericalValue, let denominator = denominator as? NumericalValue, (numerator is Double || denominator is Double) {
+            return numerator.toDouble()/denominator.toDouble()
+        }
+        
         return Division(numerator, denominator)
     }
     
