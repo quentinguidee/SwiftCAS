@@ -8,3 +8,6 @@
 public protocol DisplayModule {
     func display()
 }
+
+public protocol PercentageDisplayModule: DisplayModule { init(data: PercentageDisplayModuleData) }
+public protocol DivisionDisplayModule: DisplayModule { init(data: DivisionDisplayModuleData) }

@@ -9,7 +9,7 @@ public struct Expression {
     public var input: String
     public var node: Node { return Parser.parse(self.input) }
     public var displayModuleData: DisplayModuleData? {
-        if let node = node as? DisplayModuleDataSupport {
+        if let node = node as? DisplayModuleSupport {
             return node.generateDisplayModuleData()
         }
         return nil
