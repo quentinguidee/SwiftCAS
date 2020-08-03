@@ -28,17 +28,3 @@ public struct Expression {
         displayManager.generateDisplayModule(of: displayModuleData!).display()
     }
 }
-
-protocol DisplayModuleDataSupport {
-    func generateDisplayModuleData() -> DisplayModuleData?
-}
-
-extension Percent: DisplayModuleDataSupport {
-    func generateDisplayModuleData() -> DisplayModuleData? {
-        if let percentage = simplified() as? Double, percentage >= 0, percentage <= 1 {
-            return PercentageDisplayModuleData(percentage: percentage)
-        } else {
-            return nil
-        }
-    }
-}
