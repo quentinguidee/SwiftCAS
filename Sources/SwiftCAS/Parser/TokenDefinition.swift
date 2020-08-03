@@ -7,12 +7,14 @@
 
 public protocol TokenDefinition {
     var token: String { get }
+}
+
+public protocol Buildable {
     var build: ([Any]) -> Any { get }
 }
 
 public struct OpeningBracketDefinition: TokenDefinition {
     public var token: String
-    public var build: ([Any]) -> Any = { args in "" }
     
     public init(_ token: String) {
         self.token = token
@@ -21,14 +23,13 @@ public struct OpeningBracketDefinition: TokenDefinition {
 
 public struct ClosingBracketDefinition: TokenDefinition {
     public var token: String
-    public var build: ([Any]) -> Any = { args in "" }
     
     public init(_ token: String) {
         self.token = token
     }
 }
 
-public struct OperatorDefinition: TokenDefinition {
+public struct OperatorDefinition: TokenDefinition, Buildable {
     public var token: String
     public var build: ([Any]) -> Any
     
@@ -39,7 +40,7 @@ public struct OperatorDefinition: TokenDefinition {
     }
 }
 
-public struct CommandDefinition: TokenDefinition {
+public struct CommandDefinition: TokenDefinition, Buildable {
     public var token: String
     public var nArgs: Int
     public var build: ([Any]) -> Any
@@ -51,7 +52,7 @@ public struct CommandDefinition: TokenDefinition {
     }
 }
 
-public struct PrefixDefinition: TokenDefinition {
+public struct PrefixDefinition: TokenDefinition, Buildable {
     public var token: String
     public var build: ([Any]) -> Any
     
@@ -61,7 +62,7 @@ public struct PrefixDefinition: TokenDefinition {
     }
 }
 
-public struct PostfixDefinition: TokenDefinition {
+public struct PostfixDefinition: TokenDefinition, Buildable {
     public var token: String
     public var build: ([Any]) -> Any
     
@@ -71,7 +72,7 @@ public struct PostfixDefinition: TokenDefinition {
     }
 }
 
-public struct NumberDefinition: TokenDefinition {
+public struct NumberDefinition: TokenDefinition, Buildable {
     public var token: String
     public var build: ([Any]) -> Any
     
@@ -83,14 +84,13 @@ public struct NumberDefinition: TokenDefinition {
 
 public struct SeparatorDefinition: TokenDefinition {
     public var token: String
-    public var build: ([Any]) -> Any = { args in "" }
     
     public init(_ token: String) {
         self.token = token
     }
 }
 
-public struct ConstantDefinition: TokenDefinition {
+public struct ConstantDefinition: TokenDefinition, Buildable {
     public var token: String
     public var build: ([Any]) -> Any
     
@@ -100,7 +100,7 @@ public struct ConstantDefinition: TokenDefinition {
     }
 }
 
-public struct InfinityDefinition: TokenDefinition {
+public struct InfinityDefinition: TokenDefinition, Buildable {
     public var token: String
     public var build: ([Any]) -> Any
     
@@ -110,7 +110,7 @@ public struct InfinityDefinition: TokenDefinition {
     }
 }
 
-public struct UnknownDefinition: TokenDefinition {
+public struct UnknownDefinition: TokenDefinition, Buildable {
     public var token: String
     public var build: ([Any]) -> Any
     
