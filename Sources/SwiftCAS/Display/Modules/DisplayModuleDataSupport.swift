@@ -22,7 +22,10 @@ extension Percent: DisplayModuleDataSupport {
 extension Division: DisplayModuleDataSupport {
     func generateDisplayModuleData() -> DisplayModuleData? {
         if let denominator = denominator as? Int, let numerator = numerator as? NumericalValue {
-            return DivisionDisplayModuleData(cellValue: numerator.toDouble()/denominator.toDouble(), numberOfCells: denominator)
+            return DivisionDisplayModuleData(
+                cellValue: numerator.toDouble()/denominator.toDouble(),
+                numberOfCells: denominator
+            )
         } else {
             return nil
         }
