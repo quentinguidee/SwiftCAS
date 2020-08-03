@@ -20,8 +20,14 @@ public struct Token: CustomStringConvertible {
     }
     
     public func build(_ nodes: Any...) -> Any {
-        guard tokenDefinition is Buildable else { fatalError("Trying to build a non buildable token") }
-        return (tokenDefinition as! Buildable).build(nodes)
+        switch tokenDefinition {
+            case let tokenDefinition as Buildable:
+                return tokenDefinition.build(nodes as! [Node])
+            case let tokenDefinition as BuildableFromString:
+                return tokenDefinition.build(nodes as! [String])
+            default:
+                fatalError("Trying to build a non buildable token")
+        }
     }
     
     public static func getDefinition(of element: String) -> TokenDefinition {

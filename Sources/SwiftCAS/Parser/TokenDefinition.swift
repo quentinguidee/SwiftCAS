@@ -10,7 +10,11 @@ public protocol TokenDefinition {
 }
 
 public protocol Buildable {
-    var build: ([Any]) -> Any { get }
+    var build: ([Node]) -> Node { get }
+}
+
+public protocol BuildableFromString {
+    var build: ([String]) -> Node { get }
 }
 
 public struct OpeningBracketDefinition: TokenDefinition {
@@ -31,10 +35,10 @@ public struct ClosingBracketDefinition: TokenDefinition {
 
 public struct OperatorDefinition: TokenDefinition, Buildable {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([Node]) -> Node
     
     // TODO: Remove all inits ?
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String, _ build: @escaping ([Node]) -> Node) {
         self.token = token
         self.build = build
     }
@@ -43,9 +47,9 @@ public struct OperatorDefinition: TokenDefinition, Buildable {
 public struct CommandDefinition: TokenDefinition, Buildable {
     public var token: String
     public var nArgs: Int
-    public var build: ([Any]) -> Any
+    public var build: ([Node]) -> Node
     
-    public init(_ token: String, _ nArgs: Int, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String, _ nArgs: Int, _ build: @escaping ([Node]) -> Node) {
         self.token = token
         self.nArgs = nArgs
         self.build = build
@@ -54,9 +58,9 @@ public struct CommandDefinition: TokenDefinition, Buildable {
 
 public struct PrefixDefinition: TokenDefinition, Buildable {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([Node]) -> Node
     
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String, _ build: @escaping ([Node]) -> Node) {
         self.token = token
         self.build = build
     }
@@ -64,19 +68,19 @@ public struct PrefixDefinition: TokenDefinition, Buildable {
 
 public struct PostfixDefinition: TokenDefinition, Buildable {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([Node]) -> Node
     
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String, _ build: @escaping ([Node]) -> Node) {
         self.token = token
         self.build = build
     }
 }
 
-public struct NumberDefinition: TokenDefinition, Buildable {
+public struct NumberDefinition: TokenDefinition, BuildableFromString {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([String]) -> Node
     
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String, _ build: @escaping ([String]) -> Node) {
         self.token = token
         self.build = build
     }
@@ -90,9 +94,9 @@ public struct SeparatorDefinition: TokenDefinition {
     }
 }
 
-public struct ConstantDefinition: TokenDefinition, Buildable {
+public struct ConstantDefinition: TokenDefinition, BuildableFromString {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([String]) -> Node
     
     public init(_ token: String) {
         self.token = token
@@ -100,9 +104,9 @@ public struct ConstantDefinition: TokenDefinition, Buildable {
     }
 }
 
-public struct InfinityDefinition: TokenDefinition, Buildable {
+public struct InfinityDefinition: TokenDefinition, BuildableFromString {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([String]) -> Node
     
     public init(_ token: String) {
         self.token = token
@@ -110,12 +114,12 @@ public struct InfinityDefinition: TokenDefinition, Buildable {
     }
 }
 
-public struct UnknownDefinition: TokenDefinition, Buildable {
+public struct UnknownDefinition: TokenDefinition, BuildableFromString {
     public var token: String
-    public var build: ([Any]) -> Any
+    public var build: ([String]) -> Node
     
-    public init(_ token: String, _ build: @escaping ([Any]) -> Any) {
+    public init(_ token: String) {
         self.token = token
-        self.build = build
+        self.build = { args in Unknown(args[0]) }
     }
 }
