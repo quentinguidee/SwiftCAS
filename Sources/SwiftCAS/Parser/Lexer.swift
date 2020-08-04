@@ -34,6 +34,30 @@ public class Lexer {
         
         array.append(Token(Token.getDefinition(of: currentElement), currentElement))
         
+        handleImplicitTokens(&array)
+        
         return array
+    }
+    
+    static func handleImplicitTokens(_ expression: inout [Token]) {
+        let implicitDefinitions = [
+            (NumberDefinition.self, OpeningBracketDefinition.self), // 2(
+            (ClosingBracketDefinition.self, NumberDefinition.self), // )2
+            (ClosingBracketDefinition.self, OpeningBracketDefinition.self), // )(
+            (NumberDefinition.self, UnknownDefinition.self), // 2x
+            (UnknownDefinition.self, NumberDefinition.self), // x2
+            (NumberDefinition.self, ConstantDefinition.self), // 2π
+            (ConstantDefinition.self, NumberDefinition.self), // π2
+        ] as [(TokenDefinition.Type, TokenDefinition.Type)]
+        
+        var i = 0
+        while (i+1) < expression.count {
+            for definition in implicitDefinitions {
+                if type(of: expression[i].tokenDefinition) == definition.0 && type(of: expression[i+1].tokenDefinition) == definition.1 {
+                    expression.insert(Token(Token.getDefinition(of: "*"), "*"), at: i+1)
+                }
+            }
+            i += 1
+        }
     }
 }
