@@ -42,7 +42,11 @@ public class Lexer {
     static func handleImplicitTokens(_ expression: inout [Token]) {
         let implicitDefinitions = [
             (NumberDefinition.self, OpeningBracketDefinition.self), // 2(
+            (UnknownDefinition.self, OpeningBracketDefinition.self), // x(
+            (ConstantDefinition.self, OpeningBracketDefinition.self), // π(
             (ClosingBracketDefinition.self, NumberDefinition.self), // )2
+            (ClosingBracketDefinition.self, UnknownDefinition.self), // )x
+            (ClosingBracketDefinition.self, ConstantDefinition.self), // )π
             (ClosingBracketDefinition.self, OpeningBracketDefinition.self), // )(
             (NumberDefinition.self, UnknownDefinition.self), // 2x
             (UnknownDefinition.self, NumberDefinition.self), // x2
