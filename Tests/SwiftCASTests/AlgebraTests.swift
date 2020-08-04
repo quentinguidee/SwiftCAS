@@ -38,7 +38,18 @@ final class AlgebraTests: XCTestCase {
         XCTAssertFalse(Matrix([1, 2], [3, 4]) == Matrix([1, 2], [3, 2]))
     }
     
+    func testKroneckerDelta() {
+        XCTAssertEqual(KroneckerDelta(3, 2).simplified().toString(), "0")
+        XCTAssertEqual(KroneckerDelta(3, 3).simplified().toString(), "1")
+        XCTAssertTrue(KroneckerDelta(4, 4) == KroneckerDelta(3, 3))
+        XCTAssertFalse(KroneckerDelta(3, 4) == KroneckerDelta(3, 3))
+        XCTAssertEqual(KroneckerDelta(4, 4).toString(), "δ_(44)")
+        XCTAssertEqual(KroneckerDelta(4, 4).toLaTeX(), "\\delta_{44}")
+    }
+    
     static var allTests = [
+        ("testVector", testVector),
         ("testMatrix", testMatrix),
+        ("testKroneckerDelta", testKroneckerDelta),
     ]
 }
