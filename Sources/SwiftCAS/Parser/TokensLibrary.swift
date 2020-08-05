@@ -20,6 +20,7 @@ public class TokensLibrary {
         prefixes,
         postfixes,
         separators,
+        assignations,
     ]
     
     public static let infinities = [
@@ -82,5 +83,9 @@ public class TokensLibrary {
     
     public static let separators = [
         SeparatorDefinition(","),
+    ]
+    
+    public static let assignations = [
+        AssignationDefinition("="),
     ]
 }

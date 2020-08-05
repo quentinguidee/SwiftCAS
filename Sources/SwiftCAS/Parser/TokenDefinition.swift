@@ -123,3 +123,11 @@ public struct UnknownDefinition: TokenDefinition, BuildableFromString {
         self.build = { args in Unknown(args[0]) }
     }
 }
+
+public struct AssignationDefinition: TokenDefinition {
+    public var token: String
+    
+    init(_ token: String) {
+        self.token = token
+    }
+}

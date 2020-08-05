@@ -24,12 +24,14 @@ public class Parser {
     
     public static func parse(_ array: inout [Any]) {
         replaceParenthesesBySubArrays(&array)
+        replaceVariablesByNodes(&array)
         parseRecursively(&array)
         replaceTokensByNodes(&array)
         replaceOperatorsByNodes(&array)
         replaceCommandsByNodes(&array)
         replacePrefixesByNodes(&array)
         replacePostfixesByNodes(&array)
+        handleAssignation(&array)
     }
     
     public static func parseRecursively(_ array: inout [Any]) {
@@ -78,7 +80,8 @@ public class Parser {
             } else if let item = array[i] as? Token, !(item.tokenDefinition is OperatorDefinition
                                                         || item.tokenDefinition is CommandDefinition
                                                         || item.tokenDefinition is PrefixDefinition
-                                                        || item.tokenDefinition is PostfixDefinition) {
+                                                        || item.tokenDefinition is PostfixDefinition
+                                                        || item.tokenDefinition is AssignationDefinition) {
                 array[i] = item.build(item.value)
             }
         }
@@ -151,6 +154,23 @@ public class Parser {
                 }
             } else {
                 i += 1
+            }
+        }
+    }
+    
+    static func handleAssignation(_ array: inout [Any]) {
+        if array.count >= 2,
+           let token = array[1] as? Token, token.tokenDefinition is AssignationDefinition,
+           let unknown = array[0] as? Unknown {
+            Storage.save(unknown.symbol, array[2] as! Node)
+            array.removeSubrange(0...1)
+        }
+    }
+    
+    static func replaceVariablesByNodes(_ array: inout [Any]) {
+        for i in 0..<array.count {
+            if let token = array[i] as? Token, token.tokenDefinition is UnknownDefinition, let unknown = token.build(token.value) as? Unknown, let variable = Storage.getVariable(unknown.symbol) {
+                array[i] = variable
             }
         }
     }
