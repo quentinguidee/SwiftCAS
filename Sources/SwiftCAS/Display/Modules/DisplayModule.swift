@@ -6,7 +6,7 @@
 //
 
 public protocol DisplayModule {
-    func display()
+    func getDisplay<DisplayType>() -> DisplayType
 }
 
 public protocol PercentageDisplayModule: DisplayModule { init(data: PercentageDisplayModuleData) }
