@@ -27,10 +27,10 @@ public class Parser {
         replaceVariablesByNodes(&array)
         parseRecursively(&array)
         replaceTokensByNodes(&array)
+        replacePostfixesByNodes(&array)
         replaceOperatorsByNodes(&array)
         replaceCommandsByNodes(&array)
         replacePrefixesByNodes(&array)
-        replacePostfixesByNodes(&array)
         handleAssignation(&array)
     }
     
