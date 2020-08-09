@@ -5,7 +5,10 @@
 //  Created by Quentin Guidée on 02/08/2020.
 //
 
-public struct Expression {
+import Foundation
+
+public struct Expression: Identifiable {
+    public var id = UUID()
     public var input: String
     public var node: Node { return Parser.parse(self.input) }
     public var displayModuleData: DisplayModuleData? {
@@ -23,8 +26,8 @@ public struct Expression {
         return node.simplified()
     }
     
-    public func display(with displayManager: DisplayManager) {
-        if displayModuleData == nil { return }
-        displayManager.generateDisplayModule(of: displayModuleData!).display()
+    public func getDisplay<DisplayType>(with displayManager: DisplayManager, as: DisplayType.Type) -> DisplayType? {
+        if displayModuleData == nil { return nil }
+        return displayManager.generateDisplayModule(of: displayModuleData!).getDisplay()
     }
 }
