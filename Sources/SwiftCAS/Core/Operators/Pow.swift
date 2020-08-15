@@ -14,8 +14,8 @@ public func **(lhs: Node, rhs: Node) -> Node { return lhs^rhs }
 public typealias Power = Pow
 
 public class Pow: Operator {
-    var base: Node
-    var power: Node
+    public private(set) var base: Node
+    public private(set) var power: Node
     
     public var sign: Sign {
         switch base.sign {
