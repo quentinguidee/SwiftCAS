@@ -312,6 +312,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(ScalarProduct(Vector(1, 0), Vector(0, 1)).toLaTeX(), "\\langle\\left(1,0\\right),\\left(0,1\\right)\\rangle")
         XCTAssertEqual(ScalarProduct(Vector(0, 0), Vector(0, 0)).simplified().toString(), "0")
         XCTAssertTrue(ScalarProduct(Vector(0, 0), Vector(0, 1)) == ScalarProduct(Vector(0, 0), Vector(0, 1)))
+        XCTAssertTrue(ScalarProduct(Vector(0, 0), Vector(0, 1)) == ScalarProduct(Vector(0, 1), Vector(0, 0)))
         XCTAssertFalse(ScalarProduct(Vector(0, 0), Vector(0, 1)) == ScalarProduct(Vector(0, 0), Vector(0, 0)))
     }
     

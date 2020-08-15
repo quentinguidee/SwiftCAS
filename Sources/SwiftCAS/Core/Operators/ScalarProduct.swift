@@ -41,6 +41,14 @@ public class ScalarProduct: Node {
 
 extension ScalarProduct: Equatable {
     public static func == (lhs: ScalarProduct, rhs: ScalarProduct) -> Bool {
-        return lhs.leftNode.isEqualTo(rhs.leftNode) && lhs.rightNode.isEqualTo(rhs.rightNode)
+        if lhs.leftNode.isEqualTo(rhs.leftNode) && lhs.rightNode.isEqualTo(rhs.rightNode) {
+            return true
+        }
+        // Property: ⟨x,y⟩ = ⟨y,x⟩
+        if lhs.leftNode.isEqualTo(rhs.rightNode) && lhs.rightNode.isEqualTo(rhs.leftNode) {
+            return true
+        }
+        // TODO: With Complex: ⟨x,y⟩ = ⟨y,x⟩.conjuguate
+        return false
     }
 }
