@@ -34,7 +34,7 @@ public class Vector: Node {
     
     public func simplified() -> Node {
         var simplifiedNodes: [Node] = []
-        for i in 0..<nodes.count {
+        for i in nodes.indices {
             simplifiedNodes.append(nodes[i].simplified())
         }
         return Vector(simplifiedNodes)
@@ -57,7 +57,7 @@ extension Vector: Equatable {
     public static func == (lhs: Vector, rhs: Vector) -> Bool {
         guard lhs.nodes.count == rhs.nodes.count else { return false }
         
-        for i in 0..<lhs.nodes.count {
+        for i in lhs.nodes.indices {
             if !lhs.nodes[i].isEqualTo(rhs.nodes[i]) { return false }
         }
         

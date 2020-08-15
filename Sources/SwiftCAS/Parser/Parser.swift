@@ -74,7 +74,7 @@ public class Parser {
     }
     
     static func replaceTokensByNodes(_ array: inout [Any]) {
-        for i in 0..<array.count {
+        for i in array.indices {
             if let _ = array[i] as? Array<Any> {
                 continue
             } else if let item = array[i] as? Token, !(item.tokenDefinition is OperatorDefinition
@@ -168,7 +168,7 @@ public class Parser {
     }
     
     static func replaceVariablesByNodes(_ array: inout [Any]) {
-        for i in 0..<array.count {
+        for i in array.indices {
             if let token = array[i] as? Token, token.tokenDefinition is UnknownDefinition, let unknown = token.build(token.value) as? Unknown, let variable = Storage.getVariable(unknown.symbol) {
                 array[i] = variable
             }
