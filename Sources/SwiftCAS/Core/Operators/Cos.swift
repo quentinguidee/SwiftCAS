@@ -7,7 +7,7 @@
 
 public typealias Cosine = Cos
 
-public class Cos: Operator {
+public class Cos: Node {
     var argument: Node
     public var sign: Sign { return .Unknown }
     

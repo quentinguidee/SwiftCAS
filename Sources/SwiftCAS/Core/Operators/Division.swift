@@ -7,7 +7,7 @@
 
 public func /(lhs: Node, rhs: Node) -> Node { return Division(lhs, rhs) }
 
-public class Division: Operator {
+public class Division: Node {
     public private(set) var numerator: Node
     public private(set) var denominator: Node
     public var dividend: Node { return numerator }

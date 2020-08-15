@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 01/07/2020.
 //
 
-public class AbsoluteValue: Operator {
+public class AbsoluteValue: Node {
     var argument: Node
     public var sign: Sign { return .Positive }
     

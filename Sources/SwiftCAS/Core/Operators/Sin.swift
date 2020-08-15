@@ -7,7 +7,7 @@
 
 public typealias Sine = Sin
 
-public class Sin: Operator {
+public class Sin: Node {
     var argument: Node
     public var sign: Sign { return .Unknown }
     

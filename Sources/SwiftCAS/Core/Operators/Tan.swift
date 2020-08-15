@@ -7,7 +7,7 @@
 
 public typealias Tangent = Tan
 
-public class Tan: Operator {
+public class Tan: Node {
     var argument: Node
     public var sign: Sign { return .Unknown }
     

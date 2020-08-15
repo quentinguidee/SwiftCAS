@@ -7,7 +7,7 @@
 
 public typealias Fact = Factorial
 
-public class Factorial: Operator {
+public class Factorial: Node {
     var argument: Node
     public var sign: Sign { return .Positive }
     

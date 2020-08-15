@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 30/07/2020.
 //
 
-public class Gcd: Operator{
+public class Gcd: Node {
     var a, b: Node
     public var sign: Sign { .Positive }
     

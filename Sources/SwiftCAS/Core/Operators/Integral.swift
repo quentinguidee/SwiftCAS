@@ -8,7 +8,7 @@
 prefix operator ∫
 public prefix func ∫(lhs: Node) -> Node { return Integral(lhs) }
 
-public class Integral: Operator {
+public class Integral: Node {
     var argument: Node
     var unknown: Unknown
     public var sign: Sign { return .Positive }
@@ -65,7 +65,7 @@ extension AbsoluteValue {
         if argument.sign == .Positive {
             return argument.integrated(of: unknown)
         } else {
-            return Multiplication(argument.integrated(of: unknown), SignOperator(unknown))
+            return Multiplication(argument.integrated(of: unknown), SignNode(unknown))
         }
     }
 }

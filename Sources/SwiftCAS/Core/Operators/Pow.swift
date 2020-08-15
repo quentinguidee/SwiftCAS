@@ -13,7 +13,7 @@ public func **(lhs: Node, rhs: Node) -> Node { return lhs^rhs }
 
 public typealias Power = Pow
 
-public class Pow: Operator {
+public class Pow: Node {
     public private(set) var base: Node
     public private(set) var power: Node
     

@@ -8,7 +8,7 @@
 prefix operator √
 public prefix func √(lhs: Node) -> Node { return Root(lhs) }
 
-public class Root: Operator {
+public class Root: Node {
     public var sign: Sign { return .Positive }
     var radicand: Node
     var index: Node

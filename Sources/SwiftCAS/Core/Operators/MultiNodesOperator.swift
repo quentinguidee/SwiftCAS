@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 27/06/2020.
 //
 
-public protocol MultiNodesOperator: AnyObject, Operator {
+public protocol MultiNodesOperator: AnyObject, Node {
     var symbol: String { get }
     var children: [Node] { get set }
     var neutral: Int { get }

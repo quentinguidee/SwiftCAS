@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 01/08/2020.
 //
 
-class Percent: Operator {
+class Percent: Node {
     var argument: Node
     public var sign: Sign { return .Positive }
     

@@ -7,7 +7,7 @@
 
 public typealias DotProduct = ScalarProduct
 
-public class ScalarProduct: Operator {
+public class ScalarProduct: Node {
     var leftNode, rightNode: Node
     public var sign: Sign { return .Unknown }
     

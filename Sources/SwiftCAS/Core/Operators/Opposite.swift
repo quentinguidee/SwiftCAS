@@ -7,7 +7,7 @@
 
 public prefix func -(lhs: Node) -> Node { return Opposite(lhs) }
 
-public class Opposite: Operator {
+public class Opposite: Node {
     var argument: Node
     public var sign: Sign {
         switch argument.sign {

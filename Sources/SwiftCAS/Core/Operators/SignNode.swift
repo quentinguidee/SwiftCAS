@@ -1,11 +1,11 @@
 //
-//  SignOperator.swift
+//  SignNode.swift
 //  
 //
 //  Created by Quentin Guidée on 28/07/2020.
 //
 
-public class SignOperator: Operator {
+public class SignNode: Node {
     var argument: Node
     public var sign: Sign { return argument.sign }
     
@@ -30,8 +30,8 @@ public class SignOperator: Operator {
     }
 }
 
-extension SignOperator: Equatable {
-    public static func == (lhs: SignOperator, rhs: SignOperator) -> Bool {
+extension SignNode: Equatable {
+    public static func == (lhs: SignNode, rhs: SignNode) -> Bool {
         return lhs.argument.isEqualTo(rhs.argument)
     }
 }

@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 01/07/2020.
 //
 
-public class Differential: Operator {
+public class Differential: Node {
     var argument: Node
     var unknown: Unknown
     public var sign: Sign { return .Positive }
