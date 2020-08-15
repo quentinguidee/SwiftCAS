@@ -34,6 +34,7 @@ final class AlgebraTests: XCTestCase {
         XCTAssertEqual(Matrix([[1, 2], [3, 3]]).determinant().toString(), "-3")
         XCTAssertEqual(Matrix.identity(order: 2).toString(), "[[1,0],[0,1]]")
         XCTAssertEqual(Matrix.identity(order: 4).toString(), "[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]")
+        XCTAssertEqual(Matrix.rotation.toString(), "[[cos(x),-sin(x)],[sin(x),cos(x)]]")
         XCTAssertTrue(Matrix([1, 2], [3, 4]) == Matrix([1, 2], [3, 4]))
         XCTAssertFalse(Matrix([1, 2], [3, 4]) == Matrix([1, 2], [3, 2]))
     }

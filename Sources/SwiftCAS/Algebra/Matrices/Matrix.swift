@@ -18,6 +18,12 @@ public class Matrix: Node {
     
     public var sign: Sign { return .Unknown }
     
+    public static var rotation: Matrix {
+        return Matrix(
+            [Cos(Unknown()), Opposite(Sin(Unknown()))],
+            [Sin(Unknown()), Cos(Unknown())])
+    }
+    
     public required init(_ nodes: [[Node]]) {
         self.nodes = nodes
     }
