@@ -41,15 +41,15 @@ public class Vector: Node {
     }
     
     public func toString() -> String {
-        var s: String = "("
-        nodes.forEach { s += $0.toString() + "," }
-        return String(s.dropLast()) + ")"
+        var s: String
+        s = nodes.map({ $0.toString() }).joined(separator: ",")
+        return "(\(s))"
     }
     
     public func toLaTeX() -> String {
-        var s: String = "\\left("
-        nodes.forEach { s += $0.toLaTeX() + "," }
-        return String(s.dropLast()) + "\\right)"
+        var s: String
+        s = nodes.map({ $0.toLaTeX() }).joined(separator: ",")
+        return "\\left(\(s)\\right)"
     }
 }
 
