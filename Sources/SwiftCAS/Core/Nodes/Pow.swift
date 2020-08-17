@@ -63,6 +63,13 @@ public class Pow: Node {
         return Pow(base, power)
     }
     
+    public func prettified() -> Node {
+        if let power = power as? NumericalValue, power.toDouble() == -1 {
+            return Division(1, base.prettified())
+        }
+        return Pow(base.prettified(), power.prettified())
+    }
+    
     public func toString() -> String {
         return base.toString() + "^" + power.toString()
     }

@@ -30,6 +30,10 @@ public class Integral: Node {
         return argument.integrated(of: unknown)
     }
     
+    public func prettified() -> Node {
+        return Integral(of: unknown, argument.prettified())
+    }
+    
     public func toString() -> String {
         return "∫" + argument.toString() + " d" + unknown.toString()
     }

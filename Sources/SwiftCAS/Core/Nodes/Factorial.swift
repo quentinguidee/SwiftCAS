@@ -29,6 +29,10 @@ public class Factorial: Node {
         return shallowCopy()
     }
     
+    public func prettified() -> Node {
+        return Factorial(argument.prettified())
+    }
+    
     public func toString() -> String {
         return argument.toString() + "!"
     }

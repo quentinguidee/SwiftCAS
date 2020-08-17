@@ -30,6 +30,10 @@ public class Root: Node {
         return Pow(radicand, Division(1, index)).simplified()
     }
     
+    public func prettified() -> Node {
+        return Root(radicand.prettified(), index.prettified())
+    }
+    
     public func toString() -> String {
         switch self {
             case let x where x.isSquareRoot():

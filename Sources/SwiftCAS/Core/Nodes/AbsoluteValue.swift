@@ -21,6 +21,10 @@ public class AbsoluteValue: Node {
         return argument.simplified().absoluteValue()
     }
     
+    public func prettified() -> Node {
+        return AbsoluteValue(argument.prettified())
+    }
+    
     public func toString() -> String {
         return "|" + argument.toString() + "|"
     }

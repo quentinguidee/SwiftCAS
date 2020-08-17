@@ -59,6 +59,10 @@ public class Division: Node {
         return Division(numerator, denominator)
     }
     
+    public func prettified() -> Node {
+        return Division(numerator.prettified(), denominator.prettified())
+    }
+    
     public func toString() -> String {
         return numerator.toString() + "/" + denominator.toString()
     }

@@ -49,6 +49,10 @@ public class Addition: MultiNodesOperator {
         
         return simplified
     }
+    
+    public func prettified() -> Node {
+        return shallowCopy()
+    }
 }
 
 extension Addition: Equatable {

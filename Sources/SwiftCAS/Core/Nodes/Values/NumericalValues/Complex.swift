@@ -32,6 +32,10 @@ public struct Complex: NumericalValue {
         }
     }
     
+    public func prettified() -> Node {
+        return Complex(real.prettified(), imaginary.prettified())
+    }
+    
     public func toString() -> String {
         switch imaginary.sign {
             case .Positive, .Signless, .Unknown:

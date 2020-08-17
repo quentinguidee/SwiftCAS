@@ -10,7 +10,10 @@ public protocol Node: Differentiable, Integrable, AbsoluteValuable, Opposable {
     
     func shallowCopy() -> Self
     func inverse() -> Node
+    
     func simplified() -> Node
+    func prettified() -> Node
+    
     func toString() -> String
     func toLaTeX() -> String
     

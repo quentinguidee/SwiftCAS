@@ -23,6 +23,10 @@ public class Cos: Node {
         return shallowCopy()
     }
     
+    public func prettified() -> Node {
+        return Cos(argument.prettified())
+    }
+    
     public func toString() -> String {
         return "cos(" + argument.toString() + ")"
     }

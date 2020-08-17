@@ -27,6 +27,10 @@ public class Differential: Node {
         return argument.differentiated(of: unknown)
     }
     
+    public func prettified() -> Node {
+        return Differential(of: unknown, argument.prettified())
+    }
+    
     public func toString() -> String {
         return "d/d" + unknown.symbol + "(" + argument.toString() + ")"
     }

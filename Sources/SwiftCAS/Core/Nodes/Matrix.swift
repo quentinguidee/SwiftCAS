@@ -104,6 +104,18 @@ public class Matrix: Node {
         return Matrix(simplifiedLines)
     }
     
+    public func prettified() -> Node {
+        var prettifiedLines: [[Node]] = []
+        for i in 0..<linesCount {
+            var prettifiedLine: [Node] = []
+            for j in 0..<columnsCount {
+                prettifiedLine.append(nodes[i][j].prettified())
+            }
+            prettifiedLines.append(prettifiedLine)
+        }
+        return Matrix(prettifiedLines)
+    }
+    
     public func toString() -> String {
         var string: String = "["
         nodes.forEach { lines in

@@ -37,6 +37,10 @@ public class Opposite: Node {
         }
     }
     
+    public func prettified() -> Node {
+        return Opposite(argument.prettified())
+    }
+    
     public func opposite() -> Node {
         return argument
     }

@@ -215,6 +215,7 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(3.inverse().toString(), "3^-1")
         XCTAssertTrue(Pow(2, 3) == Pow(2, 3))
         XCTAssertFalse(Pow(2, 3) == Pow(3, 2))
+        XCTAssertEqual(Pow(Unknown(), -1).prettified().toString(), "1/x")
     }
     
     func testDifferentiate() {

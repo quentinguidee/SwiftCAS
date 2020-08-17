@@ -11,4 +11,8 @@ extension Value {
     public func simplified() -> Node {
         return shallowCopy()
     }
+    
+    public func prettified() -> Node {
+        return shallowCopy()
+    }
 }

@@ -21,6 +21,10 @@ public class SignNode: Node {
         return sign == .Unknown ? shallowCopy() : sign.rawValue
     }
     
+    public func prettified() -> Node {
+        return SignNode(argument.prettified())
+    }
+    
     public func toString() -> String {
         return "sign(\(argument.toString()))"
     }

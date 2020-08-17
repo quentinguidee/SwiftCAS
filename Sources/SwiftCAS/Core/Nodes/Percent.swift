@@ -24,6 +24,10 @@ class Percent: Node {
         return shallowCopy()
     }
     
+    public func prettified() -> Node {
+        return Percent(argument.prettified())
+    }
+    
     func toString() -> String {
         return argument.toString() + "%"
     }

@@ -23,6 +23,10 @@ public class Sin: Node {
         return shallowCopy()
     }
     
+    public func prettified() -> Node {
+        return Sin(argument.prettified())
+    }
+    
     public func toString() -> String {
         return "sin(" + argument.toString() + ")"
     }

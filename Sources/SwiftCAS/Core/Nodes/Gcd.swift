@@ -25,6 +25,10 @@ public class Gcd: Node {
         return shallowCopy()
     }
     
+    public func prettified() -> Node {
+        return Gcd(a.prettified(), b.prettified())
+    }
+    
     public func toString() -> String {
         return "gcd(\(a.toString()), \(b.toString()))"
     }

@@ -60,6 +60,12 @@ public class Multiplication: MultiNodesOperator {
         return simplified
     }
     
+    public func prettified() -> Node {
+        let copy = shallowCopy()
+        copy.sortChildren()
+        return copy
+    }
+    
     var sortingOrder: [Any] = [NumericalValue.self, SymbolicValue.self, Node.self]
     
     public func sortChildren() {

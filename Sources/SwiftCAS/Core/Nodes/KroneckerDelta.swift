@@ -23,6 +23,10 @@ class KroneckerDelta: Node {
         return i.isEqualTo(j) ? 1 : 0
     }
     
+    public func prettified() -> Node {
+        return KroneckerDelta(i.prettified(), j.prettified())
+    }
+    
     public func toString() -> String {
         return "δ_(\(i.toString())\(j.toString()))"
     }

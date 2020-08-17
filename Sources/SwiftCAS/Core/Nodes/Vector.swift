@@ -40,6 +40,14 @@ public class Vector: Node {
         return Vector(simplifiedNodes)
     }
     
+    public func prettified() -> Node {
+        var prettifiedNodes: [Node] = []
+        for i in nodes.indices {
+            prettifiedNodes.append(nodes[i].prettified())
+        }
+        return Vector(prettifiedNodes)
+    }
+    
     public func toString() -> String {
         var s: String
         s = nodes.map({ $0.toString() }).joined(separator: ",")

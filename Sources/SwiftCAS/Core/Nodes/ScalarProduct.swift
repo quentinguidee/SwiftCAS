@@ -30,6 +30,10 @@ public class ScalarProduct: Node {
         return shallowCopy()
     }
     
+    public func prettified() -> Node {
+        return ScalarProduct(leftNode.prettified(), rightNode.prettified())
+    }
+    
     public func toString() -> String {
         return "⟨\(leftNode.toString()),\(rightNode.toString())⟩"
     }

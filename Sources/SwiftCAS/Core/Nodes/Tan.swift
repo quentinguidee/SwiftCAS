@@ -23,6 +23,10 @@ public class Tan: Node {
         return shallowCopy()
     }
     
+    public func prettified() -> Node {
+        return Tan(argument.prettified())
+    }
+    
     public func toString() -> String {
         return "tan(" + argument.toString() + ")"
     }

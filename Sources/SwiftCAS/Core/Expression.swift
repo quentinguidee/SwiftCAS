@@ -23,7 +23,7 @@ public struct Expression: Identifiable {
     }
     
     public func simplified() -> Node {
-        return node.simplified()
+        return node.simplified().prettified()
     }
     
     public func getDisplay<DisplayType>(with displayManager: DisplayManager, as: DisplayType.Type) -> DisplayType? {
