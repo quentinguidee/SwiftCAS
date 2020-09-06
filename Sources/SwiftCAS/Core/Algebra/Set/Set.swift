@@ -5,10 +5,22 @@
 //  Created by Quentin Guidée on 19/08/2020.
 //
 
-public protocol Set {
+public protocol Set: Node {
     var dimension: Int { get }
     
     func contains(_ node: Node) -> Bool
+}
+
+extension Set {
+    public var sign: Sign { return .Positive }
+    
+    public func simplified() -> Node {
+        return shallowCopy()
+    }
+    
+    public func prettified() -> Node {
+        return shallowCopy()
+    }
 }
 
 public struct Sets {

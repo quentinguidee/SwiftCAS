@@ -29,6 +29,13 @@ final class AlgebraTests: XCTestCase {
         XCTAssertEqual(FiniteSet(Vector(1, 2), Vector(1, 2)).dimension, 1)
         XCTAssertEqual(Sets.complex.dimension, 2)
     }
+    
+    func testUnion() {
+        XCTAssertEqual(Union(FiniteSet(Vector(1, 2), Vector(3, 2)), FiniteSet(Vector(2, 3))).simplified().toString(), "{(1,2),(3,2),(2,3)}")
+        XCTAssertEqual(Union(FiniteSet(Vector(1, 2), Vector(3, 2)), FiniteSet(Vector(1, 2))).simplified().toString(), "{(1,2),(3,2)}")
+        XCTAssertEqual(Union(FiniteSet(1, 2, 3), FiniteSet(2, 3, 4)).simplified().toString(), "{1,2,3,4}")
+        XCTAssertEqual(Union(IntegerSet(), IntegerSet()).simplified().toString(), "ℤ")
+    }
 
     static var allTests = [
         ("testSet", testSet),

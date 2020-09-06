@@ -13,7 +13,7 @@ public class FiniteSet: Set {
     
     public init() {}
     
-    public init(vectors: [Node]) {
+    public required init(vectors: [Node]) {
         add(vectors: vectors)
     }
     
@@ -36,5 +36,39 @@ public class FiniteSet: Set {
     
     public func contains(_ node: Node) -> Bool {
         return self.vectors.contains { $0.isEqualTo(node) }
+    }
+}
+
+extension FiniteSet {
+    public func shallowCopy() -> Self {
+        return Self(vectors: vectors)
+    }
+    
+    public func toString() -> String {
+        var s: String
+        s = vectors.map({ $0.toString() }).joined(separator: ",")
+        return "{\(s)}"
+    }
+    
+    public func toLaTeX() -> String {
+        var s: String
+        s = vectors.map({ $0.toLaTeX() }).joined(separator: ",")
+        return "\\left\\{\(s)\\Right\\}"
+    }
+}
+
+extension FiniteSet: Equatable {
+    public static func ==(lhs: FiniteSet, rhs: FiniteSet) -> Bool {
+        guard lhs.vectors.count == rhs.vectors.count else { return false }
+        
+        let lhsChildren = lhs.vectors
+        var rhsChildren = rhs.vectors
+        
+        for node in lhsChildren {
+            let i = rhsChildren.firstIndex(where: { $0.isEqualTo(node)}) ?? -1
+            if i != -1 { rhsChildren.remove(at: i) }
+        }
+        
+        return rhsChildren.isEmpty
     }
 }
