@@ -26,8 +26,10 @@ final class AlgebraTests: XCTestCase {
         XCTAssertFalse(FiniteSet(Vector(1, 2)).contains(Vector(2, 2)))
         XCTAssertEqual(FiniteSet(Vector(1, 2)).dimension, 1)
         XCTAssertEqual(FiniteSet(Vector(1, 2), Vector(2, 3)).dimension, 2)
+        XCTAssertEqual(FiniteSet(Vector(1, 2), Vector(1, 2)).dimension, 1)
         XCTAssertEqual(Sets.complex.dimension, 2)
     }
+
     static var allTests = [
         ("testSet", testSet),
     ]

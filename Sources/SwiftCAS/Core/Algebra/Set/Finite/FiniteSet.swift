@@ -8,15 +8,13 @@
 import Foundation
 
 public class FiniteSet: Set {
-    public private(set) var vectors: [Node]
+    public private(set) var vectors: [Node] = []
     public var dimension: Int { return vectors.count }
     
-    public init() {
-        self.vectors = []
-    }
+    public init() {}
     
     public init(vectors: [Node]) {
-        self.vectors = vectors
+        add(vectors: vectors)
     }
     
     public convenience init(_ vectors: Node...) {
@@ -24,11 +22,16 @@ public class FiniteSet: Set {
     }
     
     public func add(vector: Node) {
+        if contains(vector) { return }
         self.vectors.append(vector)
     }
     
+    public func add(vectors: [Node]) {
+        vectors.forEach { add(vector: $0) }
+    }
+    
     public func add(vectors: Node...) {
-        self.vectors.append(contentsOf: vectors)
+        add(vectors: vectors)
     }
     
     public func contains(_ node: Node) -> Bool {
