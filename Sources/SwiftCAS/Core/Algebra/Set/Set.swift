@@ -5,8 +5,15 @@
 //  Created by Quentin Guidée on 19/08/2020.
 //
 
-protocol Set {
-    static var symbol: String { get }
+public protocol Set {
+    var dimension: Int { get }
     
-    static func contains(_ node: Node) -> Bool
+    func contains(_ node: Node) -> Bool
+}
+
+public struct Sets {
+    public static let real = RealSet()
+    public static let integer = IntegerSet()
+    public static let natural = NaturalSet()
+    public static let complex = ComplexSet()
 }

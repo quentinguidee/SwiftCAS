@@ -10,18 +10,23 @@ import XCTest
 
 final class AlgebraTests: XCTestCase {
     func testSet() {
-        XCTAssertTrue(NaturalSet.contains(3))
-        XCTAssertFalse(NaturalSet.contains(-3))
-        XCTAssertFalse(NaturalSet.contains(3.2))
-        XCTAssertTrue(IntegerSet.contains(3))
-        XCTAssertTrue(IntegerSet.contains(-3))
-        XCTAssertFalse(IntegerSet.contains(3.2))
-        XCTAssertTrue(RealSet.contains(3))
-        XCTAssertTrue(RealSet.contains(-3))
-        XCTAssertTrue(RealSet.contains(3.2))
-        XCTAssertTrue(ComplexSet.contains(3))
-        XCTAssertTrue(ComplexSet.contains(-3))
-        XCTAssertTrue(ComplexSet.contains(3.2))
+        XCTAssertTrue(Sets.natural.contains(3))
+        XCTAssertFalse(Sets.natural.contains(-3))
+        XCTAssertFalse(Sets.natural.contains(3.2))
+        XCTAssertTrue(Sets.integer.contains(3))
+        XCTAssertTrue(Sets.integer.contains(-3))
+        XCTAssertFalse(Sets.integer.contains(3.2))
+        XCTAssertTrue(Sets.real.contains(3))
+        XCTAssertTrue(Sets.real.contains(-3))
+        XCTAssertTrue(Sets.real.contains(3.2))
+        XCTAssertTrue(Sets.complex.contains(3))
+        XCTAssertTrue(Sets.complex.contains(-3))
+        XCTAssertTrue(Sets.complex.contains(3.2))
+        XCTAssertTrue(FiniteSet(Vector(1, 2), Vector(3, 0)).contains(Vector(1, 2)))
+        XCTAssertFalse(FiniteSet(Vector(1, 2)).contains(Vector(2, 2)))
+        XCTAssertEqual(FiniteSet(Vector(1, 2)).dimension, 1)
+        XCTAssertEqual(FiniteSet(Vector(1, 2), Vector(2, 3)).dimension, 2)
+        XCTAssertEqual(Sets.complex.dimension, 2)
     }
     static var allTests = [
         ("testSet", testSet),
