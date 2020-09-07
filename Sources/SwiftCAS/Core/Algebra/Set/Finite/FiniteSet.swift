@@ -42,6 +42,10 @@ public class FiniteSet: Set {
         self.vectors.removeAll { v in vectors.contains { $0.isEqualTo(v) } }
     }
     
+    public func removeAll(where shouldBeRemoved: (Node) throws -> Bool) rethrows {
+        try vectors.removeAll(where: shouldBeRemoved)
+    }
+    
     public func remove(vectors: Node...) {
         remove(vectors: vectors)
     }

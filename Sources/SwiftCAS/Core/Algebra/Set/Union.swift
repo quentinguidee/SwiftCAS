@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Union.swift
 //  
 //
 //  Created by Quentin Guidée on 06/09/2020.

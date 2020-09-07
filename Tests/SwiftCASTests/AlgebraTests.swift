@@ -38,8 +38,16 @@ final class AlgebraTests: XCTestCase {
         XCTAssertEqual(Union(FiniteSet(1, 2), IntegerSet()).simplified().toString(), "ℤ")
         XCTAssertEqual(Union(IntegerSet(), FiniteSet(1, 2)).simplified().toString(), "ℤ")
     }
+    
+    func testIntersection() {
+        XCTAssertEqual(Intersection(FiniteSet(1, 2, 3), FiniteSet(2, 3, 4)).simplified().toString(), "{2,3}")
+        XCTAssertEqual(Intersection(Sets.integer, FiniteSet(3, 4)).simplified().toString(), "{3,4}")
+        XCTAssertEqual(Intersection(Sets.natural, FiniteSet(-2, 4)).simplified().toString(), "{4}")
+    }
 
     static var allTests = [
         ("testSet", testSet),
+        ("testUnion", testUnion),
+        ("testIntersection", testIntersection),
     ]
 }
