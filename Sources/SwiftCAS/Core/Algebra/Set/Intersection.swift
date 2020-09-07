@@ -44,26 +44,17 @@ extension Intersection: Equatable {
 }
 
 public protocol Intersectable {
-    func intersection(with set: Set) -> Node
+    func intersection(with set: Intersectable) -> Node
+    
     func intersection(with set: InfiniteSet) -> Node
     func intersection(with set: FiniteSet) -> Node
 }
 
-// TODO: Remove this if possible
-extension Intersectable {
-    public func intersection(with set: Set) -> Node {
-        switch set {
-            case let s as InfiniteSet:
-                return intersection(with: s)
-            case let s as FiniteSet:
-                return intersection(with: s)
-            default:
-                fatalError("Cannot make an union with this Set.")
-        }
-    }
-}
-
 extension FiniteSet: Intersectable {
+    public func intersection(with set: Intersectable) -> Node {
+        set.intersection(with: self)
+    }
+    
     public func intersection(with set: InfiniteSet) -> Node {
         let newSet = shallowCopy()
         newSet.removeAll { vector in
@@ -82,6 +73,10 @@ extension FiniteSet: Intersectable {
 }
 
 extension InfiniteSet {
+    public func intersection(with set: Intersectable) -> Node {
+        set.intersection(with: self)
+    }
+    
     public func intersection(with set: InfiniteSet) -> Node {
         // TODO: Implement this
         if symbol == set.symbol { return shallowCopy() }

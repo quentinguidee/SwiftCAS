@@ -44,26 +44,33 @@ extension Union: Equatable {
 }
 
 public protocol Unionable {
-    func union(with set: Set) -> Node
+    func union(with set: Unionable) -> Node
+    
     func union(with set: InfiniteSet) -> Node
     func union(with set: FiniteSet) -> Node
 }
 
-// TODO: Remove this if possible
-extension Unionable {
-    public func union(with set: Set) -> Node {
-        switch set {
-            case let s as InfiniteSet:
-                return union(with: s)
-            case let s as FiniteSet:
-                return union(with: s)
-            default:
-                fatalError("Cannot make an union with this Set.")
-        }
+extension InfiniteSet {
+    public func union(with set: Unionable) -> Node {
+        set.union(with: self)
+    }
+    
+    public func union(with set: InfiniteSet) -> Node {
+        // TODO: Implement this
+        if symbol == set.symbol { return shallowCopy() }
+        return Union(shallowCopy(), set)
+    }
+    
+    public func union(with set: FiniteSet) -> Node {
+        return set.union(with: self)
     }
 }
 
-extension FiniteSet: Unionable {
+extension FiniteSet {
+    public func union(with set: Unionable) -> Node {
+        set.union(with: self)
+    }
+    
     public func union(with set: InfiniteSet) -> Node {
         let newFiniteSet = shallowCopy()
         
@@ -82,17 +89,5 @@ extension FiniteSet: Unionable {
         let newSet = shallowCopy()
         newSet.add(vectors: set.vectors)
         return newSet
-    }
-}
-
-extension InfiniteSet {
-    public func union(with set: InfiniteSet) -> Node {
-        // TODO: Implement this
-        if symbol == set.symbol { return shallowCopy() }
-        return Union(shallowCopy(), set)
-    }
-    
-    public func union(with set: FiniteSet) -> Node {
-        return set.union(with: self)
     }
 }
