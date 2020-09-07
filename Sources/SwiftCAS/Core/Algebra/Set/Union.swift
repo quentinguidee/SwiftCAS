@@ -66,10 +66,9 @@ extension Unionable {
 extension FiniteSet: Unionable {
     public func union(with set: InfiniteSet) -> Node {
         let newFiniteSet = shallowCopy()
-        for vector in vectors {
-            if set.contains(vector) {
-                newFiniteSet.remove(vector: vector)
-            }
+        
+        newFiniteSet.removeAll { vector in
+            set.contains(vector)
         }
         
         if newFiniteSet.dimension == 0 {
