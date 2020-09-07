@@ -34,6 +34,18 @@ public class FiniteSet: Set {
         add(vectors: vectors)
     }
     
+    public func remove(vector: Node) {
+        vectors.removeAll { $0.isEqualTo(vector) }
+    }
+    
+    public func remove(vectors: [Node]) {
+        self.vectors.removeAll { v in vectors.contains { $0.isEqualTo(v) } }
+    }
+    
+    public func remove(vectors: Node...) {
+        remove(vectors: vectors)
+    }
+    
     public func contains(_ node: Node) -> Bool {
         return self.vectors.contains { $0.isEqualTo(node) }
     }

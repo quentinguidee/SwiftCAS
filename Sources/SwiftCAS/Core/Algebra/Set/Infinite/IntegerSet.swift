@@ -10,9 +10,7 @@ public class IntegerSet: InfiniteSet {
     
     public required init() {}
     
-    public var canonicalBasis = FiniteSet(
-        Vector(1)
-    )
+    public var canonicalBasis = FiniteSet(Vector(1))
     
     public func contains(_ node: Node) -> Bool {
         return node is Int

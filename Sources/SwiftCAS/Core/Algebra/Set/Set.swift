@@ -5,7 +5,7 @@
 //  Created by Quentin Guidée on 19/08/2020.
 //
 
-public protocol Set: Node {
+public protocol Set: Node, Unionable {
     var dimension: Int { get }
     
     func contains(_ node: Node) -> Bool

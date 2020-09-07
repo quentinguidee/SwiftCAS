@@ -10,9 +10,7 @@ public class NaturalSet: InfiniteSet {
     
     public required init() {}
     
-    public var canonicalBasis = FiniteSet(
-        Vector(1)
-    )
+    public var canonicalBasis = FiniteSet(Vector(1))
     
     public func contains(_ node: Node) -> Bool {
         if let node = node as? Int, node.isNatural() {
