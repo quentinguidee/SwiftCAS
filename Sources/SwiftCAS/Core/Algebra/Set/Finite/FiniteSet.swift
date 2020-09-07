@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias EmptySet = FiniteSet
+
 public class FiniteSet: Set {
     public private(set) var vectors: [Node] = []
     public var dimension: Int { return vectors.count }
