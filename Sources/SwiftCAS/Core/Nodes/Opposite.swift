@@ -54,6 +54,18 @@ public class Opposite: Node {
     }
 }
 
+extension Opposite: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        return Opposite(argument.differentiated(of: unknown))
+    }
+}
+
+extension Opposite: Integrable {
+    public func integrated(of unknown: Unknown) -> Node {
+        return Opposite(argument.integrated(of: unknown))
+    }
+}
+
 extension Opposite: Equatable {
     public static func == (lhs: Opposite, rhs: Opposite) -> Bool {
         return lhs.argument.isEqualTo(rhs.argument)

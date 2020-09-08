@@ -21,6 +21,12 @@ public class Infinity: SymbolicValue {
     }
 }
 
+extension Infinity: Integrable {
+    public func integrated(of unknown: Unknown) -> Node {
+        return self
+    }
+}
+
 extension Infinity: Equatable {
     public static func == (lhs: Infinity, rhs: Infinity) -> Bool {
         return true

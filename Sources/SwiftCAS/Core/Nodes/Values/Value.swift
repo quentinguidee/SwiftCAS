@@ -16,3 +16,15 @@ extension Value {
         return shallowCopy()
     }
 }
+
+extension Value {
+    public func differentiated(of unknown: Unknown) -> Node {
+        return 0
+    }
+}
+
+extension Value {
+    public func integrated(of unknown: Unknown) -> Node {
+        return Multiplication(self, unknown)
+    }
+}

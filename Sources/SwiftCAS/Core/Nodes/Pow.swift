@@ -79,6 +79,39 @@ public class Pow: Node {
     }
 }
 
+extension Pow: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        if let base = base as? Unknown {
+            if (base.symbol == unknown.symbol) {
+                return Multiplication(power, Pow(base, Addition(power, -1)))
+            }
+        } else if let base = base as? Constant, let power = power as? Unknown {
+            if (base.symbol == "e" && power.symbol == unknown.symbol) {
+                return Pow(base, power)
+            }
+        }
+        
+        return 0
+    }
+}
+
+extension Pow: Integrable {
+    public func integrated(of unknown: Unknown) -> Node {
+        if let base = base as? Unknown, let power = power as? NumericalValue {
+            if base.symbol == unknown.symbol {
+                return Multiplication(
+                    Division(1, Addition(power, 1)),
+                    Pow(base, Addition(power, 1))
+                )
+            } else {
+                return Multiplication(unknown, self)
+            }
+        }
+        
+        return Integral(of: unknown, self)
+    }
+}
+
 extension Pow: Equatable {
     public static func == (lhs: Pow, rhs: Pow) -> Bool {
         return lhs.base.isEqualTo(rhs.base) && lhs.power.isEqualTo(rhs.power)

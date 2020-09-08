@@ -72,6 +72,28 @@ public class Division: Node {
     }
 }
 
+extension Division: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        // (u/v) = (u'v-uv' / v^2)
+        return Division(
+            Addition(
+                Multiplication(numerator.differentiated(of: unknown), denominator),
+                Multiplication(numerator, denominator.differentiated(of: unknown)).opposite()
+            ),
+            Pow(denominator, 2)
+        )
+    }
+}
+
+extension Division: Integrable {
+    public func integrated(of unknown: Unknown) -> Node {
+        if numerator is NumericalValue && denominator is NumericalValue {
+            return Multiplication(self, unknown)
+        }
+        return Integral(of: unknown, self)
+    }
+}
+
 extension Division: Equatable {
     public static func == (lhs: Division, rhs: Division) -> Bool {
         return lhs.numerator.isEqualTo(rhs.numerator) && lhs.denominator.isEqualTo(rhs.denominator)

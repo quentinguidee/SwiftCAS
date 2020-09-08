@@ -36,6 +36,13 @@ public class Tan: Node {
     }
 }
 
+extension Tan: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        return Division(Sin(argument), Cos(argument))
+            .differentiated(of: unknown)
+    }
+}
+
 extension Tan: Equatable {
     public static func == (lhs: Tan, rhs: Tan) -> Bool {
         return lhs.argument.isEqualTo(rhs.argument)

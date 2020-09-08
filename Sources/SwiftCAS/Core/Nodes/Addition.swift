@@ -55,6 +55,22 @@ public class Addition: MultiNodesOperator {
     }
 }
 
+extension Addition: Integrable {
+    public func integrated(of unknown: Unknown) -> Node {
+        var nodes: [Node] = []
+        children.forEach({ nodes.append($0.integrated(of: unknown)) })
+        return Addition(nodes)
+    }
+}
+
+extension Addition: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        var nodes: [Node] = []
+        children.forEach({ nodes.append($0.differentiated(of: unknown)) })
+        return Addition(nodes)
+    }
+}
+
 extension Addition: Equatable {
     public static func == (lhs: Addition, rhs: Addition) -> Bool {
         guard lhs.children.count == rhs.children.count else { return false }

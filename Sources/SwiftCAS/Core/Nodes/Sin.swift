@@ -36,6 +36,12 @@ public class Sin: Node {
     }
 }
 
+extension Sin: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        return Multiplication(argument.differentiated(of: unknown), Cos(argument))
+    }
+}
+
 extension Sin: Equatable {
     public static func == (lhs: Sin, rhs: Sin) -> Bool {
         return lhs.argument.isEqualTo(rhs.argument)

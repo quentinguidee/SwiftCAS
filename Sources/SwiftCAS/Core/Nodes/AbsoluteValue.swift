@@ -34,6 +34,25 @@ public class AbsoluteValue: Node {
     }
 }
 
+extension AbsoluteValue: Integrable {
+    public func integrated(of unknown: Unknown) -> Node {
+        if argument.sign == .Positive {
+            return argument.integrated(of: unknown)
+        } else {
+            return Multiplication(argument.integrated(of: unknown), SignNode(unknown))
+        }
+    }
+}
+
+extension AbsoluteValue: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        return Multiplication(
+            Division(self, self.argument),
+            argument.differentiated(of: unknown)
+        )
+    }
+}
+
 extension AbsoluteValue: Equatable {
     public static func == (lhs: AbsoluteValue, rhs: AbsoluteValue) -> Bool {
         return lhs.argument.isEqualTo(rhs.argument)

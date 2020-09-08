@@ -36,6 +36,12 @@ public class Cos: Node {
     }
 }
 
+extension Cos: Differentiable {
+    public func differentiated(of unknown: Unknown) -> Node {
+        return Multiplication(argument.differentiated(of: unknown), Opposite(Sin(argument)))
+    }
+}
+
 extension Cos: Equatable {
     public static func == (lhs: Cos, rhs: Cos) -> Bool {
         return lhs.argument.isEqualTo(rhs.argument)
