@@ -8,7 +8,7 @@
 public prefix func -(lhs: Node) -> Node { return Opposite(lhs) }
 
 public class Opposite: Node {
-    var argument: Node
+    public private(set) var argument: Node
     public var sign: Sign {
         switch argument.sign {
             case .Positive:

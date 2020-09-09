@@ -8,7 +8,7 @@
 public typealias Cosine = Cos
 
 public class Cos: Node {
-    var argument: Node
+    public private(set) var argument: Node
     public var sign: Sign { return .Unknown }
     
     public required init(_ argument: Node) {

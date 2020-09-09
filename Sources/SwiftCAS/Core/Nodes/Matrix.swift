@@ -150,8 +150,8 @@ extension Matrix: Equatable {
 public typealias Order = Dimension
 
 public struct Dimension {
-    var n: Int
-    var m: Int
+    public private(set) var n: Int
+    public private(set) var m: Int
     
     init(_ n: Int, _ m: Int) {
         self.n = n

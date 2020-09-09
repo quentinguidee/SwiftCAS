@@ -6,7 +6,7 @@
 //
 
 public class Gcd: Node {
-    var a, b: Node
+    public private(set) var a, b: Node
     public var sign: Sign { .Positive }
     
     public required init(_ a: Node, _ b: Node) {

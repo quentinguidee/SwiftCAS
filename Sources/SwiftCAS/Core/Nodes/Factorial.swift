@@ -8,7 +8,7 @@
 public typealias Fact = Factorial
 
 public class Factorial: Node {
-    var argument: Node
+    public private(set) var argument: Node
     public var sign: Sign { return .Positive }
     
     public required init(_ argument: Node) {

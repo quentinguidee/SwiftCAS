@@ -6,7 +6,7 @@
 //
 
 public class SignNode: Node {
-    var argument: Node
+    public private(set) var argument: Node
     public var sign: Sign { return argument.sign }
     
     public required init(_ argument: Node) {

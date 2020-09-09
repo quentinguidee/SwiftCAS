@@ -8,7 +8,7 @@
 public typealias DotProduct = ScalarProduct
 
 public class ScalarProduct: Node {
-    var leftNode, rightNode: Node
+    public private(set) var leftNode, rightNode: Node
     public var sign: Sign { return .Unknown }
     
     public required init(_ leftNode: Node, _ rightNode: Node) {

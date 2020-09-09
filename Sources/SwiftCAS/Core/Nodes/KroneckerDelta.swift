@@ -6,7 +6,7 @@
 //
 
 class KroneckerDelta: Node {
-    var i, j: Node
+    public private(set) var i, j: Node
     
     public var sign: Sign { simplified().sign }
     

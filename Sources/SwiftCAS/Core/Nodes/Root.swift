@@ -10,8 +10,8 @@ public prefix func √(lhs: Node) -> Node { return Root(lhs) }
 
 public class Root: Node {
     public var sign: Sign { return .Positive }
-    var radicand: Node
-    var index: Node
+    public private(set) var radicand: Node
+    public private(set) var index: Node
     
     public required init(_ radicand: Node, _ index: Node) {
         self.radicand = radicand

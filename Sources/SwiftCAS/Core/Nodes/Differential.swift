@@ -6,8 +6,8 @@
 //
 
 public class Differential: Node {
-    var argument: Node
-    var unknown: Unknown
+    public private(set) var argument: Node
+    public private(set) var unknown: Unknown
     public var sign: Sign { return .Positive }
     
     public required init(of unknown: Unknown, _ argument: Node) {

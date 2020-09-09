@@ -6,7 +6,7 @@
 //
 
 public class Vector: Node {
-    var nodes: [Node]
+    public private(set) var nodes: [Node]
     public var sign: Sign { return .Positive }
     public var dimension: Int { return nodes.count }
     
